@@ -6,8 +6,8 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
-import UIKit
 import Acheron
+import UIKit
 
 class NextFace: Face {
 	var launch: Launch? = nil {

@@ -170,7 +170,7 @@ class SpaceX {
 			let json: String = String(data: data, encoding: .utf8)!
 			let attributes: [String:Any] = json.toAttributes()
 
-//			print(json.toAttributes().toJSON())
+			print(json.toAttributes().toJSON())
 
 			let array: [[String:Any]] = attributes["docs"] as! [[String:Any]]
 			let newData: Data = array.toJSON().data(using: .utf8)!

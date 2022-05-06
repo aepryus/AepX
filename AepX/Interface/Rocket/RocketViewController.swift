@@ -6,13 +6,15 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import UIKit
 
-class RocketViewController: UIViewController, UITableViewDataSource {
+class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 	lazy var controller: RocketController = { RocketController(vc: self) }()
 	var core: Core { didSet {} }
 
-	let tableView: UITableView = UITableView()
+	lazy var tableView: ExpandableTableView = { ExpandableTableView(delegate: self) }()
+	let rocketDetail: RocketDetail = RocketDetail()
 
 	init(core: Core) {
 		self.core = core
@@ -29,24 +31,38 @@ class RocketViewController: UIViewController, UITableViewDataSource {
 		view.backgroundColor = UIColor.aepXbackgroundColor
 
 		tableView.register(LaunchCell.self, forCellReuseIdentifier: "cell")
-		tableView.dataSource = self
+		tableView.expandableTableViewDelegate = self
 		tableView.rowHeight = 50*s
 		view.addSubview(tableView)
 
-		tableView.top(dy: 300*s, width: view.width, height: Double(core.launches.count)*50*s)
+		tableView.frame = view.bounds
 	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		controller.load(id: core.id)
 	}
 
-// UITableViewDataSource ===========================================================================
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return core.launches.count
+// ExpandableTableViewDelegate =====================================================================
+	func expandableTableView(_ tableView: ExpandableTableView, baseHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		if indexPath.row == 0 { return 400*s }
+		return 80*s
 	}
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	func expandableTableView(_ tableView: ExpandableTableView, expandableRowAt indexPath: IndexPath) -> Bool {
+		indexPath.row != 0
+	}
+	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		220*s
+	}
+	func expandableTableView(_ tableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
+		return core.launches.count+1
+	}
+	func expandableTableView(_ tableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> ExpandableCell {
+		if indexPath.row == 0 { return rocketDetail }
 		let cell: LaunchCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! LaunchCell
-		cell.load(delegate: controller, launch: core.launches[indexPath.row])
+		cell.load(delegate: controller, launch: core.launches[indexPath.row - 1])
 		return cell
+	}
+	func expandableTableView(_ tableView: ExpandableTableView, expansionForRowAt indexPath: IndexPath) -> UIView {
+		return LaunchExpansion(launch: core.launches[indexPath.row-1])
 	}
 }

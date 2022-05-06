@@ -14,6 +14,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 	let nextFace: NextFace = NextFace()
 	let latestFace: LatestFace = LatestFace()
+	let statsFace: StatsFace = StatsFace()
+	let yearsFace: YearsFace = YearsFace()
+	let thanksFace: ThanksFace = ThanksFace()
+	let creditsFace: CreditsFace = CreditsFace()
 
 	var cards: [Card] = []
 
@@ -52,7 +56,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			print("failure")
 		}
 
-		cards = [Card(face: nextFace), Card(face: latestFace)]
+		cards = [
+			Card(face: nextFace),
+			Card(face: latestFace),
+			Card(face: statsFace),
+			Card(face: yearsFace),
+			Card(face: thanksFace),
+			Card(face: creditsFace)
+		]
 	}
 
 // UITableViewDelegate =============================================================================

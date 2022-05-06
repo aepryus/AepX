@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		D8551FFF28226D3B00A8D5E8 /* LaunchExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8551FFE28226D3B00A8D5E8 /* LaunchExpansion.swift */; };
+		D85520012823CE1200A8D5E8 /* RocketDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520002823CE1200A8D5E8 /* RocketDetail.swift */; };
+		D85520032823CFB800A8D5E8 /* StatsFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520022823CFB800A8D5E8 /* StatsFace.swift */; };
+		D85520052823CFC200A8D5E8 /* YearsFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520042823CFC200A8D5E8 /* YearsFace.swift */; };
+		D85520072823CFD000A8D5E8 /* ThanksFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520062823CFD000A8D5E8 /* ThanksFace.swift */; };
+		D85520092823CFEE00A8D5E8 /* CreditsFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520082823CFEE00A8D5E8 /* CreditsFace.swift */; };
 		D8691737281BA05000D550F2 /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D8691736281BA05000D550F2 /* Acheron */; };
 		D869173A281BA14D00D550F2 /* SpaceX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8691739281BA14D00D550F2 /* SpaceX.swift */; };
 		D869173C281BC70600D550F2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D869173B281BC70600D550F2 /* RootViewController.swift */; };
@@ -42,6 +47,11 @@
 
 /* Begin PBXFileReference section */
 		D8551FFE28226D3B00A8D5E8 /* LaunchExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchExpansion.swift; sourceTree = "<group>"; };
+		D85520002823CE1200A8D5E8 /* RocketDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketDetail.swift; sourceTree = "<group>"; };
+		D85520022823CFB800A8D5E8 /* StatsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsFace.swift; sourceTree = "<group>"; };
+		D85520042823CFC200A8D5E8 /* YearsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsFace.swift; sourceTree = "<group>"; };
+		D85520062823CFD000A8D5E8 /* ThanksFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksFace.swift; sourceTree = "<group>"; };
+		D85520082823CFEE00A8D5E8 /* CreditsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsFace.swift; sourceTree = "<group>"; };
 		D8691739281BA14D00D550F2 /* SpaceX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceX.swift; sourceTree = "<group>"; };
 		D869173B281BC70600D550F2 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		D869173D281BC85E00D550F2 /* LaunchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +150,10 @@
 				D869175D281E323C00D550F2 /* Card.swift */,
 				D8691762281E328900D550F2 /* NextFace.swift */,
 				D8691764281E329E00D550F2 /* LatestFace.swift */,
+				D85520022823CFB800A8D5E8 /* StatsFace.swift */,
+				D85520042823CFC200A8D5E8 /* YearsFace.swift */,
+				D85520062823CFD000A8D5E8 /* ThanksFace.swift */,
+				D85520082823CFEE00A8D5E8 /* CreditsFace.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -156,6 +170,7 @@
 		D8691767281E4B7500D550F2 /* Rocket */ = {
 			isa = PBXGroup;
 			children = (
+				D85520002823CE1200A8D5E8 /* RocketDetail.swift */,
 				D8691772281EA07200D550F2 /* RocketController.swift */,
 				D869176A281E4BA400D550F2 /* RocketViewController.swift */,
 			);
@@ -332,9 +347,13 @@
 				D8691769281E4B9200D550F2 /* LaunchViewController.swift in Sources */,
 				D8691775281EA0D300D550F2 /* HomeController.swift in Sources */,
 				D869176D281E997D00D550F2 /* RocketsController.swift in Sources */,
+				D85520092823CFEE00A8D5E8 /* CreditsFace.swift in Sources */,
 				D8691755281C316900D550F2 /* Launch.swift in Sources */,
 				D869173E281BC85E00D550F2 /* LaunchesViewController.swift in Sources */,
+				D85520052823CFC200A8D5E8 /* YearsFace.swift in Sources */,
+				D85520032823CFB800A8D5E8 /* StatsFace.swift in Sources */,
 				D8691771281EA06600D550F2 /* LaunchesController.swift in Sources */,
+				D85520012823CE1200A8D5E8 /* RocketDetail.swift in Sources */,
 				D869173A281BA14D00D550F2 /* SpaceX.swift in Sources */,
 				D8691753281C289000D550F2 /* RocketCell.swift in Sources */,
 				D8691781281F998A00D550F2 /* UIColor+AepX.swift in Sources */,
@@ -349,6 +368,7 @@
 				D8691740281BC86B00D550F2 /* RocketsViewController.swift in Sources */,
 				D8691757281C31DF00D550F2 /* LaunchCell.swift in Sources */,
 				D869176F281EA05500D550F2 /* LaunchController.swift in Sources */,
+				D85520072823CFD000A8D5E8 /* ThanksFace.swift in Sources */,
 				D8DE1CD1281B9CFF00F8EABE /* AepX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

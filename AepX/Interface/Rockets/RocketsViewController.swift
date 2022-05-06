@@ -29,6 +29,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource {
 		tableView.backgroundColor = UIColor.clear
 		tableView.dataSource = self
 		tableView.register(RocketCell.self, forCellReuseIdentifier: "cell")
+		tableView.allowsSelection = false
 		view.addSubview(tableView)
 
 		backView.frame = view.bounds
@@ -36,7 +37,12 @@ class RocketsViewController: UIViewController, UITableViewDataSource {
 
 		SpaceX.cores { (cores: [Core]) in
 			DispatchQueue.main.async {
-				self.cores = cores
+				self.cores = cores.sorted(by: { (a: Core, b: Core) in
+					if a.status == "active" && b.status != "active" { return true }
+					if a.status != "active" && b.status == "active" { return false }
+					if a.launches.count != b.launches.count { return a.launches.count > b.launches.count }
+					return a.serial < b.serial
+				})
 				self.tableView.reloadData()
 			}
 		} failure: {
