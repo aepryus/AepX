@@ -8,6 +8,7 @@
 
 import Acheron
 import UIKit
+import YouTubeiOSPlayerHelper
 
 class NextFace: Face {
 	var launch: Launch? = nil {
@@ -18,6 +19,12 @@ class NextFace: Face {
 			if let url = launch.links?.patch?.small {
 				patchView.loadImage(url: url)
 			}
+			if let youtubeID = launch.links?.youtubeId {
+				player.load(withVideoId: youtubeID)
+				addSubview(player)
+			} else {
+				player.removeFromSuperview()
+			}
 		}
 	}
 
@@ -25,6 +32,7 @@ class NextFace: Face {
 	let nameLabel: UILabel = UILabel()
 	let patchView: UIImageView = UIImageView()
 	let blastOffLabel: UILabel = UILabel()
+	let player: YTPlayerView = YTPlayerView()
 
 	let timer: AETimer = AETimer()
 
@@ -46,6 +54,9 @@ class NextFace: Face {
 		
 		addSubview(patchView)
 
+		player.layer.cornerRadius = 12*s
+		player.layer.masksToBounds = true
+
 		timer.configure(interval: 1) { [weak self] in
 			DispatchQueue.main.async {
 				self?.blastOffLabel.text = self?.launch?.relative
@@ -56,7 +67,7 @@ class NextFace: Face {
 	required init?(coder: NSCoder) { fatalError() }
 
 // Face ============================================================================================
-	override var faceHeight: CGFloat { 120*s }
+	override var faceHeight: CGFloat { 120*s + (launch?.links?.webcast != nil ? 190*s : 0) }
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
@@ -64,5 +75,6 @@ class NextFace: Face {
 		nameLabel.topLeft(dx: 12*s, dy: titleLabel.bottom, width: 300*s, height: 30*s)
 		blastOffLabel.topLeft(dx: 12*s, dy: nameLabel.bottom, width: 300*s, height: 30*s)
 		patchView.topRight(dx: -12*s, dy: 10*s, width: 70*s, height: 70*s)
+		player.top(dy: blastOffLabel.bottom+10*s, width: 320*s, height: 180*s)
 	}
 }

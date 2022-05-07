@@ -43,6 +43,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		SpaceX.nextLaunch { (launch: Launch) in
 			DispatchQueue.main.async {
 				self.nextFace.launch = launch
+				self.tableView.reloadData()
 			}
 		} failure: {
 			print("failure")

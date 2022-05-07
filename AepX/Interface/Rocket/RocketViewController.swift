@@ -13,6 +13,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 	lazy var controller: RocketController = { RocketController(vc: self) }()
 	var core: Core { didSet {} }
 
+	let backView: UIImageView = UIImageView()
 	lazy var tableView: ExpandableTableView = { ExpandableTableView(delegate: self) }()
 	let rocketDetail: RocketDetail = RocketDetail()
 
@@ -30,11 +31,15 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.aepXbackgroundColor
 
+		backView.image = UIImage(named: "Starship")
+		view.addSubview(backView)
+
 		tableView.register(LaunchCell.self, forCellReuseIdentifier: "cell")
 		tableView.expandableTableViewDelegate = self
 		tableView.rowHeight = 50*s
 		view.addSubview(tableView)
 
+		backView.frame = view.bounds
 		tableView.frame = view.bounds
 	}
 	override func viewDidAppear(_ animated: Bool) {
