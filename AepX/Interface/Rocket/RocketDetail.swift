@@ -15,5 +15,4 @@ class RocketDetail: ExpandableCell {
 		backgroundColor = UIColor.red
 	}
 	required init?(coder: NSCoder) { fatalError() }
-
 }

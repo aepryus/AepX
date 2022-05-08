@@ -11,7 +11,7 @@ import UIKit
 import YouTubeiOSPlayerHelper
 
 class NextFace: Face {
-	var launch: Launch? = nil {
+	var launch: LaunchAPI? = nil {
 		didSet {
 			guard let launch = launch else { return }
 			nameLabel.text = launch.name
@@ -59,7 +59,10 @@ class NextFace: Face {
 
 		timer.configure(interval: 1) { [weak self] in
 			DispatchQueue.main.async {
-				self?.blastOffLabel.text = self?.launch?.relative
+				guard let launchAPI = self?.launch else { return }
+				let launch: Launch = Launch()
+				launchAPI.load(launch: launch)
+				self?.blastOffLabel.text = "d:\(launch.relativeDateComponents.day!), h:\(launch.relativeDateComponents.hour!), m:\(launch.relativeDateComponents.minute!), s:\(launch.relativeDateComponents.second!)"
 			}
 		}
 		timer.start()

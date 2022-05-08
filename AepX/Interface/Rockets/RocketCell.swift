@@ -58,9 +58,9 @@ class RocketCell: UITableViewCell {
 		self.core = core
 
 		nameLabel.text = core.serial
-		blockLabel.text = core.block != nil ? "\(core.block!)" : ""
+		blockLabel.text = core.block != 0 ? "\(core.block)" : ""
 		countLabel.text = "\(core.launches.count)"
-		statusLabel.text = core.status
+		statusLabel.text = core.coreStatus
 	}
 
 // Events ==========================================================================================

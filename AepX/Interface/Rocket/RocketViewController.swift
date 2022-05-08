@@ -44,7 +44,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		controller.load(id: core.id)
+		controller.load(apiid: core.apiid)
 	}
 
 // ExpandableTableViewDelegate =====================================================================
@@ -64,7 +64,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 	func expandableTableView(_ tableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> ExpandableCell {
 		if indexPath.row == 0 { return rocketDetail }
 		let cell: LaunchCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! LaunchCell
-		cell.load(delegate: controller, launch: core.launches[indexPath.row - 1])
+		cell.load(launch: core.launches[indexPath.row - 1])
 		return cell
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionForRowAt indexPath: IndexPath) -> UIView {

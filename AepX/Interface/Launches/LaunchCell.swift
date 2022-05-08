@@ -9,12 +9,7 @@
 import Acheron
 import UIKit
 
-protocol LaunchCellDelegate: AnyObject {
-	func onLaunchCellTapped(launch: Launch)
-}
-
 class LaunchCell: ExpandableCell {
-	weak var delegate: LaunchCellDelegate?
 	var launch: Launch!
 
 	let nameLabel: UILabel = UILabel()
@@ -36,12 +31,11 @@ class LaunchCell: ExpandableCell {
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
-	func load(delegate: LaunchCellDelegate, launch: Launch) {
-		self.delegate = delegate
+	func load(launch: Launch) {
 		self.launch = launch
 
 		nameLabel.text = launch.name
-		if let urlString = launch.links?.patch?.small {
+		if let urlString = launch.patch {
 			patchView.loadImage(url: urlString)
 		} else {
 			patchView.image = nil

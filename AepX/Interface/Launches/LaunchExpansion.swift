@@ -25,7 +25,7 @@ class LaunchExpansion: UIView {
 		player.layer.masksToBounds = true
 		addSubview(player)
 
-		if let youtubeID = launch.links?.youtubeId {
+		if let youtubeID = launch.youtubeID {
 			player.load(withVideoId: youtubeID)
 		}
 	}

@@ -40,7 +40,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
 
-		SpaceX.nextLaunch { (launch: Launch) in
+		SpaceX.nextLaunch { (launch: LaunchAPI) in
 			DispatchQueue.main.async {
 				self.nextFace.launch = launch
 				self.tableView.reloadData()
@@ -49,7 +49,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			print("failure")
 		}
 
-		SpaceX.latestLaunch { (launch: Launch) in
+		SpaceX.latestLaunch { (launch: LaunchAPI) in
 			DispatchQueue.main.async {
 				self.latestFace.launch = launch
 			}

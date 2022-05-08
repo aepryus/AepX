@@ -10,7 +10,7 @@ import UIKit
 import YouTubeiOSPlayerHelper
 
 class LatestFace: Face {
-	var launch: Launch? = nil {
+	var launch: LaunchAPI? = nil {
 		didSet {
 			guard let launch = launch else { return }
 			nameLabel.text = launch.name

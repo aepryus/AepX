@@ -8,16 +8,10 @@
 
 import Foundation
 
-class LaunchesController: LaunchCellDelegate {
+class LaunchesController {
 	let vc: LaunchesViewController
 
 	init(vc: LaunchesViewController) {
 		self.vc = vc
-	}
-
-// Events ==========================================================================================
-	func onLaunchCellTapped(launch: Launch) {
-		let rvc = LaunchViewController(launch: launch)
-		vc.navigationController?.pushViewController(rvc, animated: true)
 	}
 }

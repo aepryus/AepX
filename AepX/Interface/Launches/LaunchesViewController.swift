@@ -33,14 +33,9 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
 
-		SpaceX.launches { (launches: [Launch]) in
-			DispatchQueue.main.async {
-				self.launches = launches
-				self.tableView.reloadData()
-			}
-		} failure: {
-			print("failure")
-		}
+		launches = Loom.selectAll().sorted(by: { (a: Launch, b: Launch) in
+			return a.flightNo > b.flightNo
+		})
 	}
 
 // ExpandableTableViewDelegate =====================================================================
@@ -55,7 +50,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> ExpandableCell {
 		let cell: LaunchCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! LaunchCell
-		cell.load(delegate: controller, launch: launches[indexPath.row])
+		cell.load(launch: launches[indexPath.row])
 		return cell
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionForRowAt indexPath: IndexPath) -> UIView {

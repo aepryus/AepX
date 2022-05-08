@@ -6,27 +6,18 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import Foundation
 
-class RocketController: LaunchCellDelegate {
+class RocketController {
 	let vc: RocketViewController
 
 	init(vc: RocketViewController) {
 		self.vc = vc
 	}
 
-	func load(id: String) {
-		SpaceX.core(id: id) { (core: Core) in
-			DispatchQueue.main.async {
-				self.vc.core = core
-				self.vc.tableView.reloadData()
-			}
-		} failure: { print("failure") }
-	}
-
-// RocketCellDelegate ==============================================================================
-	func onLaunchCellTapped(launch: Launch) {
-//		let rvc = RocketViewController(core: core)
-//		vc.navigationController?.pushViewController(rvc, animated: true)
+	func load(apiid: String) {
+		vc.core = Loom.selectBy(only: apiid)!
+		vc.tableView.reloadData()
 	}
 }
