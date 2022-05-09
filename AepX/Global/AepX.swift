@@ -17,12 +17,13 @@ class AepX {
 
 	static func start() {
 		print("[ AepX ] ======================================================================")
-		window.rootViewController = RootViewController()
-		window.makeKeyAndVisible()
 
 		Loom.start(basket: AepX.basket, namespaces: ["AepX"])
 		basket.associate(type: "launch", only: "apiid")
 		basket.associate(type: "core", only: "apiid")
+
+		window.rootViewController = RootViewController()
+		window.makeKeyAndVisible()
 
 		bootPond.start()
 	}

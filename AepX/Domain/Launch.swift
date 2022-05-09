@@ -13,10 +13,15 @@ class Launch: Anchor {
 	@objc dynamic var apiid: String = ""
 	@objc dynamic var name: String = ""
 	@objc dynamic var flightNo: Int = 0
+	@objc dynamic var date: Date = Date.now
+	@objc dynamic var details: String? = nil
+	@objc dynamic var completed: Bool = false
+	@objc dynamic var successful: Bool = false
 	@objc dynamic var youtubeID: String? = nil
 	@objc dynamic var webcast: String? = nil
 	@objc dynamic var patch: String? = nil
-	@objc dynamic var date: Date = Date.now
+	@objc dynamic var wikipedia: String? = nil
+	@objc dynamic var cores: [LaunchCore] = []
 
 	var relative: String {
 		let formatter = DateComponentsFormatter()
@@ -30,6 +35,10 @@ class Launch: Anchor {
 
 // Domain ==========================================================================================
 	override var properties: [String] {
-		super.properties + ["apiid", "name", "flightNo", "youtubeID", "webcast", "patch", "date"]
+		super.properties + ["apiid", "name", "flightNo", "youtubeID", "date", "details", "completed",
+							"successful", "youtubeID", "webcast", "patch", "wikipedia", "cores"]
 	}
+//	override var children: [String] {
+//		["cores"]
+//	}
 }

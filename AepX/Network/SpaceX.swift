@@ -132,8 +132,9 @@ class SpaceX {
 			})
 			decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-//			let json = String(data: data, encoding: .utf8)!
-//			print(json.toAttributes().toJSON())
+			let json = String(data: data, encoding: .utf8)!
+			let attributes = json.toArray()
+			print(attributes.toJSON())
 
 			let result: T = try! decoder.decode(T.self, from: data)
 			success(result)
@@ -203,21 +204,21 @@ class SpaceX {
 	}
 
 // Public ==========================================================================================
-	static func latestLaunch(success: @escaping (LaunchAPI)->(), failure: @escaping ()->()) {
-		decodableRequest(path: "/v4/launches/latest", method: "GET") { (launch: LaunchAPI) in
-			success(launch)
-		} failure: { failure() }
-	}
-	static func nextLaunch(success: @escaping (LaunchAPI)->(), failure: @escaping ()->()) {
-		decodableRequest(path: "/v4/launches/next", method: "GET") { (launch: LaunchAPI) in
-			success(launch)
-		} failure: { failure() }
-	}
-	static func upcomingLaunches(success: @escaping ([LaunchAPI])->(), failure: @escaping ()->()) {
-		decodableRequest(path: "/v5/launches/upcoming", method: "GET") { (launches: [LaunchAPI]) in
-			success(launches)
-		} failure: { failure() }
-	}
+//	static func latestLaunch(success: @escaping (LaunchAPI)->(), failure: @escaping ()->()) {
+//		decodableRequest(path: "/v4/launches/latest", method: "GET") { (launch: LaunchAPI) in
+//			success(launch)
+//		} failure: { failure() }
+//	}
+//	static func nextLaunch(success: @escaping (LaunchAPI)->(), failure: @escaping ()->()) {
+//		decodableRequest(path: "/v4/launches/next", method: "GET") { (launch: LaunchAPI) in
+//			success(launch)
+//		} failure: { failure() }
+//	}
+//	static func upcomingLaunches(success: @escaping ([LaunchAPI])->(), failure: @escaping ()->()) {
+//		decodableRequest(path: "/v5/launches/upcoming", method: "GET") { (launches: [LaunchAPI]) in
+//			success(launches)
+//		} failure: { failure() }
+//	}
 //	static func launches(success: @escaping ([LaunchAPI])->(), failure: @escaping ()->()) {
 //		let params: [String:Any] = [
 //			"options" : [
@@ -231,27 +232,28 @@ class SpaceX {
 //	}
 	static func launches(success: @escaping ([LaunchAPI])->(), failure: @escaping ()->()) {
 		decodableRequest(path: "/v5/launches", method: "GET") { (launches: [LaunchAPI]) in
+			print("}}} \(launches.count)")
 			success(launches)
 		} failure: { failure() }
 	}
-	static func launch(id: String, success: @escaping (LaunchAPI)->(), failure: @escaping ()->()) {
-		decodableRequest(path: "/v4/launches/\(id)", method: "GET") { (launch: LaunchAPI) in
-			success(launch)
-		} failure: { failure() }
-	}
-	static func core(id: String, success: @escaping (CoreAPI)->(), failure: @escaping ()->()) {
-		let params: [String:Any] = [
-			"query" : ["_id" : id],
-			"options" : [
-				"populate" : ["launches"],
-				"limit" : 1000
-			]
-		]
-		decodableQuery(path: "/v4/cores/query", method: "POST", params: params) { (cores: [CoreAPI]) in
-			if cores.count == 1 { success(cores[0]) }
-			else { failure() }
-		} failure: { failure() }
-	}
+//	static func launch(id: String, success: @escaping (LaunchAPI)->(), failure: @escaping ()->()) {
+//		decodableRequest(path: "/v4/launches/\(id)", method: "GET") { (launch: LaunchAPI) in
+//			success(launch)
+//		} failure: { failure() }
+//	}
+//	static func core(id: String, success: @escaping (CoreAPI)->(), failure: @escaping ()->()) {
+//		let params: [String:Any] = [
+//			"query" : ["_id" : id],
+//			"options" : [
+//				"populate" : ["launches"],
+//				"limit" : 1000
+//			]
+//		]
+//		decodableQuery(path: "/v4/cores/query", method: "POST", params: params) { (cores: [CoreAPI]) in
+//			if cores.count == 1 { success(cores[0]) }
+//			else { failure() }
+//		} failure: { failure() }
+//	}
 //	static func cores(success: @escaping ([CoreAPI])->(), failure: @escaping ()->()) {
 //		let params: [String:Any] = [
 //			"options" : [
@@ -265,6 +267,7 @@ class SpaceX {
 //	}
 	static func cores(success: @escaping ([CoreAPI])->(), failure: @escaping ()->()) {
 		decodableRequest(path: "/v4/cores", method: "GET") { (cores: [CoreAPI]) in
+			print("}}} \(cores.count)")
 			success(cores)
 		} failure: { failure() }
 	}

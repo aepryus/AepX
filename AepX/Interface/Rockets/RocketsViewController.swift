@@ -30,6 +30,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource {
 		tableView.dataSource = self
 		tableView.register(RocketCell.self, forCellReuseIdentifier: "cell")
 		tableView.allowsSelection = false
+		tableView.rowHeight = 70*s
 		view.addSubview(tableView)
 
 		backView.frame = view.bounds

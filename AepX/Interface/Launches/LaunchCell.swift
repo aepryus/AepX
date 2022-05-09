@@ -13,8 +13,13 @@ class LaunchCell: ExpandableCell {
 	var launch: Launch!
 
 	let nameLabel: UILabel = UILabel()
+	let coreLabel: UILabel = UILabel()
+	let flightLabel: UILabel = UILabel()
+	let dateLabel: UILabel = UILabel()
 	let lineView: UIView = UIView()
 	let patchView: UIImageView = UIImageView()
+
+	let pen: Pen = Pen(font: UIFont(name: "AvenirNext-Medium", size: 16*Screen.s)!, color: .white)
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,6 +28,15 @@ class LaunchCell: ExpandableCell {
 		nameLabel.textColor = .white
 		nameLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
 		addSubview(nameLabel)
+
+		coreLabel.pen = pen
+		addSubview(coreLabel)
+
+		flightLabel.pen = pen
+		addSubview(flightLabel)
+
+		dateLabel.pen = pen
+//		addSubview(dateLabel)
 
 		addSubview(patchView)
 
@@ -35,17 +49,34 @@ class LaunchCell: ExpandableCell {
 		self.launch = launch
 
 		nameLabel.text = launch.name
+		flightLabel.text = "[\(launch.flightNo)] \(launch.date.format("MMM d, yyyy h:mm a"))"
+//		dateLabel.text =
+
+		let serials: [String] = launch.cores.compactMap {
+			let core: Core? = Loom.selectBy(only: $0.appid)
+			return core?.serial
+		}
+		if serials.count > 1 {
+			var sb: String = ""
+			serials.forEach { sb += "\($0), " }
+			sb.removeLast(2)
+			coreLabel.text = sb
+		} else if serials.count == 1 { coreLabel.text = serials[0]
+		} else { coreLabel.text = "" }
+
+		patchView.image = nil
 		if let urlString = launch.patch {
 			patchView.loadImage(url: urlString)
-		} else {
-			patchView.image = nil
 		}
 	}
 
 // UITableViewCell =================================================================================
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		nameLabel.left(dx: 10*s, width: 300*s, height: 30*s)
+		nameLabel.topLeft(dx: 10*s, dy: 5*s, width: 300*s, height: 24*s)
+		flightLabel.topLeft(dx: 18*s, dy: nameLabel.bottom, width: 300*s, height: 24*s)
+		dateLabel.topLeft(dx: flightLabel.right, dy: flightLabel.top, width: 200*s, height: 24*s)
+		coreLabel.topLeft(dx: flightLabel.left, dy: flightLabel.bottom, width: 300*s, height: 24*s)
 		patchView.right(dx: -10*s, width: 48*s, height: 48*s)
 		lineView.bottom(width: width, height: 1)
 	}

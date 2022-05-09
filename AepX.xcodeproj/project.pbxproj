@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80BC3102828B8190048C74F /* LaunchCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BC30F2828B8190048C74F /* LaunchCore.swift */; };
+		D80BC3122828FED70048C74F /* PatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BC3112828FED70048C74F /* PatchesView.swift */; };
 		D8551FFF28226D3B00A8D5E8 /* LaunchExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8551FFE28226D3B00A8D5E8 /* LaunchExpansion.swift */; };
 		D85520012823CE1200A8D5E8 /* RocketDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520002823CE1200A8D5E8 /* RocketDetail.swift */; };
 		D85520032823CFB800A8D5E8 /* StatsFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520022823CFB800A8D5E8 /* StatsFace.swift */; };
@@ -47,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D80BC30F2828B8190048C74F /* LaunchCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCore.swift; sourceTree = "<group>"; };
+		D80BC3112828FED70048C74F /* PatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchesView.swift; sourceTree = "<group>"; };
 		D8551FFE28226D3B00A8D5E8 /* LaunchExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchExpansion.swift; sourceTree = "<group>"; };
 		D85520002823CE1200A8D5E8 /* RocketDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketDetail.swift; sourceTree = "<group>"; };
 		D85520022823CFB800A8D5E8 /* StatsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsFace.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 		D869174F281C286500D550F2 /* Rockets */ = {
 			isa = PBXGroup;
 			children = (
+				D80BC3112828FED70048C74F /* PatchesView.swift */,
 				D8691752281C289000D550F2 /* RocketCell.swift */,
 				D869176C281E997D00D550F2 /* RocketsController.swift */,
 				D869173F281BC86B00D550F2 /* RocketsViewController.swift */,
@@ -250,6 +255,7 @@
 			children = (
 				D869174D281BECA600D550F2 /* Core.swift */,
 				D8691754281C316900D550F2 /* Launch.swift */,
+				D80BC30F2828B8190048C74F /* LaunchCore.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8551FFF28226D3B00A8D5E8 /* LaunchExpansion.swift in Sources */,
+				D80BC3102828B8190048C74F /* LaunchCore.swift in Sources */,
 				D869173C281BC70600D550F2 /* RootViewController.swift in Sources */,
 				D8691775281EA0D300D550F2 /* HomeController.swift in Sources */,
 				D869176D281E997D00D550F2 /* RocketsController.swift in Sources */,
@@ -349,6 +356,7 @@
 				D85520032823CFB800A8D5E8 /* StatsFace.swift in Sources */,
 				D8691771281EA06600D550F2 /* LaunchesController.swift in Sources */,
 				D85520012823CE1200A8D5E8 /* RocketDetail.swift in Sources */,
+				D80BC3122828FED70048C74F /* PatchesView.swift in Sources */,
 				D869173A281BA14D00D550F2 /* SpaceX.swift in Sources */,
 				D8691753281C289000D550F2 /* RocketCell.swift in Sources */,
 				D8691781281F998A00D550F2 /* UIColor+AepX.swift in Sources */,

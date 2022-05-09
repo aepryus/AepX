@@ -11,15 +11,15 @@ import UIKit
 import YouTubeiOSPlayerHelper
 
 class NextFace: Face {
-	var launch: LaunchAPI? = nil {
+	var launch: Launch? = nil {
 		didSet {
 			guard let launch = launch else { return }
 			nameLabel.text = launch.name
 			blastOffLabel.text = launch.relative
-			if let url = launch.links?.patch?.small {
+			if let url = launch.patch {
 				patchView.loadImage(url: url)
 			}
-			if let youtubeID = launch.links?.youtubeId {
+			if let youtubeID = launch.youtubeID {
 				player.load(withVideoId: youtubeID)
 				addSubview(player)
 			} else {
@@ -59,9 +59,7 @@ class NextFace: Face {
 
 		timer.configure(interval: 1) { [weak self] in
 			DispatchQueue.main.async {
-				guard let launchAPI = self?.launch else { return }
-				let launch: Launch = Launch()
-				launchAPI.load(launch: launch)
+				guard let launch = self?.launch else { return }
 				self?.blastOffLabel.text = "d:\(launch.relativeDateComponents.day!), h:\(launch.relativeDateComponents.hour!), m:\(launch.relativeDateComponents.minute!), s:\(launch.relativeDateComponents.second!)"
 			}
 		}
@@ -70,7 +68,7 @@ class NextFace: Face {
 	required init?(coder: NSCoder) { fatalError() }
 
 // Face ============================================================================================
-	override var faceHeight: CGFloat { 120*s + (launch?.links?.webcast != nil ? 190*s : 0) }
+	override var faceHeight: CGFloat { 120*s + (launch?.youtubeID != nil ? 190*s : 0) }
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {

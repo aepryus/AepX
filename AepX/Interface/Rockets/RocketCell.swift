@@ -20,6 +20,7 @@ class RocketCell: UITableViewCell {
 	let blockLabel: UILabel = UILabel()
 	let countLabel: UILabel = UILabel()
 	let statusLabel: UILabel = UILabel()
+	let patchesView: PatchesView = PatchesView()
 	let lineView: UIView = UIView()
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -45,6 +46,8 @@ class RocketCell: UITableViewCell {
 		statusLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
 		addSubview(statusLabel)
 
+		addSubview(patchesView)
+
 		lineView.backgroundColor = UIColor.blue.tone(0.85).tint(0.1)
 		addSubview(lineView)
 
@@ -61,6 +64,7 @@ class RocketCell: UITableViewCell {
 		blockLabel.text = core.block != 0 ? "\(core.block)" : ""
 		countLabel.text = "\(core.launches.count)"
 		statusLabel.text = core.coreStatus
+		patchesView.load(core: core)
 	}
 
 // Events ==========================================================================================
@@ -71,10 +75,11 @@ class RocketCell: UITableViewCell {
 // UITableViewCell =================================================================================
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		nameLabel.left(dx: 10*s, width: 300*s, height: 30*s)
-		blockLabel.right(dx: -170*s, width: 40*s, height: 30*s)
-		countLabel.right(dx: -120*s, width: 40*s, height: 30*s)
-		statusLabel.right(dx: -10*s, width: 100*s, height: 30*s)
+		nameLabel.topLeft(dx: 10*s, dy: 2*s, width: 300*s, height: 30*s)
+		blockLabel.topRight(dx: -170*s, dy: nameLabel.top, width: 40*s, height: 30*s)
+		countLabel.topRight(dx: -120*s, dy: nameLabel.top, width: 40*s, height: 30*s)
+		statusLabel.topRight(dx: -10*s, dy: nameLabel.top, width: 100*s, height: 30*s)
+		patchesView.topLeft(dx: 20*s, dy: nameLabel.bottom+3*s, width: 300*s, height: 27*s)
 		lineView.bottom(width: width, height: 1)
 	}
 }

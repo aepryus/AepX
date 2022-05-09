@@ -16,6 +16,8 @@ class Core: Anchor {
 	@objc dynamic var coreStatus: String = ""
 	@objc dynamic var config: String = ""
 	@objc dynamic var launchAPIIDs: [String] = []
+	@objc dynamic var attempts: Int = 0
+	@objc dynamic var landings: Int = 0
 
 	var launches: [Launch] {
 		launchAPIIDs.map { Loom.selectBy(only: $0)! }
@@ -23,6 +25,6 @@ class Core: Anchor {
 
 // Domain ==========================================================================================
 	override var properties: [String] {
-		super.properties + ["apiid", "serial", "block", "coreStatus", "config", "launchAPIIDs"]
+		super.properties + ["apiid", "serial", "block", "coreStatus", "config", "launchAPIIDs", "attempts", "landings"]
 	}
 }

@@ -10,14 +10,14 @@ import UIKit
 import YouTubeiOSPlayerHelper
 
 class LatestFace: Face {
-	var launch: LaunchAPI? = nil {
+	var launch: Launch? = nil {
 		didSet {
 			guard let launch = launch else { return }
 			nameLabel.text = launch.name
-			if let url = launch.links?.patch?.small {
+			if let url = launch.patch {
 				patchView.loadImage(url: url)
 			}
-			if let youtubeID = launch.links?.youtubeId {
+			if let youtubeID = launch.youtubeID {
 				player.load(withVideoId: youtubeID)
 			}
 		}

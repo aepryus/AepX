@@ -17,6 +17,7 @@ class LinksAPI: Codable {
 	var patch: PatchAPI?
 	var webcast: String?
 	var youtubeId: String?
+	var wikipedia: String?
 }
 
 class CoreAPI: Codable {
@@ -40,7 +41,16 @@ class CoreAPI: Codable {
 		core.block = block ?? 0
 		core.coreStatus = status
 		core.launchAPIIDs = launches
+		core.attempts = asdsAttempts + rtlsAttempts
+		core.landings = asdsLandings + rtlsLandings
 	}
+}
+
+class LaunchCoreAPI: Codable {
+	var core: String?
+	var landingAttempt: Bool?
+	var landingSuccess: Bool?
+	var landingType: String?
 }
 
 class LaunchAPI: Codable {
@@ -49,6 +59,9 @@ class LaunchAPI: Codable {
 	var flightNumber: Int
 	var links: LinksAPI?
 	var dateUtc: Date
+	var details: String?
+	var cores: [LaunchCoreAPI]
+	var success: Bool?
 
 	var relative: String {
 		let formatter = DateComponentsFormatter()
@@ -65,5 +78,17 @@ class LaunchAPI: Codable {
 		launch.webcast = links?.webcast
 		launch.patch = links?.patch?.small
 		launch.date = dateUtc
+		launch.details = details
+		launch.wikipedia = links?.wikipedia
+		launch.completed = success != nil
+		launch.successful = success ?? false
+		launch.cores = cores.compactMap {
+			guard let appid = $0.core, $0.landingType != "Ocean" else { return nil }
+			let launchCore: LaunchCore = LaunchCore()
+			launchCore.appid = appid
+			launchCore.landingAttempt = $0.landingAttempt ?? false
+			launchCore.landingSuccess = $0.landingSuccess ?? false
+			return launchCore
+		}
 	}
 }

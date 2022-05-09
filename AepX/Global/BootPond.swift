@@ -42,8 +42,7 @@ class BootPond: Pond {
 		}
 	}
 	lazy var print: Pebble = pebble(name: "print") { (complete: @escaping (Bool) -> ()) in
-		AepX.basket.printCensus()
-		AepX.basket.printDocuments()
+		(AepX.window.rootViewController as! RootViewController).homeViewController.loadData()
 		complete(true)
 	}
 

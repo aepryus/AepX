@@ -6,6 +6,7 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -20,6 +21,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 	let creditsFace: CreditsFace = CreditsFace()
 
 	var cards: [Card] = []
+
+	func loadData() {
+		let launches: [Launch] = Loom.selectAll().sorted { (a: Launch, b: Launch) in
+			return a.date < b.date
+		}
+		guard launches.count > 2 else { return }
+		var i: Int = 0
+		while i < launches.count-1 {
+			if launches[i].date < Date.now && launches[i+1].date >= Date.now {
+				break
+			}
+			i += 1
+		}
+		latestFace.launch = launches[i]
+		nextFace.launch = launches[i+1]
+		statsFace.loadData()
+		tableView.reloadData()
+	}
 
 // UIViewController ================================================================================
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
@@ -40,23 +59,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
 
-		SpaceX.nextLaunch { (launch: LaunchAPI) in
-			DispatchQueue.main.async {
-				self.nextFace.launch = launch
-				self.tableView.reloadData()
-			}
-		} failure: {
-			print("failure")
-		}
-
-		SpaceX.latestLaunch { (launch: LaunchAPI) in
-			DispatchQueue.main.async {
-				self.latestFace.launch = launch
-			}
-		} failure: {
-			print("failure")
-		}
-
 		cards = [
 			Card(face: nextFace),
 			Card(face: latestFace),
@@ -65,6 +67,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			Card(face: thanksFace),
 			Card(face: creditsFace)
 		]
+
+		loadData()
 	}
 
 // UITableViewDelegate =============================================================================
