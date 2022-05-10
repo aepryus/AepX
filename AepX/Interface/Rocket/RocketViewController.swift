@@ -15,7 +15,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 
 	let backView: UIImageView = UIImageView()
 	lazy var tableView: ExpandableTableView = { ExpandableTableView(delegate: self) }()
-	let rocketDetail: RocketDetail = RocketDetail()
+	lazy var rocketDetail: RocketDetail = { RocketDetail(core: core) }()
 
 	init(core: Core) {
 		self.core = core
@@ -56,7 +56,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 		indexPath.row != 0
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat {
-		220*s
+		270*s
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
 		return core.launches.count+1

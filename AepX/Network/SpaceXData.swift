@@ -8,6 +8,9 @@
 
 import Foundation
 
+class RocketAPI: Codable {
+}
+
 class PatchAPI: Codable {
 	var small: String?
 	var large: String?
@@ -27,7 +30,6 @@ class CoreAPI: Codable {
 	var serial: String = ""
 	var lastUpdate: String? = nil
 	var reuseCount: Int = 0
-
 	var asdsAttempts: Int = 0
 	var asdsLandings: Int = 0
 	var rtlsAttempts: Int = 0
@@ -43,6 +45,14 @@ class CoreAPI: Codable {
 		core.launchAPIIDs = launches
 		core.attempts = asdsAttempts + rtlsAttempts
 		core.landings = asdsLandings + rtlsLandings
+		if status == "active" {
+			core.disposition = "active"
+		} else if status == "inactive" {
+			core.disposition = "retired"
+		} else {
+			core.disposition = "destroyed"
+		}
+		core.note = lastUpdate ?? ""
 	}
 }
 
@@ -53,6 +63,11 @@ class LaunchCoreAPI: Codable {
 	var landingType: String?
 }
 
+class LaunchCrewAPI: Codable {
+	var crew: String?
+	var role: String?
+}
+
 class LaunchAPI: Codable {
 	var id: String
 	var name: String
@@ -61,6 +76,7 @@ class LaunchAPI: Codable {
 	var dateUtc: Date
 	var details: String?
 	var cores: [LaunchCoreAPI]
+	var crew: [LaunchCrewAPI]
 	var success: Bool?
 
 	var relative: String {
@@ -77,6 +93,7 @@ class LaunchAPI: Codable {
 		launch.youtubeID = links?.youtubeId
 		launch.webcast = links?.webcast
 		launch.patch = links?.patch?.small
+		launch.noOfCrew = crew.count
 		launch.date = dateUtc
 		launch.details = details
 		launch.wikipedia = links?.wikipedia

@@ -12,6 +12,9 @@ import YouTubeiOSPlayerHelper
 class LaunchExpansion: UIView {
 	let launch: Launch
 
+	let scrollView: UIScrollView = UIScrollView()
+	let paraView: ParaView = ParaView()
+	let imageView: UIImageView = UIImageView()
 	let player: YTPlayerView = YTPlayerView()
 
 	init(launch: Launch) {
@@ -23,7 +26,17 @@ class LaunchExpansion: UIView {
 
 		player.layer.cornerRadius = 12*s
 		player.layer.masksToBounds = true
-		addSubview(player)
+		scrollView.addSubview(player)
+
+		paraView.scrollView = scrollView
+		addSubview(paraView)
+
+		imageView.image = launch.rocket.image
+		scrollView.addSubview(imageView)
+
+		scrollView.isPagingEnabled = true
+		scrollView.showsHorizontalScrollIndicator = false
+		addSubview(scrollView)
 
 		if let youtubeID = launch.youtubeID {
 			player.load(withVideoId: youtubeID)
@@ -33,6 +46,15 @@ class LaunchExpansion: UIView {
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		player.center(width: 360*s, height: 180*s)
+		super.layoutSubviews()
+		paraView.top(dy: 12*s, width: width*0.9, height: 32*s)
+		scrollView.frame = CGRect(x: 0, y: paraView.bottom, width: width, height: height-paraView.bottom)
+		scrollView.contentSize = CGSize(width: width*3, height: scrollView.height)
+		if let image = imageView.image {
+			let maxHeight: CGFloat = height*0.7
+			let height: CGFloat = maxHeight*launch.rocket.height
+			imageView.bottomLeft(dx: 20*s, dy: -12*s, width: image.size.width*height/image.size.height, height: height)
+		}
+		player.bottomLeft(dx: width+27.5*s, dy: -20*s, width: 320*s, height: 180*s)
 	}
 }

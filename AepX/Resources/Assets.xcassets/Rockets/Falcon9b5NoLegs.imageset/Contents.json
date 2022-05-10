@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "Falcon9b5NoLegs.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

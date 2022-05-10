@@ -20,6 +20,7 @@ class RocketCell: UITableViewCell {
 	let blockLabel: UILabel = UILabel()
 	let countLabel: UILabel = UILabel()
 	let statusLabel: UILabel = UILabel()
+	let reasonLabel: UILabel = UILabel()
 	let patchesView: PatchesView = PatchesView()
 	let lineView: UIView = UIView()
 
@@ -46,6 +47,11 @@ class RocketCell: UITableViewCell {
 		statusLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
 		addSubview(statusLabel)
 
+		reasonLabel.textColor = .white
+		reasonLabel.textAlignment = .center
+		reasonLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
+		addSubview(reasonLabel)
+
 		addSubview(patchesView)
 
 		lineView.backgroundColor = UIColor.blue.tone(0.85).tint(0.1)
@@ -63,7 +69,8 @@ class RocketCell: UITableViewCell {
 		nameLabel.text = core.serial
 		blockLabel.text = core.block != 0 ? "\(core.block)" : ""
 		countLabel.text = "\(core.launches.count)"
-		statusLabel.text = core.coreStatus
+		statusLabel.text = core.disposition
+		reasonLabel.text = core.reason
 		patchesView.load(core: core)
 	}
 
@@ -79,6 +86,7 @@ class RocketCell: UITableViewCell {
 		blockLabel.topRight(dx: -170*s, dy: nameLabel.top, width: 40*s, height: 30*s)
 		countLabel.topRight(dx: -120*s, dy: nameLabel.top, width: 40*s, height: 30*s)
 		statusLabel.topRight(dx: -10*s, dy: nameLabel.top, width: 100*s, height: 30*s)
+		reasonLabel.topRight(dx: -10*s, dy: statusLabel.bottom, width: 100*s, height: 30*s)
 		patchesView.topLeft(dx: 20*s, dy: nameLabel.bottom+3*s, width: 300*s, height: 27*s)
 		lineView.bottom(width: width, height: 1)
 	}

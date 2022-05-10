@@ -43,7 +43,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		return 80*s
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 220*s
+		return 270*s
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
 		return launches.count

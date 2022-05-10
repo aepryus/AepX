@@ -230,12 +230,6 @@ class SpaceX {
 //			success(launches)
 //		} failure: { failure() }
 //	}
-	static func launches(success: @escaping ([LaunchAPI])->(), failure: @escaping ()->()) {
-		decodableRequest(path: "/v5/launches", method: "GET") { (launches: [LaunchAPI]) in
-			print("}}} \(launches.count)")
-			success(launches)
-		} failure: { failure() }
-	}
 //	static func launch(id: String, success: @escaping (LaunchAPI)->(), failure: @escaping ()->()) {
 //		decodableRequest(path: "/v4/launches/\(id)", method: "GET") { (launch: LaunchAPI) in
 //			success(launch)
@@ -269,6 +263,18 @@ class SpaceX {
 		decodableRequest(path: "/v4/cores", method: "GET") { (cores: [CoreAPI]) in
 			print("}}} \(cores.count)")
 			success(cores)
+		} failure: { failure() }
+	}
+	static func rockets(success: @escaping ([RocketAPI])->(), failure: @escaping ()->()) {
+		decodableRequest(path: "/v4/rockets", method: "GET") { (rockets: [RocketAPI]) in
+			print("}}} \(rockets.count)")
+			success(rockets)
+		} failure: { failure() }
+	}
+	static func launches(success: @escaping ([LaunchAPI])->(), failure: @escaping ()->()) {
+		decodableRequest(path: "/v5/launches", method: "GET") { (launches: [LaunchAPI]) in
+			print("}}} \(launches.count)")
+			success(launches)
 		} failure: { failure() }
 	}
 }
