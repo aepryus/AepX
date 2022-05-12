@@ -42,11 +42,16 @@ class Launch: Anchor {
 			let cores: [Core] = Loom.selectAll()
 			core = cores.first { (core: Core) in
 				core.launches.contains { $0.apiid == self.apiid }
-			} ?? Core()
+			} ?? {
+				let core = Core()
+				core.block = -1
+				return core
+			}()
 		}
 		if cores.count == 3 {
 			return core.block == 5 ? .falconHeavyb5 : .falconHeavy
 		} else {
+			if core.block == -1 { return .falcon9b5 }
 			if core.block == 0 { return .falcon1 }
 			else if core.serial[1] == "0" { return .falcon9v10 }
 

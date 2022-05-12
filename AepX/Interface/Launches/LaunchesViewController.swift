@@ -36,6 +36,13 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		launches = Loom.selectAll().sorted(by: { (a: Launch, b: Launch) in
 			return a.flightNo > b.flightNo
 		})
+
+		tableView.reloadData()
+		DispatchQueue.main.async {
+			if let row: Int = self.launches.firstIndex(where: { $0.completed }) {
+				self.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .top, animated: false)
+			}
+		}
 	}
 
 // ExpandableTableViewDelegate =====================================================================

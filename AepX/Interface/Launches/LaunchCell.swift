@@ -10,33 +10,29 @@ import Acheron
 import UIKit
 
 class LaunchCell: ExpandableCell {
-	var launch: Launch!
+//	var launch: Launch!
 
 	let nameLabel: UILabel = UILabel()
-	let coreLabel: UILabel = UILabel()
-	let flightLabel: UILabel = UILabel()
+//	let coreLabel: UILabel = UILabel()
 	let dateLabel: UILabel = UILabel()
 	let lineView: UIView = UIView()
 	let patchView: UIImageView = UIImageView()
 
-	let pen: Pen = Pen(font: UIFont(name: "AvenirNext-Medium", size: 16*Screen.s)!, color: .white)
+	let pen: Pen = Pen(font: UIFont(name: "AvenirNext-Medium", size: 16*Screen.s)!, color: .white, alignment: .left)
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
-		backgroundColor = UIColor.aepXbackgroundColor.shade(0.5)
 
 		nameLabel.textColor = .white
-		nameLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
+		nameLabel.font = UIFont(name: "AvenirNext-Bold", size: 19*s)
+		nameLabel.adjustsFontSizeToFitWidth = true
 		addSubview(nameLabel)
 
-		coreLabel.pen = pen
-		addSubview(coreLabel)
-
-		flightLabel.pen = pen
-		addSubview(flightLabel)
-
+//		coreLabel.pen = pen
+//		addSubview(coreLabel)
+//
 		dateLabel.pen = pen
-//		addSubview(dateLabel)
+		addSubview(dateLabel)
 
 		addSubview(patchView)
 
@@ -46,23 +42,24 @@ class LaunchCell: ExpandableCell {
 	required init?(coder: NSCoder) { fatalError() }
 
 	func load(launch: Launch) {
-		self.launch = launch
+//		self.launch = launch
+
+		backgroundColor = launch.completed ? UIColor.aepXbackgroundColor.shade(0.5) : UIColor.aepXbackgroundColor.shade(0.2)
 
 		nameLabel.text = launch.name
-		flightLabel.text = "[\(launch.flightNo)] \(launch.date.format("MMM d, yyyy h:mm a"))"
-//		dateLabel.text =
+		dateLabel.text = "\(launch.date.format("MMM d, yyyy"))"
 
-		let serials: [String] = launch.cores.compactMap {
-			let core: Core? = Loom.selectBy(only: $0.appid)
-			return core?.serial
-		}
-		if serials.count > 1 {
-			var sb: String = ""
-			serials.forEach { sb += "\($0), " }
-			sb.removeLast(2)
-			coreLabel.text = sb
-		} else if serials.count == 1 { coreLabel.text = serials[0]
-		} else { coreLabel.text = "" }
+//		let serials: [String] = launch.cores.compactMap {
+//			let core: Core? = Loom.selectBy(only: $0.appid)
+//			return core?.serial
+//		}
+//		if serials.count > 1 {
+//			var sb: String = ""
+//			serials.forEach { sb += "\($0), " }
+//			sb.removeLast(2)
+//			coreLabel.text = sb
+//		} else if serials.count == 1 { coreLabel.text = serials[0]
+//		} else { coreLabel.text = "" }
 
 		patchView.image = nil
 		if let urlString = launch.patch {
@@ -73,11 +70,10 @@ class LaunchCell: ExpandableCell {
 // UITableViewCell =================================================================================
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		nameLabel.topLeft(dx: 10*s, dy: 5*s, width: 300*s, height: 24*s)
-		flightLabel.topLeft(dx: 18*s, dy: nameLabel.bottom, width: 300*s, height: 24*s)
-		dateLabel.topLeft(dx: flightLabel.right, dy: flightLabel.top, width: 200*s, height: 24*s)
-		coreLabel.topLeft(dx: flightLabel.left, dy: flightLabel.bottom, width: 300*s, height: 24*s)
-		patchView.right(dx: -10*s, width: 48*s, height: 48*s)
+		patchView.left(dx: 9*s, width: 48*s, height: 48*s)
+		nameLabel.left(dx: patchView.right+12*s, dy: -12*s, width: width-(patchView.right+12*s)-12*s, height: 40*s)
+		dateLabel.left(dx: nameLabel.left, dy: 12*s, width: 300*s, height: 48*s)
 		lineView.bottom(width: width, height: 1)
+		//		coreLabel.topLeft(dx: flightLabel.left, dy: flightLabel.bottom, width: 300*s, height: 24*s)
 	}
 }

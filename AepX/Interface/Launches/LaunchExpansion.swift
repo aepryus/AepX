@@ -13,7 +13,7 @@ class LaunchExpansion: UIView {
 	let launch: Launch
 
 	let scrollView: UIScrollView = UIScrollView()
-	let paraView: ParaView = ParaView()
+	let paraView: ParaView = ParaView(names: ["Info", "Video"])
 	let imageView: UIImageView = UIImageView()
 	let player: YTPlayerView = YTPlayerView()
 
@@ -37,6 +37,7 @@ class LaunchExpansion: UIView {
 		scrollView.isPagingEnabled = true
 		scrollView.showsHorizontalScrollIndicator = false
 		addSubview(scrollView)
+		scrollView.delegate = paraView
 
 		if let youtubeID = launch.youtubeID {
 			player.load(withVideoId: youtubeID)
@@ -49,7 +50,7 @@ class LaunchExpansion: UIView {
 		super.layoutSubviews()
 		paraView.top(dy: 12*s, width: width*0.9, height: 32*s)
 		scrollView.frame = CGRect(x: 0, y: paraView.bottom, width: width, height: height-paraView.bottom)
-		scrollView.contentSize = CGSize(width: width*3, height: scrollView.height)
+		scrollView.contentSize = CGSize(width: width*2, height: scrollView.height)
 		if let image = imageView.image {
 			let maxHeight: CGFloat = height*0.7
 			let height: CGFloat = maxHeight*launch.rocket.height

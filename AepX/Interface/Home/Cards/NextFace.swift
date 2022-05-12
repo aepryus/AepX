@@ -15,7 +15,6 @@ class NextFace: Face {
 		didSet {
 			guard let launch = launch else { return }
 			nameLabel.text = launch.name
-			blastOffLabel.text = launch.relative
 			if let url = launch.patch {
 				patchView.loadImage(url: url)
 			}
@@ -31,7 +30,7 @@ class NextFace: Face {
 	let titleLabel: UILabel = UILabel()
 	let nameLabel: UILabel = UILabel()
 	let patchView: UIImageView = UIImageView()
-	let blastOffLabel: UILabel = UILabel()
+	let countDownView: CountDownView = CountDownView()
 	let player: YTPlayerView = YTPlayerView()
 
 	let timer: AETimer = AETimer()
@@ -48,9 +47,7 @@ class NextFace: Face {
 		nameLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
 		addSubview(nameLabel)
 
-		blastOffLabel.textColor = .white
-		blastOffLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
-		addSubview(blastOffLabel)
+		addSubview(countDownView)
 		
 		addSubview(patchView)
 
@@ -60,7 +57,7 @@ class NextFace: Face {
 		timer.configure(interval: 1) { [weak self] in
 			DispatchQueue.main.async {
 				guard let launch = self?.launch else { return }
-				self?.blastOffLabel.text = "d:\(launch.relativeDateComponents.day!), h:\(launch.relativeDateComponents.hour!), m:\(launch.relativeDateComponents.minute!), s:\(launch.relativeDateComponents.second!)"
+				self?.countDownView.dateComponents = launch.relativeDateComponents
 			}
 		}
 		timer.start()
@@ -68,14 +65,14 @@ class NextFace: Face {
 	required init?(coder: NSCoder) { fatalError() }
 
 // Face ============================================================================================
-	override var faceHeight: CGFloat { 120*s + (launch?.youtubeID != nil ? 190*s : 0) }
+	override var faceHeight: CGFloat { 150*s + (launch?.youtubeID != nil ? 190*s : 0) }
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
 		titleLabel.topLeft(dx: 12*s, dy: 10*s, width: 300*s, height: 30*s)
 		nameLabel.topLeft(dx: 12*s, dy: titleLabel.bottom, width: 300*s, height: 30*s)
-		blastOffLabel.topLeft(dx: 12*s, dy: nameLabel.bottom, width: 300*s, height: 30*s)
 		patchView.topRight(dx: -12*s, dy: 10*s, width: 70*s, height: 70*s)
-		player.top(dy: blastOffLabel.bottom+10*s, width: 320*s, height: 180*s)
+		countDownView.topRight(dx: -8*s, dy: patchView.bottom+8*s, width: 256*s, height: 43*s)
+		player.top(dy: countDownView.bottom+10*s, width: 320*s, height: 180*s)
 	}
 }
