@@ -10,5 +10,5 @@ import Acheron
 import UIKit
 
 extension UIColor {
-	static var aepXbackgroundColor: UIColor { UIColor.blue.tone(0.85).shade(0.5) }
+	static let axBackgroundColor: UIColor = UIColor.blue.tone(0.85).shade(0.5)
 }

@@ -26,7 +26,7 @@ class RocketCell: UITableViewCell {
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .default, reuseIdentifier: nil)
-		backgroundColor = UIColor.aepXbackgroundColor.shade(0.5)
+		backgroundColor = UIColor.axBackgroundColor.shade(0.5)
 
 		nameLabel.textColor = .white
 		nameLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)

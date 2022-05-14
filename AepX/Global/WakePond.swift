@@ -10,7 +10,7 @@ import Acheron
 import Foundation
 
 class WakePond: Pond {
-	lazy var ping: Pebble = pebble(name: "Ping") { (complete: @escaping (Bool) -> ()) in
+	lazy var ping: Pebble = pebble(name: "ping") { (complete: @escaping (Bool) -> ()) in
 		complete(true)
 	}
 	lazy var loadLaunches: Pebble = pebble(name: "loadLaunches") { (complete: @escaping (Bool) -> ()) in
@@ -40,9 +40,9 @@ class WakePond: Pond {
 		}
 	}
 	lazy var refreshScreens: Pebble = pebble(name: "refreshScreens") { (complete: @escaping (Bool) -> ()) in
-		(AepX.window.rootViewController as! RootViewController).homeViewController.tableView.reloadData()
-		(AepX.window.rootViewController as! RootViewController).launchesViewController.tableView.reloadData()
-		(AepX.window.rootViewController as! RootViewController).rocketsViewController.tableView.reloadData()
+		(AepX.window.rootViewController as! RootViewController).homeViewController.loadData()
+		(AepX.window.rootViewController as! RootViewController).launchesViewController.loadData()
+		(AepX.window.rootViewController as! RootViewController).rocketsViewController.loadData()
 		complete(true)
 	}
 
@@ -51,8 +51,13 @@ class WakePond: Pond {
 		 super.init()
 
 		ping.ready = { true }
+
 		loadLaunches.ready = { self.ping.succeeded }
 		loadCores.ready = { self.ping.succeeded }
-		refreshScreens.ready = { self.loadLaunches.completed && self.loadCores.completed }
+
+		refreshScreens.ready = {
+			self.loadLaunches.completed
+			&& self.loadCores.completed
+		}
 	}
 }

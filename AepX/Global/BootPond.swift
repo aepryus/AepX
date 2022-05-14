@@ -10,7 +10,7 @@ import Acheron
 import Foundation
 
 class BootPond: Pond {
-	lazy var ping: Pebble = pebble(name: "Ping") { (complete: @escaping (Bool) -> ()) in
+	lazy var ping: Pebble = pebble(name: "ping") { (complete: @escaping (Bool) -> ()) in
 		complete(true)
 //		Pequod.ping { complete(true) }
 //			failure: { complete(false) }
@@ -41,8 +41,10 @@ class BootPond: Pond {
 			complete(false)
 		}
 	}
-	lazy var print: Pebble = pebble(name: "print") { (complete: @escaping (Bool) -> ()) in
+	lazy var refreshScreens: Pebble = pebble(name: "refreshScreens") { (complete: @escaping (Bool) -> ()) in
 		(AepX.window.rootViewController as! RootViewController).homeViewController.loadData()
+		(AepX.window.rootViewController as! RootViewController).launchesViewController.loadData()
+		(AepX.window.rootViewController as! RootViewController).rocketsViewController.loadData()
 		complete(true)
 	}
 
@@ -55,7 +57,7 @@ class BootPond: Pond {
 		loadLaunches.ready = { self.ping.succeeded }
 		loadCores.ready = { self.ping.succeeded }
 
-		print.ready = {
+		refreshScreens.ready = {
 			self.loadLaunches.completed
 			&& self.loadCores.completed
 		}

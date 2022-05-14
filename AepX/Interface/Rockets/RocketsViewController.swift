@@ -17,11 +17,21 @@ class RocketsViewController: UIViewController, UITableViewDataSource {
 
 	var cores: [Core] = []
 
+	func loadData() {
+		cores = Loom.selectAll().sorted(by: { (a: Core, b: Core) in
+			if a.coreStatus == "active" && b.coreStatus != "active" { return true }
+			if a.coreStatus != "active" && b.coreStatus == "active" { return false }
+			if a.launches.count != b.launches.count { return a.launches.count > b.launches.count }
+			return a.serial < b.serial
+		})
+		tableView.reloadData()
+	}
+
 // UIViewController ================================================================================
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = UIColor.aepXbackgroundColor
+		view.backgroundColor = UIColor.axBackgroundColor
 
 		backView.image = UIImage(named: "Starship")
 		view.addSubview(backView)
@@ -36,12 +46,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource {
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
 
-		cores = Loom.selectAll().sorted(by: { (a: Core, b: Core) in
-			if a.coreStatus == "active" && b.coreStatus != "active" { return true }
-			if a.coreStatus != "active" && b.coreStatus == "active" { return false }
-			if a.launches.count != b.launches.count { return a.launches.count > b.launches.count }
-			return a.serial < b.serial
-		})
+		loadData()
 	}
 
 // UITableViewDataSource ===========================================================================

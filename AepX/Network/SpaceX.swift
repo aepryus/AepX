@@ -132,9 +132,9 @@ class SpaceX {
 			})
 			decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-			let json = String(data: data, encoding: .utf8)!
-			let attributes = json.toArray()
-			print(attributes.toJSON())
+//			let json = String(data: data, encoding: .utf8)!
+//			let attributes = json.toArray()
+//			print(attributes.toJSON())
 
 			let result: T = try! decoder.decode(T.self, from: data)
 			success(result)
@@ -261,19 +261,16 @@ class SpaceX {
 //	}
 	static func cores(success: @escaping ([CoreAPI])->(), failure: @escaping ()->()) {
 		decodableRequest(path: "/v4/cores", method: "GET") { (cores: [CoreAPI]) in
-			print("}}} \(cores.count)")
 			success(cores)
 		} failure: { failure() }
 	}
 	static func rockets(success: @escaping ([RocketAPI])->(), failure: @escaping ()->()) {
 		decodableRequest(path: "/v4/rockets", method: "GET") { (rockets: [RocketAPI]) in
-			print("}}} \(rockets.count)")
 			success(rockets)
 		} failure: { failure() }
 	}
 	static func launches(success: @escaping ([LaunchAPI])->(), failure: @escaping ()->()) {
 		decodableRequest(path: "/v5/launches", method: "GET") { (launches: [LaunchAPI]) in
-			print("}}} \(launches.count)")
 			success(launches)
 		} failure: { failure() }
 	}

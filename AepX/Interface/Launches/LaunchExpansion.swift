@@ -6,6 +6,7 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import UIKit
 import YouTubeiOSPlayerHelper
 
@@ -15,6 +16,7 @@ class LaunchExpansion: UIView {
 	let scrollView: UIScrollView = UIScrollView()
 	let paraView: ParaView = ParaView(names: ["Info", "Video"])
 	let imageView: UIImageView = UIImageView()
+	let blockLabel: UILabel = UILabel()
 	let player: YTPlayerView = YTPlayerView()
 
 	init(launch: Launch) {
@@ -22,7 +24,7 @@ class LaunchExpansion: UIView {
 
 		super.init(frame: .zero)
 
-		backgroundColor = UIColor.aepXbackgroundColor
+		backgroundColor = UIColor.axBackgroundColor
 
 		player.layer.cornerRadius = 12*s
 		player.layer.masksToBounds = true
@@ -33,6 +35,20 @@ class LaunchExpansion: UIView {
 
 		imageView.image = launch.rocket.image
 		scrollView.addSubview(imageView)
+
+		let serials: [String] = launch.cores.compactMap {
+			let core: Core? = Loom.selectBy(only: $0.appid)
+			return core?.serial
+		}
+		if serials.count > 1 {
+			var sb: String = ""
+			serials.forEach { sb += "\($0), " }
+			sb.removeLast(2)
+			blockLabel.text = sb
+		} else if serials.count == 1 { blockLabel.text = serials[0]
+		} else { blockLabel.text = "" }
+		blockLabel.pen = Pen.axValue
+		scrollView.addSubview(blockLabel)
 
 		scrollView.isPagingEnabled = true
 		scrollView.showsHorizontalScrollIndicator = false
@@ -56,6 +72,7 @@ class LaunchExpansion: UIView {
 			let height: CGFloat = maxHeight*launch.rocket.height
 			imageView.bottomLeft(dx: 20*s, dy: -12*s, width: image.size.width*height/image.size.height, height: height)
 		}
+		blockLabel.bottomLeft(dx: 75*s, dy: -12*s, width: 300*s, height: 30*s)
 		player.bottomLeft(dx: width+27.5*s, dy: -20*s, width: 320*s, height: 180*s)
 	}
 }

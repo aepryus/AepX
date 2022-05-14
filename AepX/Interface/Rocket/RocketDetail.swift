@@ -27,7 +27,7 @@ class RocketDetail: ExpandableCell {
 		else { rocket = .falcon9b5Dragon }
 
 		super.init(style: .default, reuseIdentifier: nil)
-		backgroundColor = UIColor.aepXbackgroundColor
+		backgroundColor = UIColor.axBackgroundColor
 
 		serialLabel.text = core.serial
 		addSubview(serialLabel)

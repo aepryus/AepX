@@ -21,8 +21,8 @@ fileprivate class Plaque: UIView {
 
 		layer.borderWidth = 0.5*s
 		layer.borderColor = UIColor.white.cgColor
-		layer.cornerRadius = 6*s
-		layer.backgroundColor = UIColor.aepXbackgroundColor.cgColor
+		layer.cornerRadius = 1*s
+		layer.backgroundColor = UIColor.axBackgroundColor.cgColor
 
 		nameLabel.text = name
 		nameLabel.pen = namePen
@@ -54,23 +54,27 @@ class CountDownView: UIView {
 
 			if days > 0 {
 				daysPlaque.load(value: "\(days)")
-				addSubview(daysPlaque)
+				if daysPlaque.superview == nil { addSubview(daysPlaque) }
 			} else { daysPlaque.removeFromSuperview() }
 
 			if hours > 0 || days > 0 {
 				if days > 0 { hoursPlaque.load(value: "\(String(format: "%02d", hours))") }
 				else { hoursPlaque.load(value: "\(hours)") }
-				addSubview(hoursPlaque)
+				if hoursPlaque.superview == nil { addSubview(hoursPlaque) }
 			} else { hoursPlaque.removeFromSuperview() }
 
 			if minutes > 0 || hours > 0 || days > 0 {
 				if days > 0 || hours > 0 { minutesPlaque.load(value: "\(String(format: "%02d", minutes))") }
 				else { minutesPlaque.load(value: "\(minutes)") }
-				addSubview(minutesPlaque)
+				if minutesPlaque.superview == nil { addSubview(minutesPlaque) }
 			} else { minutesPlaque.removeFromSuperview() }
 
-			if days > 0 || hours > 0 || minutes > 0 { secondsPlaque.load(value: "\(String(format: "%02d", seconds))") }
-			else { secondsPlaque.load(value: "\(seconds)") }
+			if minutes > 0 || hours > 0 || days > 0 || seconds > 0 {
+				if days > 0 || hours > 0 || minutes > 0 { secondsPlaque.load(value: "\(String(format: "%02d", seconds))") }
+				else { secondsPlaque.load(value: "\(seconds)") }
+				if secondsPlaque.superview == nil { addSubview(secondsPlaque) }
+			} else { secondsPlaque.removeFromSuperview() }
+
 		}
 	}
 

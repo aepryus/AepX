@@ -46,7 +46,7 @@ class RootViewController: UITabBarController {
 
 		let appearance = UITabBarAppearance()
 		appearance.configureWithOpaqueBackground()
-		appearance.backgroundColor = UIColor.aepXbackgroundColor.alpha(0.9)
+		appearance.backgroundColor = UIColor.axBackgroundColor.alpha(0.9)
 
 		tabBar.standardAppearance = appearance
 		tabBar.scrollEdgeAppearance = tabBar.standardAppearance
@@ -55,7 +55,7 @@ class RootViewController: UITabBarController {
 
 		let navApp = UINavigationBarAppearance()
 		navApp.configureWithOpaqueBackground()
-		navApp.backgroundColor = UIColor.aepXbackgroundColor.alpha(0.9)
+		navApp.backgroundColor = UIColor.axBackgroundColor.alpha(0.9)
 		navApp.titleTextAttributes = [.foregroundColor: UIColor.white]
 		navApp.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 		navApp.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]

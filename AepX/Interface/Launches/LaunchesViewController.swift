@@ -17,11 +17,25 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 	var launches: [Launch] = []
 
+	func loadData() {
+		launches = Loom.selectAll().sorted(by: { (a: Launch, b: Launch) in
+			return a.flightNo > b.flightNo
+		})
+
+		DispatchQueue.main.async {
+			self.tableView.reloadData()
+			if let row: Int = self.launches.firstIndex(where: { $0.completed }) {
+				self.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .top, animated: false)
+				self.tableView.scrollRectToVisible(self.tableView.rectForRow(at: IndexPath(row: row, section: 0)), animated: false)
+			}
+		}
+	}
+
 // UIViewController ================================================================================
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = UIColor.aepXbackgroundColor
+		view.backgroundColor = UIColor.axBackgroundColor
 
 		backView.image = UIImage(named: "Starship")
 		view.addSubview(backView)
@@ -33,16 +47,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
 
-		launches = Loom.selectAll().sorted(by: { (a: Launch, b: Launch) in
-			return a.flightNo > b.flightNo
-		})
-
-		tableView.reloadData()
-		DispatchQueue.main.async {
-			if let row: Int = self.launches.firstIndex(where: { $0.completed }) {
-				self.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .top, animated: false)
-			}
-		}
+		loadData()
 	}
 
 // ExpandableTableViewDelegate =====================================================================

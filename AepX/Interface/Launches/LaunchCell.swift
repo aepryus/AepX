@@ -42,24 +42,10 @@ class LaunchCell: ExpandableCell {
 	required init?(coder: NSCoder) { fatalError() }
 
 	func load(launch: Launch) {
-//		self.launch = launch
-
-		backgroundColor = launch.completed ? UIColor.aepXbackgroundColor.shade(0.5) : UIColor.aepXbackgroundColor.shade(0.2)
+		backgroundColor = launch.completed ? UIColor.axBackgroundColor.shade(0.5) : UIColor.axBackgroundColor.shade(0.2)
 
 		nameLabel.text = launch.name
 		dateLabel.text = "\(launch.date.format("MMM d, yyyy"))"
-
-//		let serials: [String] = launch.cores.compactMap {
-//			let core: Core? = Loom.selectBy(only: $0.appid)
-//			return core?.serial
-//		}
-//		if serials.count > 1 {
-//			var sb: String = ""
-//			serials.forEach { sb += "\($0), " }
-//			sb.removeLast(2)
-//			coreLabel.text = sb
-//		} else if serials.count == 1 { coreLabel.text = serials[0]
-//		} else { coreLabel.text = "" }
 
 		patchView.image = nil
 		if let urlString = launch.patch {

@@ -29,7 +29,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = UIColor.aepXbackgroundColor
+		view.backgroundColor = UIColor.axBackgroundColor
 
 		backView.image = UIImage(named: "Starship")
 		view.addSubview(backView)

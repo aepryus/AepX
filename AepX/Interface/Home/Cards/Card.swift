@@ -22,7 +22,7 @@ class Card: UITableViewCell {
 		self.face = face
 		super.init(style: .default, reuseIdentifier: nil)
 
-		faceView.backgroundColor = UIColor.aepXbackgroundColor.shade(0.5)
+		faceView.backgroundColor = UIColor.axBackgroundColor.shade(0.5)
 		faceView.layer.cornerRadius = 12*s
 		faceView.layer.masksToBounds = true
 		faceView.layer.borderColor = UIColor.blue.tone(0.85).tint(0.1).cgColor
