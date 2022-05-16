@@ -14,4 +14,9 @@ class LaunchesController {
 	init(vc: LaunchesViewController) {
 		self.vc = vc
 	}
+
+// Events ==========================================================================================
+	@objc func onFilterTapped() {
+		print("QQQ hsd as adfh")
+	}
 }

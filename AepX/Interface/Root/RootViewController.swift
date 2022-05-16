@@ -10,7 +10,7 @@
 import Acheron
 import UIKit
 
-class RootViewController: UITabBarController {
+class RootViewController: UITabBarController, UITabBarControllerDelegate {
 	let homeViewController: HomeViewController
 	let launchesViewController: LaunchesViewController
 	let rocketsViewController: RocketsViewController
@@ -33,6 +33,8 @@ class RootViewController: UITabBarController {
 		rocketsNavigationController = UINavigationController(rootViewController: rocketsViewController)
 
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
+		delegate = self
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
@@ -69,12 +71,24 @@ class RootViewController: UITabBarController {
 		homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: image3, selectedImage: image3.withTintColor(.white))
 		launchesNavigationController.tabBarItem = UITabBarItem(title: "Launches", image: image1, selectedImage: image1.withTintColor(.white))
 		rocketsNavigationController.tabBarItem = UITabBarItem(title: "Rockets", image: image2, selectedImage: image2.withTintColor(.white))
-		rocketsNavigationController.navigationBar.tintColor = .white
 
 		self.viewControllers = [
 			homeNavigationController,
 			launchesNavigationController,
 			rocketsNavigationController
 		]
+	}
+
+// UITabBarControllerDelegate ======================================================================
+	func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+		guard let previous = tabBarController.selectedViewController, previous === viewController else { return true }
+
+		if let rocketsController = ((viewController as? UINavigationController)?.topViewController as? RocketsViewController)?.controller {
+			rocketsController.onFilterTapped()
+		} else if let launchesController = ((viewController as? UINavigationController)?.topViewController as? LaunchesViewController)?.controller {
+			launchesController.onFilterTapped()
+		}
+
+		return true
 	}
 }

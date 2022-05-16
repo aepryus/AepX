@@ -70,7 +70,9 @@ class Core: Anchor {
 	@objc dynamic var note: String = ""
 
 	var launches: [Launch] {
-		launchAPIIDs.map { Loom.selectBy(only: $0)! }
+		launchAPIIDs.map { Loom.selectBy(only: $0)! }.sorted { (a: Launch, b: Launch) in
+			return a.date > b.date
+		}
 	}
 
 	var reason: String {

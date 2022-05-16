@@ -15,6 +15,8 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	let backView: UIImageView = UIImageView()
 	lazy var tableView: ExpandableTableView = { ExpandableTableView(delegate: self) }()
 
+	let filter: LaunchesFilterView = LaunchesFilterView()
+
 	var launches: [Launch] = []
 
 	func loadData() {
@@ -36,6 +38,9 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.axBackgroundColor
+
+		navigationController?.navigationBar.tintColor = .white
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: controller, action: #selector(LaunchesController.onFilterTapped))
 
 		backView.image = UIImage(named: "Starship")
 		view.addSubview(backView)

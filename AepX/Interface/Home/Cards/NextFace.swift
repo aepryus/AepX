@@ -72,7 +72,7 @@ class NextFace: Face {
 		titleLabel.topLeft(dx: 12*s, dy: 10*s, width: 300*s, height: 30*s)
 		nameLabel.topLeft(dx: 12*s, dy: titleLabel.bottom, width: 300*s, height: 30*s)
 		patchView.topRight(dx: -12*s, dy: 10*s, width: 70*s, height: 70*s)
-		countDownView.topRight(dx: -8*s, dy: patchView.bottom+8*s, width: 256*s, height: 43*s)
+		countDownView.topRight(dx: -8*s, dy: patchView.bottom+8*s, width: 200*s, height: 43*s)
 		player.top(dy: countDownView.bottom+10*s, width: 320*s, height: 180*s)
 	}
 }

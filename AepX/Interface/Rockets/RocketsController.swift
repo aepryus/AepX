@@ -20,4 +20,7 @@ class RocketsController: RocketCellDelegate {
 		let rvc = RocketViewController(core: core)
 		vc.navigationController?.pushViewController(rvc, animated: true)
 	}
+	@objc func onFilterTapped() {
+		vc.toggleFilter()
+	}
 }

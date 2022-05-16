@@ -23,22 +23,26 @@ class RocketDetail: ExpandableCell {
 	init(core: Core) {
 		self.core = core
 
-		if let rocket = core.launches.last?.rocket { self.rocket = rocket }
+		if let rocket = core.launches.first?.rocket { self.rocket = rocket }
 		else { rocket = .falcon9b5Dragon }
 
 		super.init(style: .default, reuseIdentifier: nil)
 		backgroundColor = UIColor.axBackgroundColor
 
 		serialLabel.text = core.serial
+		serialLabel.pen = Pen.axValue
 		addSubview(serialLabel)
 
 		statusLabel.text = core.disposition
+		statusLabel.pen = Pen.axValue
 		addSubview(statusLabel)
 
 		reasonLabel.text = core.reason
+		reasonLabel.pen = Pen.axValue
 		addSubview(reasonLabel)
 
 		blockLabel.text = "\(core.block)"
+		blockLabel.pen = Pen.axValue
 		addSubview(blockLabel)
 
 		noteLabel.text = core.note

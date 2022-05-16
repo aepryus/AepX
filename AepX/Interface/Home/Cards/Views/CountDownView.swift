@@ -80,8 +80,8 @@ class CountDownView: UIView {
 
 	private let daysPlaque: Plaque = Plaque(name: "days".localized)
 	private let hoursPlaque: Plaque = Plaque(name: "hours".localized)
-	private let minutesPlaque: Plaque = Plaque(name: "minutes".localized)
-	private let secondsPlaque: Plaque = Plaque(name: "seconds".localized)
+	private let minutesPlaque: Plaque = Plaque(name: "mins".localized)
+	private let secondsPlaque: Plaque = Plaque(name: "secs".localized)
 
 	init() {
 		super.init(frame: .zero)
