@@ -15,6 +15,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	let backView: UIImageView = UIImageView()
 	lazy var tableView: ExpandableTableView = { ExpandableTableView(delegate: self) }()
 
+	let shield: UIView = UIView()
 	let filter: LaunchesFilterView = LaunchesFilterView()
 
 	var launches: [Launch] = []
@@ -26,9 +27,33 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 		DispatchQueue.main.async {
 			self.tableView.reloadData()
-			if let row: Int = self.launches.firstIndex(where: { $0.completed }) {
-				self.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .top, animated: false)
-				self.tableView.scrollRectToVisible(self.tableView.rectForRow(at: IndexPath(row: row, section: 0)), animated: false)
+		}
+	}
+	func scrollToLatest() {
+		if let row: Int = self.launches.firstIndex(where: { $0.completed }) {
+			self.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .top, animated: false)
+			self.tableView.scrollRectToVisible(self.tableView.rectForRow(at: IndexPath(row: row, section: 0)), animated: false)
+		}
+	}
+
+	func toggleFilter() {
+		let filterHeight: CGFloat = 500*s
+		if filter.superview == nil {
+			view.addSubview(shield)
+			view.addSubview(filter)
+			filter.bottom(dy: filterHeight, width: view.width, height: filterHeight)
+			shield.alpha = 0
+			UIView.animate(withDuration: 0.2) {
+				self.filter.bottom(width: self.view.width, height: filterHeight)
+				self.shield.alpha = 1
+			}
+		} else {
+			UIView.animate(withDuration: 0.2) {
+				self.filter.bottom(dy: filterHeight, width: self.view.width, height: filterHeight)
+				self.shield.alpha = 0
+			} completion: { (completed: Bool) in
+				self.filter.removeFromSuperview()
+				self.shield.removeFromSuperview()
 			}
 		}
 	}
@@ -49,10 +74,16 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		tableView.register(LaunchCell.self, forCellReuseIdentifier: "cell")
 		view.addSubview(tableView)
 
+		shield.backgroundColor = .black.alpha(0.8)
+		shield.addGestureRecognizer(UITapGestureRecognizer(target: controller, action: #selector(LaunchesController.onFilterTapped)))
+
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
+		shield.frame = view.bounds
 
 		loadData()
+
+		DispatchQueue.main.async { self.scrollToLatest() }
 	}
 
 // ExpandableTableViewDelegate =====================================================================

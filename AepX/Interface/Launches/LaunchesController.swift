@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LaunchesController {
 	let vc: LaunchesViewController
@@ -17,6 +18,6 @@ class LaunchesController {
 
 // Events ==========================================================================================
 	@objc func onFilterTapped() {
-		print("QQQ hsd as adfh")
+		vc.toggleFilter()
 	}
 }

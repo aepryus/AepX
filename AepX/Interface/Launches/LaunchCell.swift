@@ -10,10 +10,7 @@ import Acheron
 import UIKit
 
 class LaunchCell: ExpandableCell {
-//	var launch: Launch!
-
 	let nameLabel: UILabel = UILabel()
-//	let coreLabel: UILabel = UILabel()
 	let dateLabel: UILabel = UILabel()
 	let lineView: UIView = UIView()
 	let patchView: UIImageView = UIImageView()
@@ -28,9 +25,6 @@ class LaunchCell: ExpandableCell {
 		nameLabel.adjustsFontSizeToFitWidth = true
 		addSubview(nameLabel)
 
-//		coreLabel.pen = pen
-//		addSubview(coreLabel)
-//
 		dateLabel.pen = pen
 		addSubview(dateLabel)
 
@@ -60,6 +54,5 @@ class LaunchCell: ExpandableCell {
 		nameLabel.left(dx: patchView.right+12*s, dy: -12*s, width: width-(patchView.right+12*s)-12*s, height: 40*s)
 		dateLabel.left(dx: nameLabel.left, dy: 12*s, width: 300*s, height: 48*s)
 		lineView.bottom(width: width, height: 1)
-		//		coreLabel.topLeft(dx: flightLabel.left, dy: flightLabel.bottom, width: 300*s, height: 24*s)
 	}
 }

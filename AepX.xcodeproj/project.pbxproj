@@ -51,6 +51,7 @@
 		D8DE1CC3281B9CA800F8EABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8DE1CC2281B9CA800F8EABE /* Assets.xcassets */; };
 		D8DE1CC6281B9CA800F8EABE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8DE1CC4281B9CA800F8EABE /* LaunchScreen.storyboard */; };
 		D8DE1CD1281B9CFF00F8EABE /* AepX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DE1CD0281B9CFF00F8EABE /* AepX.swift */; };
+		D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE378C2833C2BF007EAD22 /* LinkView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		D8DE1CC5281B9CA800F8EABE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8DE1CC7281B9CA800F8EABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8DE1CD0281B9CFF00F8EABE /* AepX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AepX.swift; sourceTree = "<group>"; };
+		D8EE378C2833C2BF007EAD22 /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 		D8DE1CCD281B9CD700F8EABE /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				D8EE378B2833C2A5007EAD22 /* Shared */,
 				D8691751281C287800D550F2 /* Root */,
 				D8691758281E127E00D550F2 /* Home */,
 				D8691750281C286C00D550F2 /* Launches */,
@@ -281,6 +284,14 @@
 				D80BC30F2828B8190048C74F /* LaunchCore.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		D8EE378B2833C2A5007EAD22 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D8EE378C2833C2BF007EAD22 /* LinkView.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,6 +402,7 @@
 				D8691765281E329E00D550F2 /* LatestFace.swift in Sources */,
 				D8DE1CBA281B9CA700F8EABE /* AepXDelegate.swift in Sources */,
 				D8691763281E328900D550F2 /* NextFace.swift in Sources */,
+				D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */,
 				D8B3467328271B1B003C794B /* WakePond.swift in Sources */,
 				D869175E281E323C00D550F2 /* Card.swift in Sources */,
 				D869175A281E129000D550F2 /* HomeViewController.swift in Sources */,

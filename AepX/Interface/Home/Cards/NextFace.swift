@@ -18,7 +18,7 @@ class NextFace: Face {
 			if let url = launch.patch {
 				patchView.loadImage(url: url)
 			}
-			if let youtubeID = launch.youtubeID {
+			if launch.hasVideo, let youtubeID = launch.youtubeID {
 				player.load(withVideoId: youtubeID)
 				addSubview(player)
 			} else {
@@ -65,7 +65,7 @@ class NextFace: Face {
 	required init?(coder: NSCoder) { fatalError() }
 
 // Face ============================================================================================
-	override var faceHeight: CGFloat { 150*s + (launch?.youtubeID != nil ? 190*s : 0) }
+	override var faceHeight: CGFloat { 150*s + (launch?.hasVideo ?? false ? 190*s : 0) }
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {

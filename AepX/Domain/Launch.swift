@@ -33,6 +33,9 @@ class Launch: Anchor {
 	var relativeDateComponents: DateComponents {
 		Calendar.current.dateComponents([.day, .hour, .minute, .second], from: Date.now, to: date)
 	}
+	var hasVideo: Bool {
+		return date.timeIntervalSince(Date.now) < 3600 && youtubeID != nil
+	}
 
 	var rocket: Rocket {
 		let core: Core

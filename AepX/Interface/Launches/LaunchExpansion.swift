@@ -16,7 +16,13 @@ class LaunchExpansion: UIView {
 	let scrollView: UIScrollView = UIScrollView()
 	let paraView: ParaView = ParaView(names: ["Info", "Video"])
 	let imageView: UIImageView = UIImageView()
-	let blockLabel: UILabel = UILabel()
+	let blockValue: UILabel = UILabel()
+	let flightNoValue: UILabel = UILabel()
+	let detailsValue: UILabel = UILabel()
+	let timeValue: UILabel = UILabel()
+	let crewValue: UILabel = UILabel()
+	let wikipedia: LinkView = LinkView()
+	
 	let player: YTPlayerView = YTPlayerView()
 
 	init(launch: Launch) {
@@ -44,11 +50,33 @@ class LaunchExpansion: UIView {
 			var sb: String = ""
 			serials.forEach { sb += "\($0), " }
 			sb.removeLast(2)
-			blockLabel.text = sb
-		} else if serials.count == 1 { blockLabel.text = serials[0]
-		} else { blockLabel.text = "" }
-		blockLabel.pen = Pen.axValue
-		scrollView.addSubview(blockLabel)
+			blockValue.text = sb
+		} else if serials.count == 1 { blockValue.text = serials[0]
+		} else { blockValue.text = "" }
+		blockValue.pen = Pen.axValue
+		scrollView.addSubview(blockValue)
+
+		flightNoValue.text = "\(launch.flightNo)"
+		flightNoValue.pen = Pen.axValue
+		scrollView.addSubview(flightNoValue)
+
+		detailsValue.text = launch.details
+		detailsValue.pen = Pen.axLabel
+		scrollView.addSubview(detailsValue)
+
+		timeValue.text = launch.date.format("hh:mm aZZZ")
+		timeValue.pen = Pen.axLabel
+		scrollView.addSubview(timeValue)
+
+		crewValue.text = "\(launch.noOfCrew)"
+		crewValue.pen = Pen.axValue
+		scrollView.addSubview(crewValue)
+
+		if let urlString = launch.wikipedia {
+			wikipedia.image = UIImage(named: "wikipedia")
+			wikipedia.urlString = urlString
+			scrollView.addSubview(wikipedia)
+		}
 
 		scrollView.isPagingEnabled = true
 		scrollView.showsHorizontalScrollIndicator = false
@@ -72,7 +100,12 @@ class LaunchExpansion: UIView {
 			let height: CGFloat = maxHeight*launch.rocket.height
 			imageView.bottomLeft(dx: 20*s, dy: -12*s, width: image.size.width*height/image.size.height, height: height)
 		}
-		blockLabel.bottomLeft(dx: 75*s, dy: -12*s, width: 300*s, height: 30*s)
+		flightNoValue.topLeft(dx: 75*s, dy: 50*s, width: 200*s, height: 30*s)
+		detailsValue.topLeft(dx: 75*s, dy: 70*s, width: 300*s, height: 30*s)
+		timeValue.topLeft(dx: 75*s, dy: 90*s, width: 200*s, height: 30*s)
+		crewValue.topLeft(dx: 75*s, dy: 110*s, width: 200*s, height: 30*s)
+		wikipedia.topLeft(dx: 275*s, dy: 130*s, width: 103*s/2, height: 94*s/2)
+		blockValue.bottomLeft(dx: 75*s, dy: -12*s, width: 300*s, height: 30*s)
 		player.bottomLeft(dx: width+27.5*s, dy: -20*s, width: 320*s, height: 180*s)
 	}
 }

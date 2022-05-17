@@ -24,7 +24,18 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 	func loadData() {
 		activeCores = []
 		inactiveCores = []
-		let cores: [Core] = Loom.selectAll()
+
+		let filter = filter.filter
+		let cores: [Core] = Loom.selectAll().filter {
+			if $0.disposition == "active" { return filter.active }
+			else if $0.disposition == "retired" { return filter.retired }
+			else if $0.disposition == "destroyed" {
+				if $0.reason == "expended" { return filter.expended }
+				else if $0.reason == "on landing" { return filter.after }
+				else if $0.reason == "on launch" { return filter.before }
+			}
+			fatalError()
+		}
 
 		cores.forEach {
 			if $0.coreStatus == "active" { activeCores.append($0) }
@@ -62,6 +73,8 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 			UIView.animate(withDuration: 0.2) {
 				self.filter.bottom(dy: filterHeight, width: self.view.width, height: filterHeight)
 				self.shield.alpha = 0
+				self.filter.unload()
+				self.loadData()
 			} completion: { (completed: Bool) in
 				self.filter.removeFromSuperview()
 				self.shield.removeFromSuperview()
