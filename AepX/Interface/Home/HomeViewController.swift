@@ -17,7 +17,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 	let latestFace: LatestFace = LatestFace()
 	let statsFace: StatsFace = StatsFace()
 	let yearsFace: YearsFace = YearsFace()
-	let thanksFace: ThanksFace = ThanksFace()
 	let creditsFace: CreditsFace = CreditsFace()
 
 	var cards: [Card] = []
@@ -64,7 +63,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			Card(face: latestFace),
 			Card(face: statsFace),
 			Card(face: yearsFace),
-			Card(face: thanksFace),
 			Card(face: creditsFace)
 		]
 
@@ -74,6 +72,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 // UITableViewDelegate =============================================================================
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return cards[indexPath.row].cardHeight
+	}
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		if (cell as! Card).face === creditsFace {
+			creditsFace.startRoll()
+		}
 	}
 
 // UITableViewDataSource ===========================================================================
