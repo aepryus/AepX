@@ -37,6 +37,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 		tableView.register(LaunchCell.self, forCellReuseIdentifier: "cell")
 		tableView.expandableTableViewDelegate = self
 		tableView.rowHeight = 50*s
+		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		view.addSubview(tableView)
 
 		backView.frame = view.bounds

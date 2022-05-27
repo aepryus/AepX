@@ -18,22 +18,25 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	let shield: UIView = UIView()
 	let filter: LaunchesFilterView = LaunchesFilterView()
 
-	var launches: [Launch] = []
+	var planned: [Launch] = []
+	var completed: [Launch] = []
 
 	func loadData() {
-		launches = Loom.selectAll().sorted(by: { (a: Launch, b: Launch) in
-			return a.flightNo > b.flightNo
+		let launches: [Launch] = Loom.selectAll().sorted(by: { (a: Launch, b: Launch) in
+			if a.date == b.date { return a.flightNo > b.flightNo }
+			return a.date > b.date
 		})
+
+		planned = launches.filter { !$0.completed }
+		completed = launches.filter { $0.completed }
 
 		DispatchQueue.main.async {
 			self.tableView.reloadData()
 		}
 	}
 	func scrollToLatest() {
-		if let row: Int = self.launches.firstIndex(where: { $0.completed }) {
-			self.tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .top, animated: false)
-			self.tableView.scrollRectToVisible(self.tableView.rectForRow(at: IndexPath(row: row, section: 0)), animated: false)
-		}
+		self.tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: false)
+		self.tableView.scrollRectToVisible(self.tableView.rectForRow(at: IndexPath(row: 0, section: 1)), animated: false)
 	}
 
 	func toggleFilter() {
@@ -58,6 +61,34 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		}
 	}
 
+	class HeaderView: UIView {
+		let label: UILabel = UILabel()
+		let line: UIView = UIView()
+
+		init(_ title: String) {
+			super.init(frame: .zero)
+
+			backgroundColor = UIColor.axBackgroundColor
+
+			line.backgroundColor = .axBackgroundColor.tint(0.5)
+			addSubview(line)
+
+			label.text = title
+			label.pen = Pen.axValue
+			addSubview(label)
+		}
+		required init?(coder: NSCoder) { fatalError() }
+
+	// UIView ======================================================================================
+		override func layoutSubviews() {
+			line.top(width: width, height: 2*s)
+			label.left(dx: 12*s, width: 300*s, height: 30*s)
+		}
+	}
+
+	let futureView: HeaderView = HeaderView("Planned".localized)
+	let pastView: HeaderView = HeaderView("Completed".localized)
+
 // UIViewController ================================================================================
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
 	override func viewDidLoad() {
@@ -72,6 +103,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 		tableView.backgroundColor = UIColor.clear
 		tableView.register(LaunchCell.self, forCellReuseIdentifier: "cell")
+		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		view.addSubview(tableView)
 
 		shield.backgroundColor = .black.alpha(0.8)
@@ -87,21 +119,24 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 
 // ExpandableTableViewDelegate =====================================================================
-	func expandableTableView(_ tableView: ExpandableTableView, baseHeightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 80*s
-	}
-	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 270*s
-	}
+	func numberOfSections(in tableView: ExpandableTableView) -> Int { 2 }
+	func expandableTableView(_ tableView: ExpandableTableView, baseHeightForRowAt indexPath: IndexPath) -> CGFloat { 80*s }
+	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat { 270*s }
 	func expandableTableView(_ tableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
-		return launches.count
+		return section == 0 ? planned.count : completed.count
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> ExpandableCell {
 		let cell: LaunchCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! LaunchCell
-		cell.load(launch: launches[indexPath.row])
+		cell.load(launch: indexPath.section == 0 ? planned[indexPath.row] : completed[indexPath.row])
 		return cell
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionForRowAt indexPath: IndexPath) -> UIView {
-		return LaunchExpansion(launch: launches[indexPath.row])
+		return LaunchExpansion(launch: indexPath.section == 0 ? planned[indexPath.row] : completed[indexPath.row])
+	}
+	func expandableTableView(_ tableView: ExpandableTableView, viewForHeaderInSection section: Int) -> UIView? {
+		return section == 0 ? futureView : pastView
+	}
+	func expandableTableView(_ tableView: ExpandableTableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return 36*s
 	}
 }

@@ -18,11 +18,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 	let statsFace: StatsFace = StatsFace()
 	let yearsFace: YearsFace = YearsFace()
 	let creditsFace: CreditsFace = CreditsFace()
+	let ooviumFace: OoviumFace = OoviumFace()
+	let aexelsFace: AexelsFace = AexelsFace()
 
 	var cards: [Card] = []
 
 	func loadData() {
 		let launches: [Launch] = Loom.selectAll().sorted { (a: Launch, b: Launch) in
+			if a.date == b.date { return a.flightNo < b.flightNo }
 			return a.date < b.date
 		}
 		guard launches.count > 2 else { return }
@@ -53,7 +56,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		tableView.delegate = self
 		tableView.backgroundColor = UIColor.clear
 		tableView.rowHeight = 120*s
+		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		view.addSubview(tableView)
+
 
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
@@ -63,7 +68,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			Card(face: latestFace),
 			Card(face: statsFace),
 			Card(face: yearsFace),
-			Card(face: creditsFace)
+			Card(face: creditsFace),
+			Card(face: ooviumFace),
+			Card(face: aexelsFace),
 		]
 
 		loadData()

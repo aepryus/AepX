@@ -10,34 +10,44 @@ import Acheron
 import UIKit
 
 class CreditsFace: Face {
-	let titleLabel: UILabel = UILabel()
 	let imageView: UIImageView = UIImageView()
 
 	var creditRoll: [UIView] = []
+	var rolling: Bool = false
 	var crI: Int = 0
 
 	init() {
 		super.init(frame: .zero)
 
-		titleLabel.text = "Credits".localized
-		titleLabel.textColor = .white
-		titleLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 23*s)
-		addSubview(titleLabel)
-
 		imageView.image = UIImage(named: "Banner")
 		addSubview(imageView)
 
-		creditRoll.append(RollView(text: "by\nAepryus\nSoftware"))
-		creditRoll.append(RollView(text: "maker of\nthe math\nsandbox:"))
-		creditRoll.append(RollView(text: "...Oovium"))
-		creditRoll.append(RollView(text: "and the\nrelativity\nthought\nexperiment:"))
-		creditRoll.append(RollView(text: "...Aexels"))
-		creditRoll.append(RollView(text: "Also sincere\nthanks to\nE.M."))
+		let pen24: Pen = Pen(font: UIFont(name: "Copperplate", size: 24*s)!, color: .red.tone(0.3).shade(0.5), alignment: .center)
+		let pen36: Pen = pen24.clone(font: UIFont(name: "Copperplate", size: 36*s)!)
+		let pen48: Pen = pen24.clone(font: UIFont(name: "Copperplate", size: 48*s)!)
+
+		creditRoll.append(RollView(attributed: "AepX".attributed(pen: pen48).append("\nv1.0", pen: pen24)))
+		creditRoll.append(RollView(attributed: "by\n".attributed(pen: pen24).append("Aepryus", pen: pen36).append("\nSoftware", pen: pen24)))
+		creditRoll.append(RollView(attributed: "written using\n".attributed(pen: pen24).append("Acheron\n", pen: pen36).append("Aepryus'\niOS toolbox", pen: pen24)))
+		creditRoll.append(RollView(attributed: "both\nAepX and Acheron's\nsource code are\navailable at github".attributed(pen: pen24)))
+		creditRoll.append(RollView(attributed: "Data driven by\nr/spacex's\nSpaceX-API".attributed(pen: pen24)))
+		creditRoll.append(RollView(attributed: "Also, much\nthanks to\n".attributed(pen: pen24).append("E.M.", pen: pen36)))
+
+		addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
 	func startRoll() {
-		guard crI < creditRoll.count else { crI = 0; return }
+		guard !rolling else { return }
+		rolling = true
+		roll()
+	}
+	private func roll() {
+		guard crI < creditRoll.count else {
+			rolling = false
+			crI = 0
+			return
+		}
 		let view: UIView = creditRoll[crI]
 		crI += 1
 		addSubview(view)
@@ -45,12 +55,19 @@ class CreditsFace: Face {
 		UIView.animate(withDuration: 0.5, delay: 1) {
 			view.alpha = 1
 		} completion: { (completed: Bool) in
-			UIView.animate(withDuration: 0.5, delay: 4) {
+			UIView.animate(withDuration: 0.5, delay: 3) {
 				view.alpha = 0
 			} completion: { (completed: Bool) in
 				view.removeFromSuperview()
-				self.startRoll()
+				self.roll()
 			}
+		}
+	}
+
+// Events ==========================================================================================
+	@objc func onTap() {
+		if let url = URL(string: "https://github.com/aepryus/Acheron") {
+			UIApplication.shared.open(url)
 		}
 	}
 
@@ -59,7 +76,6 @@ class CreditsFace: Face {
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		titleLabel.topLeft(dx: 12*s, dy: 10*s, width: 300*s, height: 30*s)
 		imageView.frame = bounds
 		creditRoll.forEach { $0.frame = bounds }
 	}

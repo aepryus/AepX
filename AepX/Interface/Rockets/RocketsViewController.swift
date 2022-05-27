@@ -25,16 +25,16 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		activeCores = []
 		inactiveCores = []
 
-		let filter = filter.filter
-		let cores: [Core] = Loom.selectAll().filter {
-			if $0.disposition == "active" { return filter.active }
-			else if $0.disposition == "retired" { return filter.retired }
-			else if $0.disposition == "destroyed" {
-				if $0.reason == "expended" { return filter.expended }
-				else if $0.reason == "on landing" { return filter.after }
-				else if $0.reason == "on launch" { return filter.before }
+		let cores: [Core] = Loom.selectAll().filter { (core: Core) in
+			switch filter.pickerView.selectedRow(inComponent: 0) {
+				case 0: return true
+				case 1: return core.disposition == "active"
+				case 2: return core.disposition == "retired"
+				case 3: return core.disposition == "destroyed" && core.reason == "expended"
+				case 4: return core.disposition == "destroyed" && core.reason == "on landing"
+				case 5: return core.disposition == "destroyed" && core.reason == "on launch"
+				default: fatalError()
 			}
-			fatalError()
 		}
 
 		cores.forEach {
@@ -73,7 +73,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 			UIView.animate(withDuration: 0.2) {
 				self.filter.bottom(dy: filterHeight, width: self.view.width, height: filterHeight)
 				self.shield.alpha = 0
-				self.filter.unload()
+//				self.filter.unload()
 				self.loadData()
 			} completion: { (completed: Bool) in
 				self.filter.removeFromSuperview()
@@ -101,6 +101,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		tableView.allowsSelection = false
 		tableView.rowHeight = 70*s
 		tableView.sectionHeaderTopPadding = 0
+		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		view.addSubview(tableView)
 
 		shield.backgroundColor = .black.alpha(0.8)
@@ -115,15 +116,15 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 
 // UITableViewDataSource ===========================================================================
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
+		return (activeCores.count > 0 ? 1 : 0) + (inactiveCores.count > 0 ? 1 : 0)
 	}
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if section == 0 { return activeCores.count }
+		if section == 0 && activeCores.count > 0 { return activeCores.count }
 		else { return inactiveCores.count }
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell: RocketCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! RocketCell
-		cell.load(delegate: controller, core: indexPath.section == 0 ? activeCores[indexPath.row] : inactiveCores[indexPath.row])
+		cell.load(delegate: controller, core: indexPath.section == 0 && activeCores.count > 0 ? activeCores[indexPath.row] : inactiveCores[indexPath.row])
 		return cell
 	}
 
@@ -157,7 +158,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 	let notActiveView: HeaderView = HeaderView("Not Active".localized)
 
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		return section == 0 ? activeView : notActiveView
+		return section == 0 && activeCores.count > 0 ? activeView : notActiveView
 	}
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		return 36*s

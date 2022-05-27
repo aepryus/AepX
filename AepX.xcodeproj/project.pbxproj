@@ -53,6 +53,10 @@
 		D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE378C2833C2BF007EAD22 /* LinkView.swift */; };
 		D8EE378F28378C7A007EAD22 /* Banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EE378E28378C7A007EAD22 /* Banner@2x.png */; };
 		D8EE37912838F01A007EAD22 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE37902838F01A007EAD22 /* RollView.swift */; };
+		D8EE3793283B5257007EAD22 /* OoviumFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE3792283B5257007EAD22 /* OoviumFace.swift */; };
+		D8EE3795283B5262007EAD22 /* AexelsFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE3794283B5262007EAD22 /* AexelsFace.swift */; };
+		D8EE3797283B5694007EAD22 /* Oovium@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EE3796283B5694007EAD22 /* Oovium@2x.png */; };
+		D8EE3799283B5BB9007EAD22 /* Aexels@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EE3798283B5BB9007EAD22 /* Aexels@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +65,7 @@
 		D80BC32F282A6EBD0048C74F /* ParaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaView.swift; sourceTree = "<group>"; };
 		D80BC331282D378B0048C74F /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 		D80BC334283064580048C74F /* Pen+AepX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pen+AepX.swift"; sourceTree = "<group>"; };
+		D811DAE3283E253F00204205 /* AepX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AepX.entitlements; sourceTree = "<group>"; };
 		D8551FFE28226D3B00A8D5E8 /* LaunchExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchExpansion.swift; sourceTree = "<group>"; };
 		D85520002823CE1200A8D5E8 /* RocketDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketDetail.swift; sourceTree = "<group>"; };
 		D85520022823CFB800A8D5E8 /* StatsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsFace.swift; sourceTree = "<group>"; };
@@ -102,6 +107,10 @@
 		D8EE378C2833C2BF007EAD22 /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
 		D8EE378E28378C7A007EAD22 /* Banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Banner@2x.png"; sourceTree = "<group>"; };
 		D8EE37902838F01A007EAD22 /* RollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
+		D8EE3792283B5257007EAD22 /* OoviumFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumFace.swift; sourceTree = "<group>"; };
+		D8EE3794283B5262007EAD22 /* AexelsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AexelsFace.swift; sourceTree = "<group>"; };
+		D8EE3796283B5694007EAD22 /* Oovium@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oovium@2x.png"; sourceTree = "<group>"; };
+		D8EE3798283B5BB9007EAD22 /* Aexels@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Aexels@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +197,8 @@
 				D85520022823CFB800A8D5E8 /* StatsFace.swift */,
 				D85520042823CFC200A8D5E8 /* YearsFace.swift */,
 				D85520082823CFEE00A8D5E8 /* CreditsFace.swift */,
+				D8EE3792283B5257007EAD22 /* OoviumFace.swift */,
+				D8EE3794283B5262007EAD22 /* AexelsFace.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -267,7 +278,10 @@
 		D8DE1CCF281B9CE700F8EABE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D811DAE3283E253F00204205 /* AepX.entitlements */,
+				D8EE3798283B5BB9007EAD22 /* Aexels@2x.png */,
 				D8DE1CC2281B9CA800F8EABE /* Assets.xcassets */,
+				D8EE3796283B5694007EAD22 /* Oovium@2x.png */,
 				D8EE378E28378C7A007EAD22 /* Banner@2x.png */,
 				D86917822820574600D550F2 /* Starship.png */,
 				D8DE1CC4281B9CA800F8EABE /* LaunchScreen.storyboard */,
@@ -368,7 +382,9 @@
 				D869174A281BD1E200D550F2 /* football-7.png in Resources */,
 				D8DE1CC6281B9CA800F8EABE /* LaunchScreen.storyboard in Resources */,
 				D869174C281BD1ED00D550F2 /* layer-7.png in Resources */,
+				D8EE3797283B5694007EAD22 /* Oovium@2x.png in Resources */,
 				D8DE1CC3281B9CA800F8EABE /* Assets.xcassets in Resources */,
+				D8EE3799283B5BB9007EAD22 /* Aexels@2x.png in Resources */,
 				D86917832820574600D550F2 /* Starship.png in Resources */,
 				D8EE378F28378C7A007EAD22 /* Banner@2x.png in Resources */,
 			);
@@ -385,6 +401,7 @@
 				D80BC3102828B8190048C74F /* LaunchCore.swift in Sources */,
 				D869173C281BC70600D550F2 /* RootViewController.swift in Sources */,
 				D8691775281EA0D300D550F2 /* HomeController.swift in Sources */,
+				D8EE3793283B5257007EAD22 /* OoviumFace.swift in Sources */,
 				D8CA3B692830DE17009E0CA8 /* LaunchesFilterView.swift in Sources */,
 				D8EE37912838F01A007EAD22 /* RollView.swift in Sources */,
 				D869176D281E997D00D550F2 /* RocketsController.swift in Sources */,
@@ -411,6 +428,7 @@
 				D8B3467328271B1B003C794B /* WakePond.swift in Sources */,
 				D869175E281E323C00D550F2 /* Card.swift in Sources */,
 				D869175A281E129000D550F2 /* HomeViewController.swift in Sources */,
+				D8EE3795283B5262007EAD22 /* AexelsFace.swift in Sources */,
 				D869176B281E4BA400D550F2 /* RocketViewController.swift in Sources */,
 				D80BC335283064580048C74F /* Pen+AepX.swift in Sources */,
 				D8691740281BC86B00D550F2 /* RocketsViewController.swift in Sources */,
@@ -554,6 +572,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AepX/Resources/AepX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
@@ -570,6 +589,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.AepX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -581,6 +602,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AepX/Resources/AepX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
@@ -597,6 +619,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.AepX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
