@@ -22,16 +22,17 @@ class CreditsFace: Face {
 		imageView.image = UIImage(named: "Banner")
 		addSubview(imageView)
 
-		let pen24: Pen = Pen(font: UIFont(name: "Copperplate", size: 24*s)!, color: .red.tone(0.3).shade(0.5), alignment: .center)
-		let pen36: Pen = pen24.clone(font: UIFont(name: "Copperplate", size: 36*s)!)
-		let pen48: Pen = pen24.clone(font: UIFont(name: "Copperplate", size: 48*s)!)
+		let pen18: Pen = Pen(font: UIFont(name: "Copperplate", size: 18*s)!, color: .red.tone(0.3).shade(0.5), alignment: .center)
+		let pen24: Pen = pen18.clone(font: UIFont(name: "Copperplate", size: 24*s)!)
+		let pen36: Pen = pen18.clone(font: UIFont(name: "Copperplate", size: 36*s)!)
+		let pen48: Pen = pen18.clone(font: UIFont(name: "Copperplate", size: 48*s)!)
 
 		creditRoll.append(RollView(attributed: "AepX".attributed(pen: pen48).append("\nv1.0", pen: pen24)))
 		creditRoll.append(RollView(attributed: "by\n".attributed(pen: pen24).append("Aepryus", pen: pen36).append("\nSoftware", pen: pen24)))
-		creditRoll.append(RollView(attributed: "written using\n".attributed(pen: pen24).append("Acheron\n", pen: pen36).append("Aepryus'\niOS toolbox", pen: pen24)))
-		creditRoll.append(RollView(attributed: "both\nAepX and Acheron's\nsource code are\navailable at github".attributed(pen: pen24)))
-		creditRoll.append(RollView(attributed: "Data driven by\nr/spacex's\nSpaceX-API".attributed(pen: pen24)))
-		creditRoll.append(RollView(attributed: "Also, much\nthanks to\n".attributed(pen: pen24).append("E.M.", pen: pen36)))
+		creditRoll.append(RollView(attributed: "written using\n".attributed(pen: pen24).append("Acheron\n", pen: pen36).append("Aepryus'\niOS toolkit", pen: pen24)))
+		creditRoll.append(RollView(attributed: "both\n".attributed(pen: pen18).append("AepX and Acheron's\n", pen: pen24).append("source code are\navailable at ", pen: pen18).append("github", pen: pen24)))
+		creditRoll.append(RollView(attributed: "Data driven by\nr/spacex's\n".attributed(pen: pen18).append("SpaceX-API", pen: pen24)))
+		creditRoll.append(RollView(attributed: "Much\nthanks to\n".attributed(pen: pen24).append("E.M.", pen: pen36)))
 
 		addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
 	}

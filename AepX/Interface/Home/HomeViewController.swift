@@ -25,19 +25,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 	func loadData() {
 		let launches: [Launch] = Loom.selectAll().sorted { (a: Launch, b: Launch) in
-			if a.date == b.date { return a.flightNo < b.flightNo }
-			return a.date < b.date
+			return a.flightNo > b.flightNo
 		}
 		guard launches.count > 2 else { return }
 		var i: Int = 0
 		while i < launches.count-1 {
-			if launches[i].date < Date.now && launches[i+1].date >= Date.now {
+			if !launches[i].completed && launches[i+1].completed {
 				break
 			}
 			i += 1
 		}
-		latestFace.launch = launches[i]
-		nextFace.launch = launches[i+1]
+		latestFace.launch = launches[i+1]
+		nextFace.launch = launches[i]
 		statsFace.loadData()
 		tableView.reloadData()
 	}

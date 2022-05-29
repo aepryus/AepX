@@ -23,8 +23,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 	func loadData() {
 		let launches: [Launch] = Loom.selectAll().sorted(by: { (a: Launch, b: Launch) in
-			if a.date == b.date { return a.flightNo > b.flightNo }
-			return a.date > b.date
+			return a.flightNo > b.flightNo
 		})
 
 		planned = launches.filter { !$0.completed }
