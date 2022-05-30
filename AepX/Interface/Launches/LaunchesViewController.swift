@@ -14,6 +14,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 	let backView: UIImageView = UIImageView()
 	lazy var tableView: ExpandableTableView = { ExpandableTableView(delegate: self) }()
+	let footerCell: LaunchesFooterCell = LaunchesFooterCell()
 
 	let shield: UIView = UIView()
 	let filter: LaunchesFilterView = LaunchesFilterView()
@@ -24,7 +25,24 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	func loadData() {
 		let launches: [Launch] = Loom.selectAll().sorted(by: { (a: Launch, b: Launch) in
 			return a.flightNo > b.flightNo
-		})
+		}).filter {
+			let filter = self.filter.filter
+
+			if $0.rocket.isFalcon1 && !filter.falcon1 { return false }
+			if $0.rocket.isFalcon9 && !filter.falcon9 { return false }
+			if $0.rocket.isFalconHeavy && !filter.falconHeavy { return false }
+
+			if !$0.completed { return filter.planned }
+			if $0.completed && !$0.successful { return filter.failed }
+
+			if !filter.succeeded { return false }
+
+			if filter.expended && $0.hasExpendedCores { return true }
+			if filter.landed && $0.hasLandedCores { return true }
+			if filter.lost && $0.hasLostCores { return true }
+
+			return false
+		}
 
 		planned = launches.filter { !$0.completed }
 		completed = launches.filter { $0.completed }
@@ -39,7 +57,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 
 	func toggleFilter() {
-		let filterHeight: CGFloat = 500*s
+		let filterHeight: CGFloat = 512*s
 		if filter.superview == nil {
 			view.addSubview(shield)
 			view.addSubview(filter)
@@ -53,6 +71,8 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 			UIView.animate(withDuration: 0.2) {
 				self.filter.bottom(dy: filterHeight, width: self.view.width, height: filterHeight)
 				self.shield.alpha = 0
+				self.filter.unload()
+				self.loadData()
 			} completion: { (completed: Bool) in
 				self.filter.removeFromSuperview()
 				self.shield.removeFromSuperview()
@@ -108,34 +128,62 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		shield.backgroundColor = .black.alpha(0.8)
 		shield.addGestureRecognizer(UITapGestureRecognizer(target: controller, action: #selector(LaunchesController.onFilterTapped)))
 
-		backView.frame = view.bounds
-		tableView.frame = view.bounds
-		shield.frame = view.bounds
-
 		loadData()
 
 		DispatchQueue.main.async { self.scrollToLatest() }
 	}
+	override func viewWillLayoutSubviews() {
+		backView.frame = view.bounds
+		tableView.frame = view.bounds
+		shield.frame = view.bounds
+	}
 
 // ExpandableTableViewDelegate =====================================================================
-	func numberOfSections(in tableView: ExpandableTableView) -> Int { 2 }
-	func expandableTableView(_ tableView: ExpandableTableView, baseHeightForRowAt indexPath: IndexPath) -> CGFloat { 80*s }
+	func numberOfSections(in tableView: ExpandableTableView) -> Int { 3 }
+	func expandableTableView(_ tableView: ExpandableTableView, baseHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		if indexPath.section == 2 { return 120*s }
+		return 80*s
+	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat { 270*s }
 	func expandableTableView(_ tableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
-		return section == 0 ? planned.count : completed.count
+		switch section {
+			case 0: return planned.count
+			case 1: return completed.count
+			case 2: return 1
+			default: fatalError()
+		}
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> ExpandableCell {
-		let cell: LaunchCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! LaunchCell
-		cell.load(launch: indexPath.section == 0 ? planned[indexPath.row] : completed[indexPath.row])
-		return cell
+		if indexPath.section < 2 {
+			let cell: LaunchCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! LaunchCell
+			cell.load(launch: indexPath.section == 0 ? planned[indexPath.row] : completed[indexPath.row])
+			return cell
+		} else {
+			footerCell.numberOfLaunches = planned.count + completed.count
+			return footerCell
+		}
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionForRowAt indexPath: IndexPath) -> UIView {
+		if indexPath.section == 2 { fatalError() }
 		return LaunchExpansion(launch: indexPath.section == 0 ? planned[indexPath.row] : completed[indexPath.row])
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, viewForHeaderInSection section: Int) -> UIView? {
-		return section == 0 ? futureView : pastView
+		switch section {
+			case 0: return futureView
+			case 1: return pastView
+			case 2: return nil
+			default: fatalError()
+		}
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return 36*s
+		switch section {
+			case 0: return planned.count > 0 ? 36*s : 0
+			case 1: return completed.count > 0 ? 36*s : 0
+			case 2: return 0
+			default: fatalError()
+		}
+	}
+	func expandableTableView(_ tableView: ExpandableTableView, expandableRowAt indexPath: IndexPath) -> Bool {
+		return indexPath.section != 2
 	}
 }

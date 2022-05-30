@@ -36,11 +36,27 @@ class Launch: Anchor {
 	var hasVideo: Bool {
 		return date.timeIntervalSince(Date.now) < 3600 && youtubeID != nil
 	}
+	var hasDetails: Bool {
+		return (details?.count ?? 0) > 0
+	}
+
+	var hasExpendedCores: Bool {
+		guard successful else { return false }
+		return cores.first(where: { !$0.landingAttempt }) != nil
+	}
+	var hasLandedCores: Bool {
+		guard successful else { return false }
+		return cores.first(where: { $0.landingAttempt && $0.landingSuccess }) != nil
+	}
+	var hasLostCores: Bool {
+		guard successful else { return false }
+		return cores.first(where: { $0.landingAttempt && !$0.landingSuccess }) != nil
+	}
 
 	var rocket: Rocket {
 		let core: Core
 		if cores.count > 0 {
-			core = Loom.selectBy(only: cores[0].appid)!
+			core = Loom.selectBy(only: cores[0].apiid)!
 		} else {
 			let cores: [Core] = Loom.selectAll()
 			core = cores.first { (core: Core) in

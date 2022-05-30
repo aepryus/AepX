@@ -10,7 +10,7 @@ import Acheron
 import UIKit
 
 extension Pen {
-	static let axTitle = Pen(font: UIFont(name: "AvenirNext-DemiBold", size: 23*Screen.s)!, color: .white)
-	static let axLabel = Pen(font: UIFont(name: "AvenirNext-Medium", size: 19*Screen.s)!, color: .white, alignment: .right)
-	static let axValue = Pen(font: UIFont(name: "AvenirNext-Heavy", size: 19*Screen.s)!, color: .white, alignment: .left)
+	static let axTitle = Pen(font: .axDemiBold(size: 23*Screen.s), color: .white)
+	static let axLabel = Pen(font: .axMedium(size: 19*Screen.s), color: .white, alignment: .right)
+	static let axValue = Pen(font: .axHeavy(size: 19*Screen.s), color: .white, alignment: .left)
 }

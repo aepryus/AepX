@@ -20,7 +20,6 @@ class RocketCell: UITableViewCell {
 	let blockLabel: UILabel = UILabel()
 	let countLabel: UILabel = UILabel()
 	let statusLabel: UILabel = UILabel()
-	let reasonLabel: UILabel = UILabel()
 	let patchesView: PatchesView = PatchesView()
 	let lineView: UIView = UIView()
 
@@ -29,28 +28,23 @@ class RocketCell: UITableViewCell {
 		backgroundColor = UIColor.axBackgroundColor.shade(0.5)
 
 		nameLabel.textColor = .white
-		nameLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
+		nameLabel.font = .axMedium(size: 18*s)
 		addSubview(nameLabel)
 
 		blockLabel.textColor = .white
 		blockLabel.textAlignment = .center
-		blockLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
+		blockLabel.font = .axMedium(size: 18*s)
 		addSubview(blockLabel)
 
 		countLabel.textColor = .white
 		countLabel.textAlignment = .center
-		countLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
+		countLabel.font = .axMedium(size: 18*s)
 		addSubview(countLabel)
 
 		statusLabel.textColor = .white
-		statusLabel.textAlignment = .center
-		statusLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
+		statusLabel.textAlignment = .right
+		statusLabel.font = .axMedium(size: 18*s)
 		addSubview(statusLabel)
-
-		reasonLabel.textColor = .white
-		reasonLabel.textAlignment = .center
-		reasonLabel.font = UIFont(name: "AvenirNext-Medium", size: 18*s)
-		addSubview(reasonLabel)
 
 		addSubview(patchesView)
 
@@ -69,8 +63,7 @@ class RocketCell: UITableViewCell {
 		nameLabel.text = core.serial
 		blockLabel.text = core.block != 0 ? "\(core.block)" : ""
 		countLabel.text = "\(core.launches.count)"
-		statusLabel.text = core.disposition
-		reasonLabel.text = core.reason
+		statusLabel.text = core.state
 		patchesView.load(core: core)
 	}
 
@@ -85,8 +78,7 @@ class RocketCell: UITableViewCell {
 		nameLabel.topLeft(dx: 10*s, dy: 2*s, width: 300*s, height: 30*s)
 		blockLabel.topRight(dx: -170*s, dy: nameLabel.top, width: 40*s, height: 30*s)
 		countLabel.topRight(dx: -120*s, dy: nameLabel.top, width: 40*s, height: 30*s)
-		statusLabel.topRight(dx: -10*s, dy: nameLabel.top, width: 100*s, height: 30*s)
-		reasonLabel.topRight(dx: -10*s, dy: statusLabel.bottom, width: 100*s, height: 30*s)
+		statusLabel.right(dx: -10*s, width: 100*s, height: 30*s)
 		patchesView.topLeft(dx: 20*s, dy: nameLabel.bottom+3*s, width: 300*s, height: 27*s)
 		lineView.bottom(width: width, height: 1)
 	}

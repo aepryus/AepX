@@ -12,6 +12,7 @@ import UIKit
 class LaunchCell: ExpandableCell {
 	let nameLabel: UILabel = UILabel()
 	let dateLabel: UILabel = UILabel()
+	let flightNoLabel: UILabel = UILabel()
 	let lineView: UIView = UIView()
 	let patchView: UIImageView = UIImageView()
 
@@ -19,6 +20,9 @@ class LaunchCell: ExpandableCell {
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+		flightNoLabel.pen = Pen(font: UIFont(name: "AvenirNext-Bold", size: 40*Screen.s)!, color: .axBackgroundColor, alignment: .right)
+		addSubview(flightNoLabel)
 
 		nameLabel.textColor = .white
 		nameLabel.font = UIFont(name: "AvenirNext-Bold", size: 19*s)
@@ -40,6 +44,7 @@ class LaunchCell: ExpandableCell {
 
 		nameLabel.text = launch.name
 		dateLabel.text = "\(launch.date.format("MMM d, yyyy"))"
+		flightNoLabel.text = "\(launch.flightNo)"
 
 		patchView.image = nil
 		if let urlString = launch.patch {
@@ -53,6 +58,7 @@ class LaunchCell: ExpandableCell {
 		patchView.left(dx: 9*s, width: 48*s, height: 48*s)
 		nameLabel.left(dx: patchView.right+12*s, dy: -12*s, width: width-(patchView.right+12*s)-12*s, height: 40*s)
 		dateLabel.left(dx: nameLabel.left, dy: 12*s, width: 300*s, height: 48*s)
+		flightNoLabel.right(dx: -9*s, width: 1000*s, height: 60*s)
 		lineView.bottom(width: width, height: 1)
 	}
 }

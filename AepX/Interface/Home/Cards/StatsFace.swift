@@ -55,10 +55,13 @@ class StatsFace: Face {
 	required init?(coder: NSCoder) { fatalError() }
 
 	func loadData() {
-		let launches: [Launch] = Loom.selectAll()
+		let launches: [Launch] = Loom.selectAll().sorted { (a: Launch, b: Launch) in
+			return a.flightNo < b.flightNo
+		}
 		let cores: [Core] = Loom.selectAll()
+
 		launchesValue.text = "\(launches.summate { $0.successful ? 1 : 0 }) of \(launches.summate { $0.completed ? 1 : 0 })"
-		landingsValue.text = "\(launches.summate { $0.cores.summate{ $0.landingSuccess ? 1 : 0 } }) of \(launches.summate { $0.cores.summate{ $0.landingAttempt ? 1 : 0 } })"
+		landingsValue.text = "\(launches.summate { $0.cores.summate{ $0.landingSuccess ? 1 : 0 } }) of \(launches.summate { $0.successful ? $0.cores.summate{ $0.landingAttempt ? 1 : 0 } : 0 })"
 		reflightsValue.text = "\(cores.summate { $0.launches.count > 1 ? $0.launches.count-1 : 0 })"
 
 		var launchLandings: [String:Int] = [:]
@@ -72,7 +75,7 @@ class StatsFace: Face {
 		launches.forEach { (launch: Launch) in
 			launch.cores.forEach { (launchCore: LaunchCore) in
 				guard launchCore.landingSuccess else { return }
-				launchLandings[launchCore.appid] = launchLandings[launchCore.appid]! + 1
+				launchLandings[launchCore.apiid] = launchLandings[launchCore.apiid]! + 1
 			}
 		}
 

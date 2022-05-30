@@ -100,11 +100,13 @@ class LaunchAPI: Codable {
 		launch.completed = success != nil
 		launch.successful = success ?? false
 		launch.cores = cores.compactMap {
-			guard let appid = $0.core, $0.landingType != "Ocean" else { return nil }
+			guard let appid = $0.core else { return nil }
 			let launchCore: LaunchCore = LaunchCore()
-			launchCore.appid = appid
-			launchCore.landingAttempt = $0.landingAttempt ?? false
-			launchCore.landingSuccess = $0.landingSuccess ?? false
+			launchCore.apiid = appid
+			if $0.landingType != "Ocean" {
+				launchCore.landingAttempt = $0.landingAttempt ?? false
+				launchCore.landingSuccess = $0.landingSuccess ?? false
+			}
 			return launchCore
 		}
 	}

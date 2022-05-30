@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D801A3892844A2DE0074DD3F /* UIFont+AepX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801A3882844A2DE0074DD3F /* UIFont+AepX.swift */; };
 		D80BC3102828B8190048C74F /* LaunchCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BC30F2828B8190048C74F /* LaunchCore.swift */; };
 		D80BC3122828FED70048C74F /* PatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BC3112828FED70048C74F /* PatchesView.swift */; };
 		D80BC330282A6EBD0048C74F /* ParaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BC32F282A6EBD0048C74F /* ParaView.swift */; };
@@ -44,6 +45,8 @@
 		D8B3467128271AFD003C794B /* BootPond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3467028271AFD003C794B /* BootPond.swift */; };
 		D8B3467328271B1B003C794B /* WakePond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3467228271B1B003C794B /* WakePond.swift */; };
 		D8B3467528277798003C794B /* SpaceXData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3467428277798003C794B /* SpaceXData.swift */; };
+		D8C1FB33284449A0001B678C /* LaunchesFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1FB32284449A0001B678C /* LaunchesFooterCell.swift */; };
+		D8C1FB35284449B0001B678C /* RocketsFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */; };
 		D8CA3B692830DE17009E0CA8 /* LaunchesFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CA3B682830DE17009E0CA8 /* LaunchesFilterView.swift */; };
 		D8CA3B6B2830DE2C009E0CA8 /* RocketsFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CA3B6A2830DE2C009E0CA8 /* RocketsFilterView.swift */; };
 		D8DE1CBA281B9CA700F8EABE /* AepXDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DE1CB9281B9CA700F8EABE /* AepXDelegate.swift */; };
@@ -60,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D801A3882844A2DE0074DD3F /* UIFont+AepX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+AepX.swift"; sourceTree = "<group>"; };
 		D80BC30F2828B8190048C74F /* LaunchCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCore.swift; sourceTree = "<group>"; };
 		D80BC3112828FED70048C74F /* PatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchesView.swift; sourceTree = "<group>"; };
 		D80BC32F282A6EBD0048C74F /* ParaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaView.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 		D8B3467028271AFD003C794B /* BootPond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootPond.swift; sourceTree = "<group>"; };
 		D8B3467228271B1B003C794B /* WakePond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePond.swift; sourceTree = "<group>"; };
 		D8B3467428277798003C794B /* SpaceXData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXData.swift; sourceTree = "<group>"; };
+		D8C1FB32284449A0001B678C /* LaunchesFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesFooterCell.swift; sourceTree = "<group>"; };
+		D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsFooterCell.swift; sourceTree = "<group>"; };
 		D8CA3B682830DE17009E0CA8 /* LaunchesFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesFilterView.swift; sourceTree = "<group>"; };
 		D8CA3B6A2830DE2C009E0CA8 /* RocketsFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsFilterView.swift; sourceTree = "<group>"; };
 		D8DE1CB6281B9CA700F8EABE /* AepX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AepX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +156,7 @@
 				D8CA3B6A2830DE2C009E0CA8 /* RocketsFilterView.swift */,
 				D80BC3112828FED70048C74F /* PatchesView.swift */,
 				D8691752281C289000D550F2 /* RocketCell.swift */,
+				D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */,
 				D869176C281E997D00D550F2 /* RocketsController.swift */,
 				D869173F281BC86B00D550F2 /* RocketsViewController.swift */,
 			);
@@ -163,6 +170,7 @@
 				D80BC32F282A6EBD0048C74F /* ParaView.swift */,
 				D8551FFE28226D3B00A8D5E8 /* LaunchExpansion.swift */,
 				D8691756281C31DF00D550F2 /* LaunchCell.swift */,
+				D8C1FB32284449A0001B678C /* LaunchesFooterCell.swift */,
 				D8691770281EA06600D550F2 /* LaunchesController.swift */,
 				D869173D281BC85E00D550F2 /* LaunchesViewController.swift */,
 			);
@@ -218,6 +226,7 @@
 			children = (
 				D80BC334283064580048C74F /* Pen+AepX.swift */,
 				D8691780281F998A00D550F2 /* UIColor+AepX.swift */,
+				D801A3882844A2DE0074DD3F /* UIFont+AepX.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -408,6 +417,7 @@
 				D8CA3B6B2830DE2C009E0CA8 /* RocketsFilterView.swift in Sources */,
 				D8B3467528277798003C794B /* SpaceXData.swift in Sources */,
 				D85520092823CFEE00A8D5E8 /* CreditsFace.swift in Sources */,
+				D8C1FB35284449B0001B678C /* RocketsFooterCell.swift in Sources */,
 				D8691755281C316900D550F2 /* Launch.swift in Sources */,
 				D80BC330282A6EBD0048C74F /* ParaView.swift in Sources */,
 				D869173E281BC85E00D550F2 /* LaunchesViewController.swift in Sources */,
@@ -418,6 +428,7 @@
 				D80BC3122828FED70048C74F /* PatchesView.swift in Sources */,
 				D869173A281BA14D00D550F2 /* SpaceX.swift in Sources */,
 				D8691753281C289000D550F2 /* RocketCell.swift in Sources */,
+				D8C1FB33284449A0001B678C /* LaunchesFooterCell.swift in Sources */,
 				D8691781281F998A00D550F2 /* UIColor+AepX.swift in Sources */,
 				D869174E281BECA600D550F2 /* Core.swift in Sources */,
 				D8691773281EA07200D550F2 /* RocketController.swift in Sources */,
@@ -429,6 +440,7 @@
 				D869175E281E323C00D550F2 /* Card.swift in Sources */,
 				D869175A281E129000D550F2 /* HomeViewController.swift in Sources */,
 				D8EE3795283B5262007EAD22 /* AexelsFace.swift in Sources */,
+				D801A3892844A2DE0074DD3F /* UIFont+AepX.swift in Sources */,
 				D869176B281E4BA400D550F2 /* RocketViewController.swift in Sources */,
 				D80BC335283064580048C74F /* Pen+AepX.swift in Sources */,
 				D8691740281BC86B00D550F2 /* RocketsViewController.swift in Sources */,

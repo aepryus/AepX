@@ -44,6 +44,6 @@ class RocketsFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 
 // UIPickerViewDelegate ============================================================================
 	func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-		return ["All", "Active", "Retired", "Expended", "Destroyed after Success", "Destroyed before Success"][row].attributed(pen: Pen.axLabel)
+		return ["All", "Active", "Retired", "Expended", "Lost", "Destroyed"][row].attributed(pen: Pen.axLabel)
 	}
 }

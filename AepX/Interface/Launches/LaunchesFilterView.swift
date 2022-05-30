@@ -13,8 +13,9 @@ struct LaunchFilter {
 	var falcon1: Bool
 	var falcon9: Bool
 	var falconHeavy: Bool
-	var succeeded: Bool
+	var planned: Bool
 	var failed: Bool
+	var succeeded: Bool
 	var expended: Bool
 	var landed: Bool
 	var lost: Bool
@@ -75,7 +76,7 @@ private class AndView: UIView {
 		var dy: CGFloat = 24*s
 		views.forEach {
 			$0.top(dy: dy, width: 320*s, height: CGFloat($0.views.count)*39*s+20*s)
-			dy += $0.height+10*s
+			dy += $0.height
 		}
 	}
 }
@@ -90,18 +91,19 @@ class LaunchesFilterView: UIView {
 	private let falcon9View: OptionView = OptionView(title: "Falcon 9".localized)
 	private let falconHeavyView: OptionView = OptionView(title: "Falcon Heavy".localized)
 
-	private let succeededView: OptionView = OptionView(title: "Succeeded".localized)
+	private let plannedView: OptionView = OptionView(title: "Planned".localized)
 	private let failedView: OptionView = OptionView(title: "Failed".localized)
+	private let succeededView: OptionView = OptionView(title: "Succeeded".localized)
 
 	private let expendedView: OptionView = OptionView(title: "Expended".localized)
 	private let landedView: OptionView = OptionView(title: "Landed".localized)
 	private let lostView: OptionView = OptionView(title: "Lost".localized)
 
-	var filter: LaunchFilter = LaunchFilter(falcon1: true, falcon9: true, falconHeavy: true, succeeded: true, failed: true, expended: true, landed: true, lost: true)
+	var filter: LaunchFilter = LaunchFilter(falcon1: true, falcon9: true, falconHeavy: true, planned: true, failed: true, succeeded: true, expended: true, landed: true, lost: true)
 
 	init() {
 		let shipsView: OrView = OrView(views: [falcon1View, falcon9View, falconHeavyView])
-		let outcomesView: OrView = OrView(views: [succeededView, failedView])
+		let outcomesView: OrView = OrView(views: [plannedView, failedView, succeededView])
 		let boostersView: OrView = OrView(views: [expendedView, landedView, lostView])
 
 		andView = AndView(views: [shipsView, outcomesView, boostersView])
@@ -122,8 +124,9 @@ class LaunchesFilterView: UIView {
 		filter.falcon1 = falcon1View.isOn
 		filter.falcon9 = falcon9View.isOn
 		filter.falconHeavy = falconHeavyView.isOn
-		filter.succeeded = succeededView.isOn
+		filter.planned = plannedView.isOn
 		filter.failed = failedView.isOn
+		filter.succeeded = succeededView.isOn
 		filter.expended = expendedView.isOn
 		filter.landed = landedView.isOn
 		filter.lost = lostView.isOn
@@ -132,8 +135,9 @@ class LaunchesFilterView: UIView {
 		falcon1View.isOn = filter.falcon1
 		falcon9View.isOn = filter.falcon9
 		falconHeavyView.isOn = filter.falconHeavy
-		succeededView.isOn = filter.succeeded
+		plannedView.isOn = filter.planned
 		failedView.isOn = filter.failed
+		succeededView.isOn = filter.succeeded
 		expendedView.isOn = filter.expended
 		landedView.isOn = filter.landed
 		lostView.isOn = filter.lost

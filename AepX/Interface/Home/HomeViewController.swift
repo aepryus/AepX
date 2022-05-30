@@ -58,10 +58,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		view.addSubview(tableView)
 
-
-		backView.frame = view.bounds
-		tableView.frame = view.bounds
-
 		cards = [
 			Card(face: nextFace),
 			Card(face: latestFace),
@@ -73,6 +69,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		]
 
 		loadData()
+	}
+	override func viewWillLayoutSubviews() {
+		backView.frame = view.bounds
+		tableView.frame = view.bounds
 	}
 
 // UITableViewDelegate =============================================================================

@@ -78,6 +78,12 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 			rocketsNavigationController
 		]
 	}
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransition(to: size, with: coordinator)
+		DispatchQueue.main.async {
+			self.view.bounds = CGRect(origin: .zero, size: size)
+		}
+	}
 
 // UITabBarControllerDelegate ======================================================================
 	func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

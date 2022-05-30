@@ -10,12 +10,12 @@ import Acheron
 import Foundation
 
 class LaunchCore: Domain {
-	@objc dynamic var appid: String = ""
+	@objc dynamic var apiid: String = ""
 	@objc dynamic var landingAttempt: Bool = false
 	@objc dynamic var landingSuccess: Bool = false
 
 // Domain ==========================================================================================
 	override var properties: [String] {
-		super.properties + ["appid", "landingAttempt", "landingSuccess"]
+		super.properties + ["apiid", "landingAttempt", "landingSuccess"]
 	}
 }

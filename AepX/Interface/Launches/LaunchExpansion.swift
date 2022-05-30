@@ -14,14 +14,16 @@ class LaunchExpansion: UIView {
 	let launch: Launch
 
 	let scrollView: UIScrollView = UIScrollView()
-	let paraView: ParaView = ParaView(names: ["Info", "Video"])
+	var paraView: ParaView = ParaView(names: ["Info", "Details", "Video"])
 	let imageView: UIImageView = UIImageView()
 	let blockValue: UILabel = UILabel()
-	let flightNoValue: UILabel = UILabel()
 	let detailsValue: UILabel = UILabel()
 	let timeValue: UILabel = UILabel()
 	let crewValue: UILabel = UILabel()
 	let wikipedia: LinkView = LinkView()
+	let page1: UIView = UIView()
+	let page2: UIView = UIView()
+	let page3: UIView = UIView()
 	
 	let player: YTPlayerView = YTPlayerView()
 
@@ -32,18 +34,15 @@ class LaunchExpansion: UIView {
 
 		backgroundColor = UIColor.axBackgroundColor
 
-		player.layer.cornerRadius = 12*s
-		player.layer.masksToBounds = true
-		scrollView.addSubview(player)
-
+		if !launch.hasDetails { paraView = ParaView(names: ["Info", "Video"]) }
 		paraView.scrollView = scrollView
 		addSubview(paraView)
 
 		imageView.image = launch.rocket.image
-		scrollView.addSubview(imageView)
+		page1.addSubview(imageView)
 
 		let serials: [String] = launch.cores.compactMap {
-			let core: Core? = Loom.selectBy(only: $0.appid)
+			let core: Core? = Loom.selectBy(only: $0.apiid)
 			return core?.serial
 		}
 		if serials.count > 1 {
@@ -54,28 +53,33 @@ class LaunchExpansion: UIView {
 		} else if serials.count == 1 { blockValue.text = serials[0]
 		} else { blockValue.text = "" }
 		blockValue.pen = Pen.axValue
-		scrollView.addSubview(blockValue)
+		page1.addSubview(blockValue)
 
-		flightNoValue.text = "\(launch.flightNo)"
-		flightNoValue.pen = Pen.axValue
-		scrollView.addSubview(flightNoValue)
-
-		detailsValue.text = launch.details
-		detailsValue.pen = Pen.axLabel
-		scrollView.addSubview(detailsValue)
-
-		timeValue.text = launch.date.format("hh:mm aZZZ")
-		timeValue.pen = Pen.axLabel
-		scrollView.addSubview(timeValue)
+		timeValue.text = launch.date.format("hh:mm a")
+		timeValue.pen = Pen.axValue
+//		page1.addSubview(timeValue)
 
 		crewValue.text = "\(launch.noOfCrew)"
 		crewValue.pen = Pen.axValue
-		scrollView.addSubview(crewValue)
+//		page1.addSubview(crewValue)
 
 		if let urlString = launch.wikipedia {
 			wikipedia.image = UIImage(named: "wikipedia")
 			wikipedia.urlString = urlString
-			scrollView.addSubview(wikipedia)
+			page1.addSubview(wikipedia)
+		}
+
+		detailsValue.text = launch.details
+		detailsValue.pen = Pen(font: .axMedium(size: 17*s), color: .white, alignment: .left)
+		detailsValue.numberOfLines = 0
+		page2.addSubview(detailsValue)
+
+		player.layer.cornerRadius = 12*s
+		player.layer.masksToBounds = true
+		page3.addSubview(player)
+
+		if let youtubeID = launch.youtubeID {
+			player.load(withVideoId: youtubeID)
 		}
 
 		scrollView.isPagingEnabled = true
@@ -83,9 +87,9 @@ class LaunchExpansion: UIView {
 		addSubview(scrollView)
 		scrollView.delegate = paraView
 
-		if let youtubeID = launch.youtubeID {
-			player.load(withVideoId: youtubeID)
-		}
+		scrollView.addSubview(page1)
+		if launch.hasDetails { scrollView.addSubview(page2) }
+		scrollView.addSubview(page3)
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
@@ -94,18 +98,25 @@ class LaunchExpansion: UIView {
 		super.layoutSubviews()
 		paraView.top(dy: 12*s, width: width*0.9, height: 32*s)
 		scrollView.frame = CGRect(x: 0, y: paraView.bottom, width: width, height: height-paraView.bottom)
-		scrollView.contentSize = CGSize(width: width*2, height: scrollView.height)
+		scrollView.contentSize = CGSize(width: width*(launch.hasDetails ? 3 : 2), height: scrollView.height)
+		page1.left(width: width, height: scrollView.height)
+		page2.left(dx: width, width: width, height: scrollView.height)
+		page3.left(dx: (launch.hasDetails ? 2 : 1)*width, width: width, height: scrollView.height)
+
 		if let image = imageView.image {
 			let maxHeight: CGFloat = height*0.7
 			let height: CGFloat = maxHeight*launch.rocket.height
 			imageView.bottomLeft(dx: 20*s, dy: -12*s, width: image.size.width*height/image.size.height, height: height)
 		}
-		flightNoValue.topLeft(dx: 75*s, dy: 50*s, width: 200*s, height: 30*s)
-		detailsValue.topLeft(dx: 75*s, dy: 70*s, width: 300*s, height: 30*s)
-		timeValue.topLeft(dx: 75*s, dy: 90*s, width: 200*s, height: 30*s)
+		timeValue.topLeft(dx: imageView.right, width: 200*s, height: 30*s)
 		crewValue.topLeft(dx: 75*s, dy: 110*s, width: 200*s, height: 30*s)
-		wikipedia.topLeft(dx: 275*s, dy: 130*s, width: 103*s/2, height: 94*s/2)
 		blockValue.bottomLeft(dx: 75*s, dy: -12*s, width: 300*s, height: 30*s)
-		player.bottomLeft(dx: width+27.5*s, dy: -20*s, width: 320*s, height: 180*s)
+		wikipedia.bottomRight(dx: -12*s, dy: -12*s, width: 103*s/2, height: 94*s/2)
+
+		detailsValue.topLeft(width: width-18*s, height: scrollView.height-12*s)
+		detailsValue.sizeToFit()
+		detailsValue.topLeft(dx: 9*s, dy: 6*s, height: min(detailsValue.height, scrollView.height-12*s))
+
+		player.center(width: 320*s, height: 180*s)
 	}
 }

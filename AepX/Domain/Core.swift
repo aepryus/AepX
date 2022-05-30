@@ -38,6 +38,31 @@ enum Rocket {
 		return height/208.4
 	}
 
+	var isFalcon1: Bool {
+		switch self {
+			case .falcon1:
+				return true
+			default:
+				return false
+		}
+	}
+	var isFalcon9: Bool {
+		switch self {
+			case .falcon9v10, .falcon9v11, .falcon9v12, .falcon9b5, .falcon9v11Dragon, .falcon9v12Dragon, .falcon9b5Dragon, .falcon9v11NoLegs, .falcon9v12NoLegs, .falcon9b5NoLegs:
+				return true
+			default:
+				return false
+		}
+	}
+	var isFalconHeavy: Bool {
+		switch self {
+			case .falconHeavy, .falconHeavyb5:
+				return true
+			default:
+				return false
+		}
+	}
+
 	var image: UIImage {
 		switch self {
 			case .falcon1:			return UIImage(named: "Falcon1")!
@@ -75,13 +100,28 @@ class Core: Anchor {
 		}
 	}
 
+	var state: String {
+		if disposition == "active" { return "active" }
+
+		guard let launch = launches.first,
+			  let launchCore = launch.cores.first(where: { $0.apiid == self.apiid })
+			else { return "QQQ" }
+
+		if !launch.successful { return "destroyed" }
+		if !launchCore.landingAttempt { return "expended" }
+		if !launchCore.landingSuccess { return "lost" }
+
+		if disposition == "retired" { return "retired" }
+
+		return "oops"
+	}
 	var reason: String {
 		guard disposition == "destroyed" else { return "" }
 		if launches.first(where: { $0.successful == false }) != nil {
 			return "on launch"
 		} else if launches.first(where: { (launch: Launch) in
 			launch.cores.first { (launchCore: LaunchCore) in
-				launchCore.appid == self.apiid && launchCore.landingAttempt && !launchCore.landingSuccess
+				launchCore.apiid == self.apiid && launchCore.landingAttempt && !launchCore.landingSuccess
 			} != nil
 		}) != nil {
 			return "on landing"

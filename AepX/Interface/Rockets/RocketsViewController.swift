@@ -14,6 +14,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 
 	let backView: UIImageView = UIImageView()
 	let tableView: UITableView = UITableView()
+	let footerCell: RocketsFooterCell = RocketsFooterCell()
 
 	let shield: UIView = UIView()
 	let filter: RocketsFilterView = RocketsFilterView()
@@ -28,11 +29,11 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		let cores: [Core] = Loom.selectAll().filter { (core: Core) in
 			switch filter.pickerView.selectedRow(inComponent: 0) {
 				case 0: return true
-				case 1: return core.disposition == "active"
-				case 2: return core.disposition == "retired"
-				case 3: return core.disposition == "destroyed" && core.reason == "expended"
-				case 4: return core.disposition == "destroyed" && core.reason == "on landing"
-				case 5: return core.disposition == "destroyed" && core.reason == "on launch"
+				case 1: return core.state == "active"
+				case 2: return core.state == "retired"
+				case 3: return core.state == "expended"
+				case 4: return core.state == "lost" || core.state == "oops     "
+				case 5: return core.state == "destroyed"
 				default: fatalError()
 			}
 		}
@@ -107,25 +108,36 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		shield.backgroundColor = .black.alpha(0.8)
 		shield.addGestureRecognizer(UITapGestureRecognizer(target: controller, action: #selector(RocketsController.onFilterTapped)))
 
+		loadData()
+	}
+	override func viewWillLayoutSubviews() {
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
 		shield.frame = view.bounds
-
-		loadData()
 	}
 
 // UITableViewDataSource ===========================================================================
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return (activeCores.count > 0 ? 1 : 0) + (inactiveCores.count > 0 ? 1 : 0)
+		return 3
 	}
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if section == 0 && activeCores.count > 0 { return activeCores.count }
-		else { return inactiveCores.count }
+		switch section {
+			case 0: return activeCores.count
+			case 1: return inactiveCores.count
+			case 2: return 1
+			default: fatalError()
+		}
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell: RocketCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! RocketCell
-		cell.load(delegate: controller, core: indexPath.section == 0 && activeCores.count > 0 ? activeCores[indexPath.row] : inactiveCores[indexPath.row])
-		return cell
+		if indexPath.section < 2 {
+			let cell: RocketCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! RocketCell
+			cell.load(delegate: controller, core: indexPath.section == 0 && activeCores.count > 0 ? activeCores[indexPath.row] : inactiveCores[indexPath.row])
+			return cell
+		} else {
+			footerCell.numberOfRockets = activeCores.count + inactiveCores.count
+			return footerCell
+		}
+
 	}
 
 // UITableViewDelegate =============================================================================
@@ -158,10 +170,20 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 	let notActiveView: HeaderView = HeaderView("Not Active".localized)
 
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		return section == 0 && activeCores.count > 0 ? activeView : notActiveView
+		switch section {
+			case 0: return activeView
+			case 1: return notActiveView
+			case 2: return nil
+			default: fatalError()
+		}
 	}
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return 36*s
+		switch section {
+			case 0: return activeCores.count > 0 ? 36*s : 0
+			case 1: return inactiveCores.count > 0 ? 36*s : 0
+			case 2: return 0
+			default: fatalError()
+		}
 	}
 	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 		return 0

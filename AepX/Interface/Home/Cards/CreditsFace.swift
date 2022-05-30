@@ -29,7 +29,7 @@ class CreditsFace: Face {
 
 		creditRoll.append(RollView(attributed: "AepX".attributed(pen: pen48).append("\nv1.0", pen: pen24)))
 		creditRoll.append(RollView(attributed: "by\n".attributed(pen: pen24).append("Aepryus", pen: pen36).append("\nSoftware", pen: pen24)))
-		creditRoll.append(RollView(attributed: "written using\n".attributed(pen: pen24).append("Acheron\n", pen: pen36).append("Aepryus'\niOS toolkit", pen: pen24)))
+		creditRoll.append(RollView(attributed: "written using\n".attributed(pen: pen18).append("Acheron\n", pen: pen36).append("Aepryus'\niOS toolkit", pen: pen18)))
 		creditRoll.append(RollView(attributed: "both\n".attributed(pen: pen18).append("AepX and Acheron's\n", pen: pen24).append("source code are\navailable at ", pen: pen18).append("github", pen: pen24)))
 		creditRoll.append(RollView(attributed: "Data driven by\nr/spacex's\n".attributed(pen: pen18).append("SpaceX-API", pen: pen24)))
 		creditRoll.append(RollView(attributed: "Much\nthanks to\n".attributed(pen: pen24).append("E.M.", pen: pen36)))
