@@ -73,7 +73,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 	}
 
 	func toggleFilter() {
-		let filterHeight: CGFloat = 500*s
+		let filterHeight: CGFloat = 490*s
 		if filter.superview == nil {
 			view.addSubview(shield)
 			view.addSubview(filter)

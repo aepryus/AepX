@@ -60,7 +60,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 
 	func toggleFilter() {
-		let filterHeight: CGFloat = 512*s
+		let filterHeight: CGFloat = 490*s
 		if filter.superview == nil {
 			view.addSubview(shield)
 			view.addSubview(filter)
