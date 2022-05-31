@@ -27,34 +27,47 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		inactiveCores = []
 
 		let cores: [Core] = Loom.selectAll().filter { (core: Core) in
-			switch filter.pickerView.selectedRow(inComponent: 0) {
-				case 0: return true
-				case 1: return core.state == "active"
-				case 2: return core.state == "retired"
-				case 3: return core.state == "expended"
-				case 4: return core.state == "lost" || core.state == "oops     "
-				case 5: return core.state == "destroyed"
-				default: fatalError()
+			var result: Bool = true
+			switch filter.statesView.selectedRow(inComponent: 0) {
+				case 1: if core.state != "active" { result = false }
+				case 2: if core.state != "retired" { result = false }
+				case 3: if core.state != "expended" { result = false }
+				case 4: if core.state != "lost" && core.state != "oops" { result = false }
+				case 5: if core.state != "destroyed" { result = false }
+				default: break
 			}
+			switch filter.shipsView.selectedRow(inComponent: 0) {
+				case 1: if core.booster != .falcon1 { result = false }
+				case 2: if core.booster != .falcon9 { result = false }
+				default: break
+			}
+			return result
 		}
 
-		cores.forEach {
-			if $0.coreStatus == "active" { activeCores.append($0) }
-			else { inactiveCores.append($0) }
-		}
 
-		activeCores.sort(by: { (a: Core, b: Core) in
-			if a.launches.count != b.launches.count { return a.launches.count > b.launches.count }
-			return a.serial < b.serial
-		})
-
-		inactiveCores.sort(by: { (a: Core, b: Core) in
-			if a.launches.count != b.launches.count { return a.launches.count > b.launches.count }
-			if let aLast = a.launches.last, let bLast = b.launches.last {
-				return aLast.date > bLast.date
+		if filter.sortsView.selectedRow(inComponent: 0) == 0 {
+			cores.forEach {
+				if $0.coreStatus == "active" { activeCores.append($0) }
+				else { inactiveCores.append($0) }
 			}
-			return a.serial < b.serial
-		})
+			activeCores.sort(by: { (a: Core, b: Core) in
+				if a.launches.count != b.launches.count { return a.launches.count > b.launches.count }
+				return a.serial < b.serial
+			})
+			inactiveCores.sort(by: { (a: Core, b: Core) in
+				if a.launches.count != b.launches.count { return a.launches.count > b.launches.count }
+				if let aLast = a.launches.last, let bLast = b.launches.last {
+					return aLast.date > bLast.date
+				}
+				return a.serial < b.serial
+			})
+		} else {
+			activeCores = cores
+			activeCores.sort(by:  { (a: Core, b: Core) in
+				if a.booster.generation == b.booster.generation { return a.serial > b.serial }
+				return a.booster.generation > b.booster.generation
+			})
+		}
 
 		tableView.reloadData()
 	}
@@ -178,6 +191,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		}
 	}
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		guard filter.sortsView.selectedRow(inComponent: 0) != 1 else { return 0 }
 		switch section {
 			case 0: return activeCores.count > 0 ? 36*s : 0
 			case 1: return inactiveCores.count > 0 ? 36*s : 0

@@ -26,22 +26,25 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		let launches: [Launch] = Loom.selectAll().sorted(by: { (a: Launch, b: Launch) in
 			return a.flightNo > b.flightNo
 		}).filter {
-			let filter = self.filter.filter
+			if filter.rocketsView.selectedRow(inComponent: 0) != 0 {
+				if $0.rocket.isFalcon1 && filter.rocketsView.selectedRow(inComponent: 0) != 1 { return false }
+				if $0.rocket.isFalcon9 && filter.rocketsView.selectedRow(inComponent: 0) != 2 { return false }
+				if $0.rocket.isFalconHeavy && filter.rocketsView.selectedRow(inComponent: 0) != 3 { return false }
+			}
 
-			if $0.rocket.isFalcon1 && !filter.falcon1 { return false }
-			if $0.rocket.isFalcon9 && !filter.falcon9 { return false }
-			if $0.rocket.isFalconHeavy && !filter.falconHeavy { return false }
+			if filter.missionsView.selectedRow(inComponent: 0) != 0 {
+				if filter.missionsView.selectedRow(inComponent: 0) == 1 { return !$0.completed }
+				if filter.missionsView.selectedRow(inComponent: 0) == 3 { return $0.completed && !$0.successful }
+				if filter.missionsView.selectedRow(inComponent: 0) == 2 && (!$0.completed || !$0.successful) { return false }
+			}
 
-			if !$0.completed { return filter.planned }
-			if $0.completed && !$0.successful { return filter.failed }
+			if filter.landingsView.selectedRow(inComponent: 0) != 0 {
+				if filter.landingsView.selectedRow(inComponent: 0) == 1 && !$0.hasLandedCores { return false }
+				if filter.landingsView.selectedRow(inComponent: 0) == 2 && !$0.hasLostCores { return false }
+				if filter.landingsView.selectedRow(inComponent: 0) == 3 && !$0.hasExpendedCores { return false }
+			}
 
-			if !filter.succeeded { return false }
-
-			if filter.expended && $0.hasExpendedCores { return true }
-			if filter.landed && $0.hasLandedCores { return true }
-			if filter.lost && $0.hasLostCores { return true }
-
-			return false
+			return true
 		}
 
 		planned = launches.filter { !$0.completed }
@@ -71,7 +74,6 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 			UIView.animate(withDuration: 0.2) {
 				self.filter.bottom(dy: filterHeight, width: self.view.width, height: filterHeight)
 				self.shield.alpha = 0
-				self.filter.unload()
 				self.loadData()
 			} completion: { (completed: Bool) in
 				self.filter.removeFromSuperview()
@@ -130,7 +132,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 		loadData()
 
-		DispatchQueue.main.async { self.scrollToLatest() }
+//		DispatchQueue.main.async { self.scrollToLatest() }
 	}
 	override func viewWillLayoutSubviews() {
 		backView.frame = view.bounds

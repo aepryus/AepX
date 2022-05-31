@@ -9,6 +9,14 @@
 import Acheron
 import UIKit
 
+enum Booster {
+	case falcon1, falcon9
+
+	var generation: Int {
+		return self == .falcon1 ? 1 : 2
+	}
+}
+
 enum Rocket {
 	case falcon1
 	case falcon9v10
@@ -93,6 +101,11 @@ class Core: Anchor {
 	@objc dynamic var landings: Int = 0
 	@objc dynamic var disposition: String = ""
 	@objc dynamic var note: String = ""
+
+	var booster: Booster {
+		if block == 0 { return .falcon1 }
+		else { return .falcon9 }
+	}
 
 	var launches: [Launch] {
 		launchAPIIDs.map { Loom.selectBy(only: $0)! }.sorted { (a: Launch, b: Launch) in
