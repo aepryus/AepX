@@ -21,7 +21,9 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		homeViewController = HomeViewController()
-		homeViewController.title = "AepX"
+		let imageView: UIImageView = UIImageView(image: UIImage(named: "Title"))
+		imageView.contentMode = .scaleAspectFit
+		homeViewController.navigationItem.titleView = imageView
 		homeNavigationController = UINavigationController(rootViewController: homeViewController)
 
 		launchesViewController = LaunchesViewController()
@@ -29,8 +31,9 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 		launchesNavigationController = UINavigationController(rootViewController: launchesViewController)
 
 		rocketsViewController = RocketsViewController()
-		rocketsViewController.title = "Rockets"
+		rocketsViewController.title = "Boosters"
 		rocketsNavigationController = UINavigationController(rootViewController: rocketsViewController)
+
 
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
@@ -48,7 +51,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 
 		let appearance = UITabBarAppearance()
 		appearance.configureWithOpaqueBackground()
-		appearance.backgroundColor = UIColor.axBackgroundColor.alpha(0.9)
+		appearance.backgroundColor = .axBackgroundColor.shade(0.5).alpha(0.9)
 
 		tabBar.standardAppearance = appearance
 		tabBar.scrollEdgeAppearance = tabBar.standardAppearance
@@ -57,20 +60,20 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 
 		let navApp = UINavigationBarAppearance()
 		navApp.configureWithOpaqueBackground()
-		navApp.backgroundColor = UIColor.axBackgroundColor.alpha(0.9)
-		navApp.titleTextAttributes = [.foregroundColor: UIColor.white]
+		navApp.backgroundColor = .axBackgroundColor.shade(0.5).alpha(0.9)
+		navApp.titleTextAttributes = Pen(font: .axHeavy(size: 22*s), color: .white, alignment: .center).attributes
 		navApp.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 		navApp.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
 		UINavigationBar.appearance().standardAppearance = navApp
 		UINavigationBar.appearance().scrollEdgeAppearance = navApp
 
-		let image1 = UIImage(named: "football-7")!
-		let image2 = UIImage(named: "layer-7")!
-		let image3 = UIImage(named: "command-7")!
+		let image1 = UIImage(named: "Starbase")!
+		let image2 = UIImage(named: "Launches")!
+		let image3 = UIImage(named: "Boosters")!
 
-		homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: image3, selectedImage: image3.withTintColor(.white))
-		launchesNavigationController.tabBarItem = UITabBarItem(title: "Launches", image: image1, selectedImage: image1.withTintColor(.white))
-		rocketsNavigationController.tabBarItem = UITabBarItem(title: "Rockets", image: image2, selectedImage: image2.withTintColor(.white))
+		homeNavigationController.tabBarItem = UITabBarItem(title: "Starbase", image: image1, selectedImage: image1.withTintColor(.white))
+		launchesNavigationController.tabBarItem = UITabBarItem(title: "Launches", image: image2, selectedImage: image2.withTintColor(.white))
+		rocketsNavigationController.tabBarItem = UITabBarItem(title: "Boosters", image: image3, selectedImage: image3.withTintColor(.white))
 
 		self.viewControllers = [
 			homeNavigationController,

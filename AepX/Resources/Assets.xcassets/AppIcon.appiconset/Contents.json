@@ -37,13 +37,13 @@
       "size" : "40x40"
     },
     {
-      "filename" : "AepX-1.png",
+      "filename" : "Icon-2.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "AepX.png",
+      "filename" : "Icon-1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -97,7 +97,7 @@
       "size" : "76x76"
     },
     {
-      "filename" : "AepX-3.png",
+      "filename" : "Icon.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"

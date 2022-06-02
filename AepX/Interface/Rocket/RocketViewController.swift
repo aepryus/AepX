@@ -20,6 +20,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 	init(core: Core) {
 		self.core = core
 		super.init(nibName: nil, bundle: nil)
+		navigationItem.title = core.serial
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
