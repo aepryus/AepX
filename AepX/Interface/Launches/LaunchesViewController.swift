@@ -89,13 +89,13 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		init(_ title: String) {
 			super.init(frame: .zero)
 
-			backgroundColor = UIColor.axBackgroundColor
+			backgroundColor = .axBorderColor
 
-			line.backgroundColor = .axBackgroundColor.tint(0.5)
+			line.backgroundColor = .axBorderColor.tint(0.3)
 			addSubview(line)
 
 			label.text = title
-			label.pen = Pen.axValue
+			label.pen = Pen(font: .axDemiBold(size: 19*s), color: .white, alignment: .left)
 			addSubview(label)
 		}
 		required init?(coder: NSCoder) { fatalError() }
@@ -143,7 +143,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 // ExpandableTableViewDelegate =====================================================================
 	func numberOfSections(in tableView: ExpandableTableView) -> Int { 3 }
 	func expandableTableView(_ tableView: ExpandableTableView, baseHeightForRowAt indexPath: IndexPath) -> CGFloat {
-		if indexPath.section == 2 { return 120*s }
+//		if indexPath.section == 2 { return 120*s }
 		return 80*s
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat { 270*s }

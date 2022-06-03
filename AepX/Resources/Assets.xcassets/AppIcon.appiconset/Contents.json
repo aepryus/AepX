@@ -1,37 +1,37 @@
 {
   "images" : [
     {
-      "filename" : "AepX-14.png",
+      "filename" : "Icon-10.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "AepX-10.png",
+      "filename" : "Icon-15.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "AepX-11.png",
+      "filename" : "Icon-13.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "AepX-6.png",
+      "filename" : "Icon-11.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "AepX-7.png",
+      "filename" : "Icon-4.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "AepX-5.png",
+      "filename" : "Icon-3.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
@@ -49,49 +49,49 @@
       "size" : "60x60"
     },
     {
-      "filename" : "AepX-16.png",
+      "filename" : "Icon-16.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
-      "filename" : "AepX-15.png",
+      "filename" : "Icon-9.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "AepX-17.png",
+      "filename" : "Icon-14.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "AepX-12.png",
+      "filename" : "Icon-12.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "AepX-13.png",
+      "filename" : "Icon-8.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "AepX-8.png",
+      "filename" : "Icon-5.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "AepX-9.png",
+      "filename" : "Icon-7.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "AepX-2.png",
+      "filename" : "Icon-6.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
@@ -103,7 +103,7 @@
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "AepX-4.png",
+      "filename" : "Icon-17.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

@@ -11,4 +11,5 @@ import UIKit
 
 extension UIColor {
 	static let axBackgroundColor: UIColor = UIColor.blue.tone(0.85).shade(0.5)
+	static let axBorderColor: UIColor = UIColor.blue.tone(0.85)
 }

@@ -26,6 +26,14 @@ class AepX {
 		window.rootViewController = RootViewController()
 		window.makeKeyAndVisible()
 
+		if Screen.mac, #available(iOS 13.0, *) {
+			UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { (windowScene: UIWindowScene) in
+				let size: CGSize = CGSize(width: 669, height: 1190)
+				windowScene.sizeRestrictions?.minimumSize = size
+				windowScene.sizeRestrictions?.maximumSize = size
+			}
+		}
+
 		bootPond.start()
 	}
 }
