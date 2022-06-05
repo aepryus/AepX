@@ -60,7 +60,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 
 	func toggleFilter() {
-		let filterHeight: CGFloat = 490*s
+		let filterHeight: CGFloat = 120*3*s + 12*s + Screen.navBottom
 		if filter.superview == nil {
 			view.addSubview(shield)
 			view.addSubview(filter)
@@ -124,6 +124,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 		tableView.backgroundColor = UIColor.clear
 		tableView.register(LaunchCell.self, forCellReuseIdentifier: "cell")
+		tableView.showsVerticalScrollIndicator = true
 		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		view.addSubview(tableView)
 
@@ -143,7 +144,6 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 // ExpandableTableViewDelegate =====================================================================
 	func numberOfSections(in tableView: ExpandableTableView) -> Int { 3 }
 	func expandableTableView(_ tableView: ExpandableTableView, baseHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//		if indexPath.section == 2 { return 120*s }
 		return 80*s
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat { 270*s }

@@ -56,7 +56,7 @@ class LaunchesFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	override func layoutSubviews() {
 		line.top(width: width, height: 1*s)
 
-		rocketsView.topLeft(dx: 12*s, dy: 12*s, width: 240*s, height: 120*s)
+		rocketsView.topLeft(dx: 12*s, dy: 2*s, width: 240*s, height: 120*s)
 		rocketsSpecifier.topLeft(dx: rocketsView.right, dy: rocketsView.top, width: width-rocketsView.right, height: rocketsView.height)
 
 		missionsView.topLeft(dx: 12*s, dy: rocketsView.bottom, width: 240*s, height: 120*s)

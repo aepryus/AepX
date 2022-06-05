@@ -28,7 +28,7 @@ class AepX {
 
 		if Screen.mac, #available(iOS 13.0, *) {
 			UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { (windowScene: UIWindowScene) in
-				let size: CGSize = CGSize(width: 669, height: 1190)
+				let size: CGSize = CGSize(width: 375*Screen.s, height: 812*Screen.s)
 				windowScene.sizeRestrictions?.minimumSize = size
 				windowScene.sizeRestrictions?.maximumSize = size
 			}

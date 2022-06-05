@@ -73,7 +73,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 	}
 
 	func toggleFilter() {
-		let filterHeight: CGFloat = 490*s
+		let filterHeight: CGFloat = 120*3*s + 12*s + Screen.navBottom
 		if filter.superview == nil {
 			view.addSubview(shield)
 			view.addSubview(filter)
@@ -113,7 +113,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		tableView.delegate = self
 		tableView.register(RocketCell.self, forCellReuseIdentifier: "cell")
 		tableView.allowsSelection = false
-		tableView.rowHeight = 70*s
+		tableView.rowHeight = 80*s
 		tableView.sectionHeaderTopPadding = 0
 		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		view.addSubview(tableView)

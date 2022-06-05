@@ -15,6 +15,12 @@ enum Booster {
 	var generation: Int {
 		return self == .falcon1 ? 1 : 2
 	}
+	var name: String {
+		switch self {
+			case .falcon1: return "Falcon 1"
+			case .falcon9: return "Falcon 9"
+		}
+	}
 }
 
 enum Rocket {
@@ -106,6 +112,25 @@ class Core: Anchor {
 		if block == 0 { return .falcon1 }
 		else { return .falcon9 }
 	}
+	var version: String {
+		if booster == .falcon1 { return "" }
+		else if booster == .falcon9 {
+			if serial[1] == "0" { return "v1.0" }
+			else if ["B1019", "B1020"].contains(serial) { return "FT" }
+			else {
+				switch block {
+					case 1: return "v1.1"
+					case 2: return "FT"
+					case 3: return "FT"
+					case 4: return "block 4"
+					case 5: return "block 5"
+					default: return  ""
+				}
+			}
+		}
+		return ""
+	}
+	var name: String { booster.name + version }
 
 	var launches: [Launch] {
 		launchAPIIDs.map { Loom.selectBy(only: $0)! }.sorted { (a: Launch, b: Launch) in

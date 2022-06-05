@@ -11,6 +11,7 @@ import UIKit
 
 
 class PatchesView: UIView {
+	let size: CGFloat
 	var core: Core? = nil
 	fileprivate var patches: [PatchInfo] = []
 	fileprivate var patchesViews: [PatchView] = []
@@ -49,10 +50,18 @@ class PatchesView: UIView {
 		}
 	}
 
-	init() {
+	init(size: CGFloat) {
+		self.size = size
 		super.init(frame: .zero)
 	}
 	required init?(coder: NSCoder) { fatalError() }
+
+	var patchesWidth: CGFloat {
+		let width: CGFloat = patchesViews.summate {
+			size + ($0.patchInfo.count>1 ? 20*s : 0) + 7*s
+		}
+		return width - 7*s
+	}
 
 	func load(core: Core) {
 		self.core = core
@@ -78,13 +87,15 @@ class PatchesView: UIView {
 			addSubview(patchView)
 			self.patchesViews.append(patchView)
 		}
+
+		bounds = CGRect(origin: .zero, size: CGSize(width: patchesWidth, height: height))
 	}
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
 		var dx: CGFloat = 0
 		patchesViews.forEach {
-			$0.left(dx: dx, width: height+($0.patchInfo.count>1 ? 20*s : 0), height: height)
+			$0.left(dx: dx, width: size+($0.patchInfo.count>1 ? 20*s : 0), height: size)
 			dx += $0.width+7*s
 		}
 	}

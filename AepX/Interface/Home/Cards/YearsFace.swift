@@ -169,7 +169,7 @@ fileprivate class LegendView: UIView {
 			LegendRow(color: .purple.tone(tonePercent), text: "success / partial"),
 			LegendRow(color: .orange.tone(tonePercent), text: "success / lost"),
 			LegendRow(color: .cyan.tone(tonePercent), text: "success / expended"),
-			LegendRow(color: .red.tone(tonePercent), text: "destroyed"),
+			LegendRow(color: .red.tone(tonePercent), text: "failed"),
 		]
 		super.init(frame: .zero)
 		rows.forEach { addSubview($0) }

@@ -26,7 +26,7 @@ class RocketsFooterCell: UITableViewCell {
 	required init?(coder: NSCoder) { fatalError() }
 
 	var numberOfRockets: Int {
-		set { label.text = "\(newValue) rockets queried" }
+		set { label.text = "\(newValue) boosters queried" }
 		get { fatalError() }
 	}
 

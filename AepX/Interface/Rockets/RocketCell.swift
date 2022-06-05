@@ -6,6 +6,7 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import UIKit
 
 protocol RocketCellDelegate: AnyObject {
@@ -17,36 +18,36 @@ class RocketCell: UITableViewCell {
 	var core: Core!
 
 	let nameLabel: UILabel = UILabel()
-	let blockLabel: UILabel = UILabel()
-	let countLabel: UILabel = UILabel()
+	let boosterLabel: UILabel = UILabel()
+	let versionLabel: UILabel = UILabel()
 	let statusLabel: UILabel = UILabel()
-	let patchesView: PatchesView = PatchesView()
+	let patchesView: PatchesView = PatchesView(size: 27*Screen.s)
+	let patchesContent: UIView = UIView()
 	let lineView: UIView = UIView()
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .default, reuseIdentifier: nil)
 		backgroundColor = UIColor.axBackgroundColor.shade(0.5)
 
-		nameLabel.textColor = .white
-		nameLabel.font = .axMedium(size: 18*s)
+		nameLabel.pen = Pen(font: .axDemiBold(size: 29*s), color: .white, alignment: .left)
 		addSubview(nameLabel)
 
-		blockLabel.textColor = .white
-		blockLabel.textAlignment = .center
-		blockLabel.font = .axMedium(size: 18*s)
-		addSubview(blockLabel)
+		boosterLabel.pen = Pen(font: .axMedium(size: 17*s), color: .white, alignment: .left)
+		boosterLabel.numberOfLines = 2
+		addSubview(boosterLabel)
 
-		countLabel.textColor = .white
-		countLabel.textAlignment = .center
-		countLabel.font = .axMedium(size: 18*s)
-		addSubview(countLabel)
+		versionLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .left)
+		addSubview(versionLabel)
 
-		statusLabel.textColor = .white
-		statusLabel.textAlignment = .right
-		statusLabel.font = .axMedium(size: 18*s)
+		statusLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .right)
 		addSubview(statusLabel)
 
-		addSubview(patchesView)
+		patchesContent.layer.cornerRadius = 12*s
+		patchesContent.backgroundColor = .axBorderColor.shade(0.5)
+		patchesContent.layer.borderWidth = 0.5*s
+		patchesContent.layer.borderColor = UIColor.axBorderColor.shade(0.5).tint(0.2).cgColor
+		addSubview(patchesContent)
+		patchesContent.addSubview(patchesView)
 
 		lineView.backgroundColor = UIColor.blue.tone(0.85).tint(0.1)
 		addSubview(lineView)
@@ -61,10 +62,12 @@ class RocketCell: UITableViewCell {
 		self.core = core
 
 		nameLabel.text = core.serial
-		blockLabel.text = core.block != 0 ? "\(core.block)" : ""
-		countLabel.text = "\(core.launches.count)"
-		statusLabel.text = core.state
+		boosterLabel.text = core.booster.name
+		versionLabel.text = core.version
+		statusLabel.text = core.state + " - " + (core.launches.count != 1 ? "\(core.launches.count) " + "flights".localized : "1 " + "flight".localized)
 		patchesView.load(core: core)
+		if core.launches.count == 0 { patchesContent.removeFromSuperview() }
+		else { addSubview(patchesContent) }
 	}
 
 // Events ==========================================================================================
@@ -75,11 +78,12 @@ class RocketCell: UITableViewCell {
 // UITableViewCell =================================================================================
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		nameLabel.topLeft(dx: 10*s, dy: 2*s, width: 300*s, height: 30*s)
-		blockLabel.topRight(dx: -170*s, dy: nameLabel.top, width: 40*s, height: 30*s)
-		countLabel.topRight(dx: -120*s, dy: nameLabel.top, width: 40*s, height: 30*s)
-		statusLabel.right(dx: -10*s, width: 100*s, height: 30*s)
-		patchesView.topLeft(dx: 20*s, dy: nameLabel.bottom+3*s, width: 300*s, height: 27*s)
+		nameLabel.topLeft(dx: 9*s, dy: 6*s, width: 300*s, height: 30*s)
+		boosterLabel.topLeft(dx: 12*s, dy: 31*s, width: 200*s, height: 30*s)
+		versionLabel.topLeft(dx: 14*s, dy: 51*s, width: 120*s, height: 30*s)
+		statusLabel.topRight(dx: -9*s, dy: 4*s, width: 200*s, height: 30*s)
+		patchesContent.bottomRight(dx: -7*s, dy: -10*s, width: patchesView.patchesWidth+18*s, height: 33*s)
+		patchesView.center()
 		lineView.bottom(width: width, height: 1)
 	}
 }
