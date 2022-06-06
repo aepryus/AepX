@@ -56,6 +56,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		tableView.backgroundColor = UIColor.clear
 		tableView.rowHeight = 120*s
 		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
+		else { tableView.showsVerticalScrollIndicator = false }
 		view.addSubview(tableView)
 
 		cards = [

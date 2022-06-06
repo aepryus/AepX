@@ -81,8 +81,6 @@ class RocketsFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 		sortsView.topLeft(dx: 12*s, dy: 2*s, width: 240*s, height: 120*s)
 		sortsSpecifier.topLeft(dx: sortsView.right, dy: sortsView.top, width: width-sortsView.right, height: sortsView.height)
 
-		print("QQ}- \(sortsView.height) - \(s)")
-
 		shipsView.topLeft(dx: 12*s, dy: sortsView.bottom, width: 240*s, height: 120*s)
 		shipsSpecifier.topLeft(dx: shipsView.right, dy: shipsView.top, width: width-shipsView.right, height: shipsView.height)
 

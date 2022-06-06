@@ -124,8 +124,10 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 		tableView.backgroundColor = UIColor.clear
 		tableView.register(LaunchCell.self, forCellReuseIdentifier: "cell")
-		tableView.showsVerticalScrollIndicator = true
-		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
+		if Screen.mac {
+			tableView.showsVerticalScrollIndicator = true
+			tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true)
+		}
 		view.addSubview(tableView)
 
 		shield.backgroundColor = .black.alpha(0.8)

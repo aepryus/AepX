@@ -7,9 +7,25 @@
 //
 
 import Acheron
-import Foundation
+import UIKit
 
 class Launch: Anchor {
+	enum Result {
+		case planned, successLanded, successPartial, successLost, successExpended, failure
+
+		var color: UIColor {
+			let tonePercent: CGFloat = 0.6
+			switch self {
+				case .planned:			return .white.tone(tonePercent)
+				case .successLanded:	return .blue.tone(tonePercent)
+				case .successPartial:	return .purple.tone(tonePercent)
+				case .successLost:		return .orange.tone(tonePercent)
+				case .successExpended:	return .cyan.tone(tonePercent)
+				case .failure:			return .red.tone(tonePercent)
+			}
+		}
+	}
+
 	@objc dynamic var apiid: String = ""
 	@objc dynamic var name: String = ""
 	@objc dynamic var flightNo: Int = 0
@@ -38,6 +54,14 @@ class Launch: Anchor {
 	}
 	var hasDetails: Bool {
 		return (details?.count ?? 0) > 0
+	}
+	var result: Result {
+		if !completed { return .planned }
+		else if !successful { return .failure }
+		else if hasLostCores && hasLandedCores { return .successPartial }
+		else if hasLostCores { return .successLost }
+		else if hasLandedCores { return .successLanded }
+		else { return .successExpended }
 	}
 
 	var hasExpendedCores: Bool {

@@ -33,7 +33,6 @@ class RocketCell: UITableViewCell {
 		addSubview(nameLabel)
 
 		boosterLabel.pen = Pen(font: .axMedium(size: 17*s), color: .white, alignment: .left)
-		boosterLabel.numberOfLines = 2
 		addSubview(boosterLabel)
 
 		versionLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .left)

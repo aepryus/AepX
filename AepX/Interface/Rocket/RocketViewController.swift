@@ -32,6 +32,8 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.axBackgroundColor
 
+		navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
 		backView.image = UIImage(named: "Starship")
 		view.addSubview(backView)
 
@@ -39,6 +41,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 		tableView.expandableTableViewDelegate = self
 		tableView.rowHeight = 50*s
 		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
+		else { tableView.showsVerticalScrollIndicator = false }
 		view.addSubview(tableView)
 
 		backView.frame = view.bounds

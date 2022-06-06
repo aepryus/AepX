@@ -103,6 +103,8 @@ class LaunchAPI: Codable {
 			guard let appid = $0.core else { return nil }
 			let launchCore: LaunchCore = LaunchCore()
 			launchCore.apiid = appid
+			launchCore.pending = !launch.completed
+			launchCore.destroyed = launch.completed && !launch.successful
 			if $0.landingType != "Ocean" {
 				launchCore.landingAttempt = $0.landingAttempt ?? false
 				launchCore.landingSuccess = $0.landingSuccess ?? false

@@ -104,6 +104,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 
 		navigationController?.navigationBar.tintColor = .white
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: controller, action: #selector(RocketsController.onFilterTapped))
+		navigationItem.backButtonDisplayMode = .minimal
 
 		backView.image = UIImage(named: "Starship")
 		view.addSubview(backView)
@@ -116,6 +117,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		tableView.rowHeight = 80*s
 		tableView.sectionHeaderTopPadding = 0
 		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
+		else { tableView.showsVerticalScrollIndicator = false }
 		view.addSubview(tableView)
 
 		shield.backgroundColor = .black.alpha(0.8)
