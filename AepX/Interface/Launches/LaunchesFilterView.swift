@@ -56,14 +56,19 @@ class LaunchesFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	override func layoutSubviews() {
 		line.top(width: width, height: 1*s)
 
-		rocketsView.topLeft(dx: 12*s, dy: 2*s, width: 240*s, height: 120*s)
-		rocketsSpecifier.topLeft(dx: rocketsView.right, dy: rocketsView.top, width: width-rocketsView.right, height: rocketsView.height)
+		let paddingWidth: CGFloat = 12*s
+		let specifierWidth: CGFloat = 123*s
+		let specifierHeight: CGFloat = 120*s
+		let pickerWidth = width - specifierWidth - paddingWidth
 
-		missionsView.topLeft(dx: 12*s, dy: rocketsView.bottom, width: 240*s, height: 120*s)
-		missionsSpecifier.topLeft(dx: missionsView.right, dy: missionsView.top, width: width-missionsView.right, height: missionsView.height)
+		rocketsSpecifier.topRight(dy: 2*s, width: specifierWidth, height: specifierHeight)
+		rocketsView.topLeft(dx: paddingWidth, dy: rocketsSpecifier.top, width: pickerWidth, height: specifierHeight)
 
-		landingsView.topLeft(dx: 12*s, dy: missionsView.bottom, width: 240*s, height: 120*s)
-		landingsSpecifier.topLeft(dx: landingsView.right, dy: landingsView.top, width: width-landingsView.right, height: landingsView.height)
+		missionsSpecifier.topRight(dy: rocketsSpecifier.bottom, width: specifierWidth, height: specifierHeight)
+		missionsView.topLeft(dx: paddingWidth, dy: missionsSpecifier.top, width: pickerWidth, height: specifierHeight)
+
+		landingsSpecifier.topRight(dy: missionsSpecifier.bottom, width: specifierWidth, height: specifierHeight)
+		landingsView.topLeft(dx: paddingWidth, dy: landingsSpecifier.top, width: pickerWidth, height: specifierHeight)
 	}
 
 // UIPickerViewDataSource ==========================================================================

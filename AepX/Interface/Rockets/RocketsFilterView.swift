@@ -78,14 +78,19 @@ class RocketsFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	override func layoutSubviews() {
 		line.top(width: width, height: 1*s)
 
-		sortsView.topLeft(dx: 12*s, dy: 2*s, width: 240*s, height: 120*s)
-		sortsSpecifier.topLeft(dx: sortsView.right, dy: sortsView.top, width: width-sortsView.right, height: sortsView.height)
+		let paddingWidth: CGFloat = 12*s
+		let specifierWidth: CGFloat = 123*s
+		let specifierHeight: CGFloat = 120*s
+		let pickerWidth = width - specifierWidth - paddingWidth
 
-		shipsView.topLeft(dx: 12*s, dy: sortsView.bottom, width: 240*s, height: 120*s)
-		shipsSpecifier.topLeft(dx: shipsView.right, dy: shipsView.top, width: width-shipsView.right, height: shipsView.height)
+		sortsSpecifier.topRight(dy: 2*s, width: specifierWidth, height: specifierHeight)
+		sortsView.topLeft(dx: paddingWidth, dy: sortsSpecifier.top, width: pickerWidth, height: specifierHeight)
 
-		statesView.topLeft(dx: 12*s, dy: shipsView.bottom, width: 240*s, height: 120*s)
-		statesSpecifier.topLeft(dx: statesView.right, dy: statesView.top, width: width-statesView.right, height: statesView.height)
+		shipsSpecifier.topRight(dy: sortsSpecifier.bottom, width: specifierWidth, height: specifierHeight)
+		shipsView.topLeft(dx: paddingWidth, dy: shipsSpecifier.top, width: pickerWidth, height: specifierHeight)
+
+		statesSpecifier.topRight(dy: shipsSpecifier.bottom, width: specifierWidth, height: specifierHeight)
+		statesView.topLeft(dx: paddingWidth, dy: statesSpecifier.top, width: pickerWidth, height: specifierHeight)
 	}
 
 // UIPickerViewDataSource ==========================================================================
