@@ -83,9 +83,12 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 	}
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		super.viewWillTransition(to: size, with: coordinator)
-		DispatchQueue.main.async {
+		coordinator.animate { (context: UIViewControllerTransitionCoordinatorContext) in
 			self.view.bounds = CGRect(origin: .zero, size: size)
 		}
+//		DispatchQueue.main.async {
+//			self.view.bounds = CGRect(origin: .zero, size: size)
+//		}
 	}
 
 // UITabBarControllerDelegate ======================================================================

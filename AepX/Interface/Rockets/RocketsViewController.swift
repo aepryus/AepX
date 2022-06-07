@@ -114,7 +114,6 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		tableView.delegate = self
 		tableView.register(RocketCell.self, forCellReuseIdentifier: "cell")
 		tableView.allowsSelection = false
-		tableView.rowHeight = 80*s
 		tableView.sectionHeaderTopPadding = 0
 		if Screen.mac { tableView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		else { tableView.showsVerticalScrollIndicator = false }
@@ -191,6 +190,15 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 			case 2: return nil
 			default: fatalError()
 		}
+	}
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		let core: Core
+		switch indexPath.section {
+			case 0:		core = activeCores[indexPath.row]
+			case 1:		core = inactiveCores[indexPath.row]
+			default:	return 80*s
+		}
+		return 60*s + (core.launches.count > 0 ? 30*s : 0)
 	}
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		guard filter.sortsView.selectedRow(inComponent: 0) != 1 else { return 0 }

@@ -6,6 +6,7 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import UIKit
 
 class AexelsFace: Face {
@@ -29,7 +30,7 @@ class AexelsFace: Face {
 	}
 
 // Face ============================================================================================
-	override var faceHeight: CGFloat { 150*s }
+	override var faceHeight: CGFloat { 150*s * AepX.window.width/(375*s) }
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {

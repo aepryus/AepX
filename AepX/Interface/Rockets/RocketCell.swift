@@ -32,20 +32,19 @@ class RocketCell: UITableViewCell {
 		nameLabel.pen = Pen(font: .axDemiBold(size: 29*s), color: .white, alignment: .left)
 		addSubview(nameLabel)
 
-		boosterLabel.pen = Pen(font: .axMedium(size: 17*s), color: .white, alignment: .left)
-		addSubview(boosterLabel)
-
-		versionLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .left)
-		addSubview(versionLabel)
-
-		statusLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .right)
+		statusLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .left)
 		addSubview(statusLabel)
 
-		patchesContent.layer.cornerRadius = 12*s
-		patchesContent.backgroundColor = .axBorderColor.shade(0.5)
-		patchesContent.layer.borderWidth = 0.5*s
-		patchesContent.layer.borderColor = UIColor.axBorderColor.shade(0.5).tint(0.2).cgColor
-		addSubview(patchesContent)
+		boosterLabel.pen = Pen(font: .axMedium(size: 17*s), color: .white, alignment: .right)
+		addSubview(boosterLabel)
+
+		versionLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .right)
+		addSubview(versionLabel)
+
+//		patchesContent.layer.cornerRadius = 12*s
+		patchesContent.backgroundColor = UIColor.axBackgroundColor.shade(0.2)
+//		patchesContent.layer.borderWidth = 0.5*s
+//		patchesContent.layer.borderColor = UIColor.axBorderColor.shade(0.5).tint(0.2).cgColor
 		patchesContent.addSubview(patchesView)
 
 		lineView.backgroundColor = UIColor.blue.tone(0.85).tint(0.1)
@@ -63,7 +62,8 @@ class RocketCell: UITableViewCell {
 		nameLabel.text = core.serial
 		boosterLabel.text = core.booster.name
 		versionLabel.text = core.version
-		statusLabel.text = core.state + " - " + (core.launches.count != 1 ? "\(core.launches.count) " + "flights".localized : "1 " + "flight".localized)
+		statusLabel.text = core.state
+		//  (core.launches.count != 1 ? "\(core.launches.count) " + "flights".localized : "1 " + "flight".localized)
 		patchesView.load(core: core)
 		if core.launches.count == 0 { patchesContent.removeFromSuperview() }
 		else { addSubview(patchesContent) }
@@ -78,11 +78,11 @@ class RocketCell: UITableViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		nameLabel.topLeft(dx: 9*s, dy: 6*s, width: 300*s, height: 30*s)
-		boosterLabel.topLeft(dx: 12*s, dy: 31*s, width: 200*s, height: 30*s)
-		versionLabel.topLeft(dx: 14*s, dy: 51*s, width: 120*s, height: 30*s)
-		statusLabel.topRight(dx: -9*s, dy: 4*s, width: 200*s, height: 30*s)
-		patchesContent.bottomRight(dx: -7*s, dy: -10*s, width: patchesView.patchesWidth+18*s, height: 33*s)
-		patchesView.center()
-		lineView.bottom(width: width, height: 1)
+		statusLabel.topLeft(dx: nameLabel.left+6*s, dy: nameLabel.bottom-8*s, width: 300*s, height: 30*s)
+		boosterLabel.topRight(dx: -6*s, dy: 4*s, width: 200*s, height: 30*s)
+		versionLabel.topLeft(dx: boosterLabel.left-2*s, dy: boosterLabel.bottom-9*s, width: 200*s, height: 30*s)
+		patchesContent.bottom(dy: -1*s, width: width, height: 33*s)
+		patchesView.right(dx: -9*s)
+		lineView.bottom(width: width, height: 1*s)
 	}
 }

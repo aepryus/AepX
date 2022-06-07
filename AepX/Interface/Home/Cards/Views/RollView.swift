@@ -39,6 +39,6 @@ class RollView: UIView {
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		label.center(dx: -28*s, width: 300*s, height: 120*s)
+		label.frame = bounds
 	}
 }

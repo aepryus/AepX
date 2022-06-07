@@ -73,6 +73,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 	}
 	override func viewWillLayoutSubviews() {
 		backView.frame = view.bounds
+		creditsFace.renderCredits()
 		tableView.frame = view.bounds
 	}
 

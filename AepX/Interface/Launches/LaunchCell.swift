@@ -57,17 +57,11 @@ class LaunchCell: ExpandableCell {
 // UITableViewCell =================================================================================
 	override func layoutSubviews() {
 		super.layoutSubviews()
-//		patchView.left(dx: 8*s, width: 48*s, height: 48*s)
-//		nameLabel.left(dx: patchView.right+12*s, dy: -12*s, width: width-(patchView.right+12*s)-12*s-16*s, height: 40*s)
-//		dateLabel.left(dx: nameLabel.left, dy: 12*s, width: 300*s, height: 48*s)
-//		resultView.right(dx: -7*s, width: 6*s, height: 36*s)
-//		flightNoLabel.left(dx: resultView.left-109*s, width: 100*s, height: 60*s)
-//		lineView.bottom(width: width, height: 1)
 		patchView.left(dx: 9*s, width: 48*s, height: 48*s)
 		nameLabel.left(dx: patchView.right+12*s, dy: -12*s, width: width-(patchView.right+12*s)-12*s, height: 40*s)
 		dateLabel.left(dx: nameLabel.left, dy: 12*s, width: 300*s, height: 48*s)
-		flightNoLabel.right(dx: -9*s, width: 1000*s, height: 60*s)
+		flightNoLabel.right(dx: -12*s, width: 1000*s, height: 60*s)
+		resultView.right(dx: -1*s, width: 4*s, height: baseHeight*0.6)
 		lineView.bottom(width: width, height: 1)
-		resultView.topRight(dx: 13*s, dy: -13*s, width: 27*s, height: 27*s)
 	}
 }
