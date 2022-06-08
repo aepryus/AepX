@@ -72,28 +72,32 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		tableView.reloadData()
 	}
 
-	func toggleFilter() {
-		let filterHeight: CGFloat = 120*3*s + 12*s + Screen.navBottom
-		if filter.superview == nil {
-			view.addSubview(shield)
-			view.addSubview(filter)
-			filter.bottom(dy: filterHeight, width: view.width, height: filterHeight)
-			shield.alpha = 0
-			UIView.animate(withDuration: 0.2) {
-				self.filter.bottom(width: self.view.width, height: filterHeight)
-				self.shield.alpha = 1
-			}
-		} else {
-			UIView.animate(withDuration: 0.2) {
-				self.filter.bottom(dy: filterHeight, width: self.view.width, height: filterHeight)
-				self.shield.alpha = 0
-//				self.filter.unload()
-				self.loadData()
-			} completion: { (completed: Bool) in
-				self.filter.removeFromSuperview()
-				self.shield.removeFromSuperview()
-			}
+	static var filterHeight: CGFloat { 120*3*Screen.s + 12*Screen.s + Screen.navBottom }
+	func invokeFilter() {
+		guard filter.superview == nil else { return }
+		view.addSubview(shield)
+		view.addSubview(filter)
+		filter.bottom(dy: RocketsViewController.filterHeight, width: view.width, height: RocketsViewController.filterHeight)
+		shield.alpha = 0
+		UIView.animate(withDuration: 0.2) {
+			self.filter.bottom(width: self.view.width, height: RocketsViewController.filterHeight)
+			self.shield.alpha = 1
 		}
+	}
+	func dismissFilter() {
+		guard filter.superview != nil else { return }
+		UIView.animate(withDuration: 0.2) {
+			self.filter.bottom(dy: RocketsViewController.filterHeight, width: self.view.width, height: RocketsViewController.filterHeight)
+			self.shield.alpha = 0
+			self.loadData()
+		} completion: { (completed: Bool) in
+			self.filter.removeFromSuperview()
+			self.shield.removeFromSuperview()
+		}
+	}
+	func toggleFilter() {
+		if filter.superview == nil { invokeFilter() }
+		else { dismissFilter() }
 	}
 
 // UIViewController ================================================================================

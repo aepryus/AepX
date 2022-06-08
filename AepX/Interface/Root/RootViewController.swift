@@ -93,7 +93,11 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 
 // UITabBarControllerDelegate ======================================================================
 	func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-		guard let previous = tabBarController.selectedViewController, previous === viewController else { return true }
+		guard let previous = tabBarController.selectedViewController, previous === viewController else {
+			rocketsViewController.dismissFilter()
+			launchesViewController.dismissFilter()
+			return true
+		}
 
 		if let rocketsController = ((viewController as? UINavigationController)?.topViewController as? RocketsViewController)?.controller {
 			rocketsController.onFilterTapped()

@@ -59,27 +59,30 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		self.tableView.scrollRectToVisible(self.tableView.rectForRow(at: IndexPath(row: 0, section: 1)), animated: false)
 	}
 
-	func toggleFilter() {
-		let filterHeight: CGFloat = 120*3*s + 12*s + Screen.navBottom
-		if filter.superview == nil {
-			view.addSubview(shield)
-			view.addSubview(filter)
-			filter.bottom(dy: filterHeight, width: view.width, height: filterHeight)
-			shield.alpha = 0
-			UIView.animate(withDuration: 0.2) {
-				self.filter.bottom(width: self.view.width, height: filterHeight)
-				self.shield.alpha = 1
-			}
-		} else {
-			UIView.animate(withDuration: 0.2) {
-				self.filter.bottom(dy: filterHeight, width: self.view.width, height: filterHeight)
-				self.shield.alpha = 0
-				self.loadData()
-			} completion: { (completed: Bool) in
-				self.filter.removeFromSuperview()
-				self.shield.removeFromSuperview()
-			}
+	static let filterHeight: CGFloat = 120*3*Screen.s + 12*Screen.s + Screen.navBottom
+	func invokeFilter() {
+		view.addSubview(shield)
+		view.addSubview(filter)
+		filter.bottom(dy: LaunchesViewController.filterHeight, width: view.width, height: LaunchesViewController.filterHeight)
+		shield.alpha = 0
+		UIView.animate(withDuration: 0.2) {
+			self.filter.bottom(width: self.view.width, height: LaunchesViewController.filterHeight)
+			self.shield.alpha = 1
 		}
+	}
+	func dismissFilter() {
+		UIView.animate(withDuration: 0.2) {
+			self.filter.bottom(dy: LaunchesViewController.filterHeight, width: self.view.width, height: LaunchesViewController.filterHeight)
+			self.shield.alpha = 0
+			self.loadData()
+		} completion: { (completed: Bool) in
+			self.filter.removeFromSuperview()
+			self.shield.removeFromSuperview()
+		}
+	}
+	func toggleFilter() {
+		if filter.superview == nil { invokeFilter() }
+		else { dismissFilter() }
 	}
 
 	class HeaderView: UIView {

@@ -22,8 +22,8 @@ class RocketCell: UITableViewCell {
 	let versionLabel: UILabel = UILabel()
 	let statusLabel: UILabel = UILabel()
 	let flightsLabel: UILabel = UILabel()
-	let patchesView: PatchesView = PatchesView(size: 27*Screen.s)
-	let patchesContent: UIView = UIView()
+//	let patchesView: PatchesView = PatchesView(size: 27*Screen.s)
+//	let patchesContent: UIView = UIView()
 	let lineView: UIView = UIView()
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -46,10 +46,10 @@ class RocketCell: UITableViewCell {
 		addSubview(versionLabel)
 
 //		patchesContent.layer.cornerRadius = 12*s
-		patchesContent.backgroundColor = UIColor.axBackgroundColor.shade(0.2)
+//		patchesContent.backgroundColor = UIColor.axBackgroundColor.shade(0.2)
 //		patchesContent.layer.borderWidth = 0.5*s
 //		patchesContent.layer.borderColor = UIColor.axBorderColor.shade(0.5).tint(0.2).cgColor
-		patchesContent.addSubview(patchesView)
+//		patchesContent.addSubview(patchesView)
 
 		lineView.backgroundColor = UIColor.blue.tone(0.85).tint(0.1)
 		addSubview(lineView)
@@ -83,11 +83,11 @@ class RocketCell: UITableViewCell {
 		super.layoutSubviews()
 		nameLabel.topLeft(dx: 9*s, dy: 6*s, width: 300*s, height: 30*s)
 		statusLabel.topLeft(dx: nameLabel.left+6*s, dy: nameLabel.bottom-8*s, width: 300*s, height: 30*s)
-		flightsLabel.bottom(dy: -4*s, width: 180*s, height: 20*s)
+		flightsLabel.center(width: 180*s, height: 20*s)
 		boosterLabel.topRight(dx: -6*s, dy: 4*s, width: 200*s, height: 30*s)
 		versionLabel.topLeft(dx: boosterLabel.left-2*s, dy: boosterLabel.bottom-9*s, width: 200*s, height: 30*s)
-		patchesContent.bottom(dy: -1*s, width: width, height: 33*s)
-		patchesView.right(dx: -9*s)
+//		patchesContent.bottom(dy: -1*s, width: width, height: 33*s)
+//		patchesView.right(dx: -9*s)
 		lineView.bottom(width: width, height: 1*s)
 	}
 }
