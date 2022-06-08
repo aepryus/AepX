@@ -21,6 +21,7 @@ class RocketCell: UITableViewCell {
 	let boosterLabel: UILabel = UILabel()
 	let versionLabel: UILabel = UILabel()
 	let statusLabel: UILabel = UILabel()
+	let flightsLabel: UILabel = UILabel()
 	let patchesView: PatchesView = PatchesView(size: 27*Screen.s)
 	let patchesContent: UIView = UIView()
 	let lineView: UIView = UIView()
@@ -34,6 +35,9 @@ class RocketCell: UITableViewCell {
 
 		statusLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .left)
 		addSubview(statusLabel)
+
+		flightsLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .center)
+		addSubview(flightsLabel)
 
 		boosterLabel.pen = Pen(font: .axMedium(size: 17*s), color: .white, alignment: .right)
 		addSubview(boosterLabel)
@@ -60,13 +64,13 @@ class RocketCell: UITableViewCell {
 		self.core = core
 
 		nameLabel.text = core.serial
+		statusLabel.text = core.state
+		flightsLabel.text = (core.launches.count != 1 ? "\(core.launches.count) " + "flights".localized : "1 " + "flight".localized)
 		boosterLabel.text = core.booster.name
 		versionLabel.text = core.version
-		statusLabel.text = core.state
-		//  (core.launches.count != 1 ? "\(core.launches.count) " + "flights".localized : "1 " + "flight".localized)
-		patchesView.load(core: core)
-		if core.launches.count == 0 { patchesContent.removeFromSuperview() }
-		else { addSubview(patchesContent) }
+//		patchesView.load(core: core)
+//		if core.launches.count == 0 { patchesContent.removeFromSuperview() }
+//		else { addSubview(patchesContent) }
 	}
 
 // Events ==========================================================================================
@@ -79,6 +83,7 @@ class RocketCell: UITableViewCell {
 		super.layoutSubviews()
 		nameLabel.topLeft(dx: 9*s, dy: 6*s, width: 300*s, height: 30*s)
 		statusLabel.topLeft(dx: nameLabel.left+6*s, dy: nameLabel.bottom-8*s, width: 300*s, height: 30*s)
+		flightsLabel.bottom(dy: -4*s, width: 180*s, height: 20*s)
 		boosterLabel.topRight(dx: -6*s, dy: 4*s, width: 200*s, height: 30*s)
 		versionLabel.topLeft(dx: boosterLabel.left-2*s, dy: boosterLabel.bottom-9*s, width: 200*s, height: 30*s)
 		patchesContent.bottom(dy: -1*s, width: width, height: 33*s)

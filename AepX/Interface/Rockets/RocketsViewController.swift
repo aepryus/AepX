@@ -192,13 +192,13 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		}
 	}
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		let core: Core
-		switch indexPath.section {
-			case 0:		core = activeCores[indexPath.row]
-			case 1:		core = inactiveCores[indexPath.row]
-			default:	return 80*s
-		}
-		return 60*s + (core.launches.count > 0 ? 30*s : 0)
+//		let core: Core
+//		switch indexPath.section {
+//			case 0:		core = activeCores[indexPath.row]
+//			case 1:		core = inactiveCores[indexPath.row]
+//			default:	return 80*s
+//		}
+		return 60*s// + (core.launches.count > 0 ? 30*s : 0)
 	}
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		guard filter.sortsView.selectedRow(inComponent: 0) != 1 else { return 0 }

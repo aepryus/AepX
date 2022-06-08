@@ -102,7 +102,7 @@ class RocketDetail: ExpandableCell {
 			let height: CGFloat = maxHeight*rocket.height
 			rocketView.bottomRight(dx: -18*s, dy: -(self.height-36*s-maxHeight)/2-36*s, width: image.size.width*height/image.size.height, height: height)
 		}
-		noteLabel.topLeft(width: rocketView.left-24*s, height: 200*s)
+		noteLabel.topLeft(width: rocketView.left-48*s, height: 200*s)
 		noteLabel.sizeToFit()
 		noteLabel.topLeft(dx: 12*s, dy: statusLabel.bottom+8*s)
 		boosterLabel.topLeft(dx: rocketView.left-209*s, dy: height-110*s, width: 200*s, height: 30*s)
