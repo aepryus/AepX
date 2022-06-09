@@ -59,7 +59,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		self.tableView.scrollRectToVisible(self.tableView.rectForRow(at: IndexPath(row: 0, section: 1)), animated: false)
 	}
 
-	static let filterHeight: CGFloat = 120*3*Screen.s + 12*Screen.s + Screen.navBottom
+	static let filterHeight: CGFloat = 120*3*Screen.s + 12*Screen.s + Screen.navBottom + 16*Screen.s
 	func invokeFilter() {
 		view.addSubview(shield)
 		view.addSubview(filter)
@@ -135,6 +135,8 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 		shield.backgroundColor = .black.alpha(0.8)
 		shield.addGestureRecognizer(UITapGestureRecognizer(target: controller, action: #selector(LaunchesController.onFilterTapped)))
+
+		filter.doneButton.addAction { self.controller.onFilterTapped() }
 
 		loadData()
 

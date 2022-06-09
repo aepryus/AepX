@@ -99,6 +99,15 @@ fileprivate class YearsView: UIView {
 	var years: [YearView] = []
 
 	init() {
+		super.init(frame: .zero)
+		render()
+	}
+	required init?(coder: NSCoder) { fatalError() }
+
+	func render() {
+		years.forEach { $0.removeFromSuperview() }
+		years = []
+
 		var datas:[String:YearData] = ["'11":YearData(year: "'11")]
 
 		let launches: [Launch] = Loom.selectAll().filter { $0.completed }
@@ -119,11 +128,8 @@ fileprivate class YearsView: UIView {
 		years = datas.values.sorted(by: { $0.year > $1.year })
 			.map { YearView(data: $0, max: max) }
 
-		super.init(frame: .zero)
-
 		years.forEach { addSubview($0) }
 	}
-	required init?(coder: NSCoder) { fatalError() }
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
@@ -196,6 +202,10 @@ class YearsFace: Face {
 		addSubview(legendView)
 	}
 	required init?(coder: NSCoder) { fatalError() }
+
+	func loadData() {
+		yearsView.render()
+	}
 
 // Face ============================================================================================
 	override var faceHeight: CGFloat { 24*s + CGFloat(yearsView.years.count)*32*s }

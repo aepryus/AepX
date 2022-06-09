@@ -72,7 +72,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		tableView.reloadData()
 	}
 
-	static var filterHeight: CGFloat { 120*3*Screen.s + 12*Screen.s + Screen.navBottom }
+	static let filterHeight: CGFloat = 120*3*Screen.s + 12*Screen.s + Screen.navBottom + 16*Screen.s
 	func invokeFilter() {
 		guard filter.superview == nil else { return }
 		view.addSubview(shield)
@@ -125,6 +125,8 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 
 		shield.backgroundColor = .black.alpha(0.8)
 		shield.addGestureRecognizer(UITapGestureRecognizer(target: controller, action: #selector(RocketsController.onFilterTapped)))
+
+		filter.doneButton.addAction { self.controller.onFilterTapped() }
 
 		loadData()
 	}

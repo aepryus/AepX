@@ -16,6 +16,8 @@ class LaunchesFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	let rocketsView: UIPickerView = UIPickerView()
 	let missionsView: UIPickerView = UIPickerView()
 	let landingsView: UIPickerView = UIPickerView()
+	let container: UIView = UIView()
+	let doneButton: DoneButton = DoneButton()
 
 	private let rocketsSpecifier: Specifier = Specifier(text: "rockets")
 	private let missionsSpecifier: Specifier = Specifier(text: "mission")
@@ -27,33 +29,43 @@ class LaunchesFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 
 	init() {
 		super.init(frame: .zero)
-		backgroundColor = UIColor.axBackgroundColor.tone(-0.7).tint(0.2).alpha(0.7)
 
 		line.backgroundColor = .white
-		addSubview(line)
+		container.addSubview(line)
 
 		rocketsView.dataSource = self
 		rocketsView.delegate = self
 		rocketsView.tintColor = .white
-		addSubview(rocketsView)
-		addSubview(rocketsSpecifier)
+		container.addSubview(rocketsView)
+		container.addSubview(rocketsSpecifier)
 
 		missionsView.dataSource = self
 		missionsView.delegate = self
 		missionsView.tintColor = .white
-		addSubview(missionsView)
-		addSubview(missionsSpecifier)
+		container.addSubview(missionsView)
+		container.addSubview(missionsSpecifier)
 
 		landingsView.dataSource = self
 		landingsView.delegate = self
 		landingsView.tintColor = .white
-		addSubview(landingsView)
-		addSubview(landingsSpecifier)
+		container.addSubview(landingsView)
+		container.addSubview(landingsSpecifier)
+
+		container.backgroundColor = UIColor.axBackgroundColor.tone(-0.7).tint(0.2).alpha(0.7)
+		addSubview(container)
+
+		addSubview(doneButton)
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
 // UIView ==========================================================================================
+	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+		let view: UIView? = super.hitTest(point, with: event)
+		if view === self { return nil }
+		return view
+	}
 	override func layoutSubviews() {
+		container.bottom(width: width, height: 120*3*Screen.s + 12*Screen.s + Screen.navBottom)
 		line.top(width: width, height: 1*s)
 
 		let paddingWidth: CGFloat = 12*s
@@ -69,6 +81,8 @@ class LaunchesFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 
 		landingsSpecifier.topRight(dy: missionsSpecifier.bottom, width: specifierWidth, height: specifierHeight)
 		landingsView.topLeft(dx: paddingWidth, dy: landingsSpecifier.top, width: pickerWidth, height: specifierHeight)
+
+		doneButton.topLeft(dx: 30*s, width: 132*s, height: 33*s)
 	}
 
 // UIPickerViewDataSource ==========================================================================

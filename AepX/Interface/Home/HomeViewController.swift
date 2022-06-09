@@ -38,6 +38,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		latestFace.launch = launches[i+1]
 		nextFace.launch = launches[i]
 		statsFace.loadData()
+		yearsFace.loadData()
 		tableView.reloadData()
 	}
 
