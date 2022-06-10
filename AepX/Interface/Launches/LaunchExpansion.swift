@@ -8,7 +8,6 @@
 
 import Acheron
 import UIKit
-import YouTubeiOSPlayerHelper
 
 fileprivate class LaunchCoreResultView: UIView {
 	var result: LaunchCore.Result? = nil {

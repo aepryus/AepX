@@ -8,7 +8,6 @@
 
 import Acheron
 import UIKit
-import YouTubeiOSPlayerHelper
 
 class NextFace: Face {
 	var launch: Launch? = nil {
@@ -19,10 +18,10 @@ class NextFace: Face {
 				patchView.loadImage(url: url)
 			}
 			if launch.hasVideo, let youtubeID = launch.youtubeID {
-				player.load(withVideoId: youtubeID)
-				addSubview(player)
+				youTubeView.load(id: youtubeID)
+				addSubview(youTubeView)
 			} else {
-				player.removeFromSuperview()
+				youTubeView.removeFromSuperview()
 			}
 		}
 	}
@@ -31,7 +30,7 @@ class NextFace: Face {
 	let nameLabel: UILabel = UILabel()
 	let patchView: UIImageView = UIImageView()
 	let countDownView: CountDownView = CountDownView()
-	let player: YTPlayerView = YTPlayerView()
+	let youTubeView: YouTubeView = YouTubeView()
 
 	let timer: AETimer = AETimer()
 
@@ -50,9 +49,6 @@ class NextFace: Face {
 		addSubview(countDownView)
 		
 		addSubview(patchView)
-
-		player.layer.cornerRadius = 12*s
-		player.layer.masksToBounds = true
 
 		timer.configure(interval: 1) { [weak self] in
 			DispatchQueue.main.async {
@@ -73,6 +69,6 @@ class NextFace: Face {
 		nameLabel.topLeft(dx: 12*s, dy: titleLabel.bottom, width: 300*s, height: 30*s)
 		patchView.topRight(dx: -12*s, dy: 10*s, width: 70*s, height: 70*s)
 		countDownView.topRight(dx: -8*s, dy: patchView.bottom+8*s, width: 200*s, height: 43*s)
-		player.top(dy: countDownView.bottom+10*s, width: 320*s, height: 180*s)
+		youTubeView.top(dy: countDownView.bottom+10*s, width: 320*s, height: 180*s)
 	}
 }

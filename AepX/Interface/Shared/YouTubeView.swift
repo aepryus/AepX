@@ -52,11 +52,14 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 
 	func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
 		print("playerView:receivedError [\(error)]")
+		guard let youTubeID = youTubeID else { return }
+		player.removeFromSuperview()
+		player.load(withVideoId: youTubeID)
 	}
 
-	func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
-		print("playerView:didPlayTime [\(playTime)]")
-	}
+//	func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
+//		print("playerView:didPlayTime [\(playTime)]")
+//	}
 
 	func playerViewPreferredWebViewBackgroundColor(_ playerView: YTPlayerView) -> UIColor {
 //		print("playerViewPreferredWebViewBackgroundColor")

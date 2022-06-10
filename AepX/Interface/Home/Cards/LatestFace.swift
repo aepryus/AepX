@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import YouTubeiOSPlayerHelper
 
 class LatestFace: Face {
 	var launch: Launch? = nil {

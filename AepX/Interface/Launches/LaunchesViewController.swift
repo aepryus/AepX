@@ -52,7 +52,6 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 		DispatchQueue.main.async {
 			self.tableView.reloadData()
-			self.scrollToLatest()
 		}
 	}
 	func scrollToLatest() {
@@ -141,6 +140,8 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		filter.doneButton.addAction { self.controller.onFilterTapped() }
 
 		loadData()
+
+		DispatchQueue.main.async { self.scrollToLatest() }
 	}
 	override func viewWillLayoutSubviews() {
 		backView.frame = view.bounds
