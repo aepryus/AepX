@@ -52,11 +52,13 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 		DispatchQueue.main.async {
 			self.tableView.reloadData()
+			self.scrollToLatest()
 		}
 	}
 	func scrollToLatest() {
-		self.tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: false)
-		self.tableView.scrollRectToVisible(self.tableView.rectForRow(at: IndexPath(row: 0, section: 1)), animated: false)
+		guard tableView.numberOfSections(in: tableView) == 3, tableView.tableView(tableView, numberOfRowsInSection: 1) > 0 else { return }
+		tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: false)
+		tableView.scrollRectToVisible(tableView.rectForRow(at: IndexPath(row: 0, section: 1)), animated: false)
 	}
 
 	static let filterHeight: CGFloat = 120*3*Screen.s + 12*Screen.s + Screen.navBottom + 16*Screen.s
@@ -139,8 +141,6 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		filter.doneButton.addAction { self.controller.onFilterTapped() }
 
 		loadData()
-
-//		DispatchQueue.main.async { self.scrollToLatest() }
 	}
 	override func viewWillLayoutSubviews() {
 		backView.frame = view.bounds

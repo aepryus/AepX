@@ -18,7 +18,7 @@ class LatestFace: Face {
 				patchView.loadImage(url: url)
 			}
 			if let youtubeID = launch.youtubeID {
-				player.load(withVideoId: youtubeID)
+				youTubeView.load(id: youtubeID)
 			}
 		}
 	}
@@ -26,7 +26,7 @@ class LatestFace: Face {
 	let titleLabel: UILabel = UILabel()
 	let nameLabel: UILabel = UILabel()
 	let patchView: UIImageView = UIImageView()
-	let player: YTPlayerView = YTPlayerView()
+	let youTubeView: YouTubeView = YouTubeView()
 
 	init() {
 		super.init(frame: .zero)
@@ -42,9 +42,7 @@ class LatestFace: Face {
 
 		addSubview(patchView)
 
-		player.layer.cornerRadius = 12*s
-		player.layer.masksToBounds = true
-		addSubview(player)
+		addSubview(youTubeView)
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
@@ -56,6 +54,6 @@ class LatestFace: Face {
 		titleLabel.topLeft(dx: 12*s, dy: 10*s, width: 300*s, height: 30*s)
 		nameLabel.topLeft(dx: 12*s, dy: titleLabel.bottom, width: 300*s, height: 30*s)
 		patchView.topRight(dx: -12*s, dy: 10*s, width: 70*s, height: 70*s)
-		player.top(dy: 98*s, width: 320*s, height: 180*s)
+		youTubeView.top(dy: 98*s, width: 320*s, height: 180*s)
 	}
 }

@@ -72,7 +72,7 @@ fileprivate class YearView: UIView {
 			Layer(color: .cyan.tone(tonePercent), percent: CGFloat(data.expended)/CGFloat(max)),
 			Layer(color: .red.tone(tonePercent), percent: CGFloat(data.failed)/CGFloat(max)),
 		])
-		totalPercent = CGFloat(data.total)/CGFloat(max)
+		totalPercent = max > 0 ? CGFloat(data.total)/CGFloat(max) : 0
 		super.init(frame: .zero)
 
 		yearLabel.text = data.year
@@ -81,7 +81,7 @@ fileprivate class YearView: UIView {
 
 		addSubview(stratView)
 
-		totalLabel.text = "\(data.total)"
+		totalLabel.text = data.total > 0 ? "\(data.total)" : ""
 		totalLabel.pen = Pen(font: .axMedium(size: 14*s), color: .white, alignment: .left)
 		addSubview(totalLabel)
 	}

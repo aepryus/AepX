@@ -50,6 +50,7 @@
 		D8DE1CBA281B9CA700F8EABE /* AepXDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DE1CB9281B9CA700F8EABE /* AepXDelegate.swift */; };
 		D8DE1CC3281B9CA800F8EABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8DE1CC2281B9CA800F8EABE /* Assets.xcassets */; };
 		D8DE1CD1281B9CFF00F8EABE /* AepX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DE1CD0281B9CFF00F8EABE /* AepX.swift */; };
+		D8EAAF2D28532DF7001AF7E7 /* YouTubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAAF2C28532DF7001AF7E7 /* YouTubeView.swift */; };
 		D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE378C2833C2BF007EAD22 /* LinkView.swift */; };
 		D8EE37912838F01A007EAD22 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE37902838F01A007EAD22 /* RollView.swift */; };
 		D8EE3793283B5257007EAD22 /* OoviumFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE3792283B5257007EAD22 /* OoviumFace.swift */; };
@@ -101,6 +102,7 @@
 		D8DE1CC2281B9CA800F8EABE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8DE1CC7281B9CA800F8EABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8DE1CD0281B9CFF00F8EABE /* AepX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AepX.swift; sourceTree = "<group>"; };
+		D8EAAF2C28532DF7001AF7E7 /* YouTubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeView.swift; sourceTree = "<group>"; };
 		D8EE378C2833C2BF007EAD22 /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
 		D8EE37902838F01A007EAD22 /* RollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		D8EE3792283B5257007EAD22 /* OoviumFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumFace.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				D8EE378C2833C2BF007EAD22 /* LinkView.swift */,
 				D81490CE284D8BF70031A1FB /* ResultView.swift */,
 				D84E2D5B2851CD190063823A /* DoneButton.swift */,
+				D8EAAF2C28532DF7001AF7E7 /* YouTubeView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8551FFF28226D3B00A8D5E8 /* LaunchExpansion.swift in Sources */,
+				D8EAAF2D28532DF7001AF7E7 /* YouTubeView.swift in Sources */,
 				D80BC3102828B8190048C74F /* LaunchCore.swift in Sources */,
 				D869173C281BC70600D550F2 /* RootViewController.swift in Sources */,
 				D8691775281EA0D300D550F2 /* HomeController.swift in Sources */,

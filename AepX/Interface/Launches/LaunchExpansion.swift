@@ -79,9 +79,9 @@ class LaunchExpansion: UIView {
 	let page1: UIView = UIView()
 	let page2: UIView = UIView()
 	let page3: UIView = UIView()
-	
-	let player: YTPlayerView = YTPlayerView()
-	let playerFrame: UIView = UIView()
+
+	let youTubeView: YouTubeView = YouTubeView()
+	let youTubeFrame: UIView = UIView()
 
 	init(launch: Launch) {
 		self.launch = launch
@@ -142,16 +142,14 @@ class LaunchExpansion: UIView {
 //		detailsValue.numberOfLines = 0
 //		page2.addSubview(detailsValue)
 
-		player.layer.cornerRadius = 12*s
-		player.layer.masksToBounds = true
-		playerFrame.addSubview(player)
+		youTubeFrame.addSubview(youTubeView)
 
-		playerFrame.backgroundColor = .axBackgroundColor.shade(0.3)
-		playerFrame.layer.cornerRadius = 16*s
-		page3.addSubview(playerFrame)
+		youTubeFrame.backgroundColor = .axBackgroundColor.shade(0.3)
+		youTubeFrame.layer.cornerRadius = 16*s
+		page3.addSubview(youTubeFrame)
 
 		if let youtubeID = launch.youtubeID {
-			player.load(withVideoId: youtubeID)
+			youTubeView.load(id: youtubeID)
 		}
 
 		scrollView.isPagingEnabled = true
@@ -191,7 +189,7 @@ class LaunchExpansion: UIView {
 //		detailsValue.sizeToFit()
 //		detailsValue.topLeft(dx: 9*s, dy: 6*s, height: min(detailsValue.height, scrollView.height-12*s))
 
-		playerFrame.center(width: (320+2*12)*s, height: (180+2*12)*s)
-		player.center(width: 320*s, height: 180*s)
+		youTubeFrame.center(width: (320+2*12)*s, height: (180+2*12)*s)
+		youTubeView.center(width: 320*s, height: 180*s)
 	}
 }
