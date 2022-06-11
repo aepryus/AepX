@@ -24,6 +24,7 @@ class RocketCell: UITableViewCell {
 	let flightsLabel: UILabel = UILabel()
 //	let patchesView: PatchesView = PatchesView(size: 27*Screen.s)
 //	let patchesContent: UIView = UIView()
+	let resultView: ResultView = ResultView()
 	let lineView: UIView = UIView()
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -44,6 +45,8 @@ class RocketCell: UITableViewCell {
 
 		versionLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .right)
 		addSubview(versionLabel)
+
+		addSubview(resultView)
 
 //		patchesContent.layer.cornerRadius = 12*s
 //		patchesContent.backgroundColor = UIColor.axBackgroundColor.shade(0.2)
@@ -71,6 +74,7 @@ class RocketCell: UITableViewCell {
 //		patchesView.load(core: core)
 //		if core.launches.count == 0 { patchesContent.removeFromSuperview() }
 //		else { addSubview(patchesContent) }
+		resultView.result = core.launches.first?.result ?? .planned
 	}
 
 // Events ==========================================================================================
@@ -84,10 +88,11 @@ class RocketCell: UITableViewCell {
 		nameLabel.topLeft(dx: 9*s, dy: 6*s, width: 300*s, height: 30*s)
 		statusLabel.topLeft(dx: nameLabel.left+6*s, dy: nameLabel.bottom-8*s, width: 300*s, height: 30*s)
 		flightsLabel.center(width: 180*s, height: 20*s)
-		boosterLabel.topRight(dx: -6*s, dy: 4*s, width: 200*s, height: 30*s)
+		boosterLabel.topRight(dx: -9*s, dy: 4*s, width: 200*s, height: 30*s)
 		versionLabel.topLeft(dx: boosterLabel.left-2*s, dy: boosterLabel.bottom-9*s, width: 200*s, height: 30*s)
 //		patchesContent.bottom(dy: -1*s, width: width, height: 33*s)
 //		patchesView.right(dx: -9*s)
+		resultView.right(dx: -1*s, width: 4*s, height: height*0.6)
 		lineView.bottom(width: width, height: 1*s)
 	}
 }

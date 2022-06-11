@@ -12,7 +12,7 @@ import UIKit
 
 class PatchesView: UIView {
 	let size: CGFloat
-	var core: Core? = nil
+	private var core: Core? = nil
 	fileprivate var patches: [PatchInfo] = []
 	fileprivate var patchesViews: [PatchView] = []
 

@@ -10,6 +10,7 @@ import Acheron
 import UIKit
 
 class NextFace: Face {
+	var controller: HomeController?
 	var launch: Launch? = nil {
 		didSet {
 			guard let launch = launch else { return }
@@ -23,6 +24,11 @@ class NextFace: Face {
 			} else {
 				youTubeView.removeFromSuperview()
 			}
+
+			let core: Core? = Loom.selectOne(where: "serial", is: "B1060")
+			guard let core = core else { return }
+			coreLabel.text = core.serial
+			patchesView.load(core: core)
 		}
 	}
 
@@ -30,6 +36,8 @@ class NextFace: Face {
 	let nameLabel: UILabel = UILabel()
 	let patchView: UIImageView = UIImageView()
 	let countDownView: CountDownView = CountDownView()
+	let coreLabel: UILabel = UILabel()
+	let patchesView: PatchesView = PatchesView(size: 27*Screen.s)
 	let youTubeView: YouTubeView = YouTubeView()
 
 	let timer: AETimer = AETimer()
@@ -50,6 +58,11 @@ class NextFace: Face {
 		
 		addSubview(patchView)
 
+		coreLabel.pen = Pen(font: .axMedium(size: 19*s), color: .white, alignment: .left)
+		addSubview(coreLabel)
+
+		addSubview(patchesView)
+
 		timer.configure(interval: 1) { [weak self] in
 			DispatchQueue.main.async {
 				guard let launch = self?.launch else { return }
@@ -57,18 +70,36 @@ class NextFace: Face {
 			}
 		}
 		timer.start()
+
+		addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
+// Events ==========================================================================================
+	@objc func onTap() {
+		controller?.onNextFaceTapped()
+	}
+
 // Face ============================================================================================
-	override var faceHeight: CGFloat { 150*s + (launch?.hasVideo ?? false ? 190*s : 0) }
+	override var faceHeight: CGFloat { 150*s + (true/*launches.core != nil*/ ? 42*s : 0) + (launch?.hasVideo ?? false ? 190*s : 0) }
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		titleLabel.topLeft(dx: 12*s, dy: 10*s, width: 300*s, height: 30*s)
+		var dy: CGFloat = 10*s
+
+		titleLabel.topLeft(dx: 12*s, dy: dy, width: 300*s, height: 30*s)
 		nameLabel.topLeft(dx: 12*s, dy: titleLabel.bottom, width: 300*s, height: 30*s)
-		patchView.topRight(dx: -12*s, dy: 10*s, width: 70*s, height: 70*s)
-		countDownView.topRight(dx: -8*s, dy: patchView.bottom+8*s, width: 200*s, height: 43*s)
+
+		patchView.topRight(dx: -12*s, dy: dy, width: 70*s, height: 70*s)
+		dy = patchView.bottom+8*s
+
+		if true/*launch?.cores.count ?? 0 > 0*/ {
+			coreLabel.topLeft(dx: 12*s, dy: dy, width: 150*s, height: 30*s)
+			patchesView.topRight(dx: -20*s, dy: dy, width: patchesView.patchesWidth, height: 30*s)
+			dy += 42*s
+		}
+
+		countDownView.topRight(dx: -8*s, dy: dy, width: 200*s, height: 43*s)
 		youTubeView.top(dy: countDownView.bottom+10*s, width: 320*s, height: 180*s)
 	}
 }

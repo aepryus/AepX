@@ -6,6 +6,7 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import Foundation
 
 class HomeController {
@@ -13,5 +14,12 @@ class HomeController {
 
 	init(vc: HomeViewController) {
 		self.vc = vc
+	}
+
+	func onNextFaceTapped() {
+		let core: Core? = Loom.selectOne(where: "serial", is: "B1060")
+		guard let core = core else { return }
+		let rvc = RocketViewController(core: core)
+		vc.navigationController?.pushViewController(rvc, animated: true)
 	}
 }

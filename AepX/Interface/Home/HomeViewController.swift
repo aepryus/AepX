@@ -10,6 +10,8 @@ import Acheron
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+	lazy var controller: HomeController = { HomeController(vc: self) }()
+
 	let backView: UIImageView = UIImageView()
 	let tableView: UITableView = UITableView()
 
@@ -36,6 +38,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			i += 1
 		}
 		latestFace.launch = launches[i+1]
+		nextFace.controller =  controller
 		nextFace.launch = launches[i]
 		statsFace.loadData()
 		yearsFace.loadData()
@@ -47,6 +50,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.axBackgroundColor
+
+		navigationController?.navigationBar.tintColor = .white
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: controller, action: #selector(RocketsController.onFilterTapped))
+		navigationItem.backButtonDisplayMode = .minimal
 
 		backView.image = UIImage(named: "Starship")
 		view.addSubview(backView)

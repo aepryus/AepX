@@ -65,7 +65,7 @@ class LaunchExpansion: UIView {
 	let launch: Launch
 
 	let scrollView: UIScrollView = UIScrollView()
-	var paraView: ParaView = ParaView(names: ["Info", "Video"])
+	let paraView: ParaView
 	let imageView: UIImageView = UIImageView()
 //	let blockValue: UILabel = UILabel()
 //	let detailsValue: UILabel = UILabel()
@@ -77,7 +77,6 @@ class LaunchExpansion: UIView {
 	let wikipedia: LinkView = LinkView()
 	let page1: UIView = UIView()
 	let page2: UIView = UIView()
-	let page3: UIView = UIView()
 
 	let youTubeView: YouTubeView = YouTubeView()
 	let youTubeFrame: UIView = UIView()
@@ -85,30 +84,18 @@ class LaunchExpansion: UIView {
 	init(launch: Launch) {
 		self.launch = launch
 
+		if launch.youtubeID != nil { paraView = ParaView(names: ["Info", "Video"]) }
+		else { paraView = ParaView(names: ["Info"]) }
+
 		super.init(frame: .zero)
 
 		backgroundColor = UIColor.axBackgroundColor
 
-//		if !launch.hasDetails { paraView = ParaView(names: ["Info", "Video"]) }
 		paraView.scrollView = scrollView
 		addSubview(paraView)
 
 		imageView.image = launch.rocket.image
 		page1.addSubview(imageView)
-
-//		let serials: [String] = launch.cores.compactMap {
-//			let core: Core? = Loom.selectBy(only: $0.apiid)
-//			return core?.serial
-//		}
-//		if serials.count > 1 {
-//			var sb: String = ""
-//			serials.forEach { sb += "\($0), " }
-//			sb.removeLast(2)
-//			blockValue.text = sb
-//		} else if serials.count == 1 { blockValue.text = serials[0]
-//		} else { blockValue.text = "" }
-//		blockValue.pen = Pen.axValue
-//		page1.addSubview(blockValue)
 
 		timeValue.text = launch.date.format("hh:mm a")
 		timeValue.pen = Pen.axValue
@@ -136,16 +123,11 @@ class LaunchExpansion: UIView {
 			page1.addSubview(wikipedia)
 		}
 
-//		detailsValue.text = launch.details
-//		detailsValue.pen = Pen(font: .axMedium(size: 17*s), color: .white, alignment: .left)
-//		detailsValue.numberOfLines = 0
-//		page2.addSubview(detailsValue)
-
 		youTubeFrame.addSubview(youTubeView)
 
 		youTubeFrame.backgroundColor = .axBackgroundColor.shade(0.3)
 		youTubeFrame.layer.cornerRadius = 16*s
-		page3.addSubview(youTubeFrame)
+		page2.addSubview(youTubeFrame)
 
 		if let youtubeID = launch.youtubeID {
 			youTubeView.load(id: youtubeID)
@@ -157,8 +139,7 @@ class LaunchExpansion: UIView {
 		scrollView.delegate = paraView
 
 		scrollView.addSubview(page1)
-//		if launch.hasDetails { scrollView.addSubview(page2) }
-		scrollView.addSubview(page3)
+		if launch.youtubeID != nil { scrollView.addSubview(page2) }
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
@@ -169,7 +150,7 @@ class LaunchExpansion: UIView {
 		scrollView.frame = CGRect(x: 0, y: paraView.bottom, width: width, height: height-paraView.bottom)
 		scrollView.contentSize = CGSize(width: width*2, height: scrollView.height)
 		page1.left(width: width, height: scrollView.height)
-		page3.left(dx: width, width: width, height: scrollView.height)
+		page2.left(dx: width, width: width, height: scrollView.height)
 
 		if let image = imageView.image {
 			let maxHeight: CGFloat = height*0.7
@@ -178,15 +159,10 @@ class LaunchExpansion: UIView {
 		}
 		timeValue.topLeft(dx: imageView.right, width: 200*s, height: 30*s)
 		crewValue.topLeft(dx: 75*s, dy: 110*s, width: 200*s, height: 30*s)
-//		blockValue.bottomLeft(dx: 75*s, dy: -12*s, width: 300*s, height: 30*s)
 		core1View.topLeft(dx: imageView.right+12*s, dy: 120*s, width: 200*s, height: 30*s)
 		core2View.topLeft(dx: core1View.left, dy: core1View.bottom, width: 200*s, height: 30*s)
 		core3View.topLeft(dx: core1View.left, dy: core2View.bottom, width: 200*s, height: 30*s)
 		wikipedia.bottomRight(dx: -12*s, dy: -12*s, width: 103*s/2, height: 94*s/2)
-
-//		detailsValue.topLeft(width: width-18*s, height: scrollView.height-12*s)
-//		detailsValue.sizeToFit()
-//		detailsValue.topLeft(dx: 9*s, dy: 6*s, height: min(detailsValue.height, scrollView.height-12*s))
 
 		youTubeFrame.center(width: (320+2*12)*s, height: (180+2*12)*s)
 		youTubeView.center(width: 320*s, height: 180*s)

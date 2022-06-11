@@ -13,6 +13,9 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 	var youTubeID: String?
 
 	let player: YTPlayerView = YTPlayerView()
+	let preferredColor: UIColor = .axBackgroundColor.shade(0.5)
+
+	var lastState: YTPlayerState = .unstarted
 
 	init() {
 		super.init(frame: .zero)
@@ -25,7 +28,8 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 	required init?(coder: NSCoder) { fatalError() }
 
 	func load(id: String) {
-		guard id != youTubeID else { return }
+		print("Requested load from state [\(lastState)]")
+		guard id != youTubeID && lastState != .unknown else { return }
 		youTubeID = id
 		player.removeFromSuperview()
 		player.load(withVideoId: youTubeID!)
@@ -44,6 +48,7 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 
 	func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
 		print("playerView:didChangeToState [\(state)]")
+		lastState = state
 	}
 
 	func playerView(_ playerView: YTPlayerView, didChangeTo quality: YTPlaybackQuality) {
@@ -62,14 +67,12 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 //	}
 
 	func playerViewPreferredWebViewBackgroundColor(_ playerView: YTPlayerView) -> UIColor {
-//		print("playerViewPreferredWebViewBackgroundColor")
-		return .green.tint(0.5)
+		return preferredColor
 	}
 
 	func playerViewPreferredInitialLoading(_ playerView: YTPlayerView) -> UIView? {
-//		print("playerViewPreferredInitialLoading")
 		let view = UIView()
-		view.backgroundColor = .axBackgroundColor.shade(0.5)
+		view.backgroundColor = preferredColor
 		return view
 	}
 }
