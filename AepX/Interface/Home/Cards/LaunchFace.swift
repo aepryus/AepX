@@ -34,9 +34,7 @@ class LaunchFace: Face {
 		addSubview(nameLabel)
 
 		addSubview(patchView)
-
 		addSubview(countDownView)
-
 		addSubview(patchesView)
 
 		timer.configure(interval: 1) { [weak self] in

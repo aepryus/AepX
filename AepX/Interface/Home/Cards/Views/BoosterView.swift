@@ -16,7 +16,6 @@ class BoosterView: UIView {
 
 	let resultView: ResultView = ResultView()
 	let gradient: CAGradientLayer = CAGradientLayer()
-	let gradientView: GradientView = GradientView(leftColor: .clear, rightColor: .axBackgroundColor.shade(0.5))
 	let label: UILabel = UILabel()
 	let patchesView: PatchesView = PatchesView(size: 27*Screen.s)
 	let patchesContainer: UIView = UIView()
@@ -32,8 +31,8 @@ class BoosterView: UIView {
 
 		gradient.startPoint = CGPoint(x: 0, y: 0)
 		gradient.endPoint = CGPoint(x: 1, y: 0)
-		gradient.colors = [UIColor.clear.cgColor, UIColor.white.cgColor, UIColor.white.cgColor]
-		gradient.locations = [0, 0.4, 1]
+		gradient.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.white.cgColor, UIColor.white.cgColor]
+		gradient.locations = [0, 0.3, 0.5, 1]
 		patchesContainer.layer.mask = gradient
 		addSubview(patchesContainer)
 
@@ -64,6 +63,6 @@ class BoosterView: UIView {
 		label.left(dx: resultView.right+7*s, width: 200*s, height: 30*s)
 		patchesView.right(dx: -9*s, width: patchesView.patchesWidth, height: 30*s)
 		patchesContainer.frame = bounds
-		gradient.frame = patchesView.frame
+		gradient.frame = patchesContainer.frame
 	}
 }
