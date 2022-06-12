@@ -168,6 +168,11 @@ class Core: Anchor {
 		}
 	}
 
+	var lastResult: Launch.Result {
+		guard let lastLaunch = launches.first else { return .planned }
+		return lastLaunch.result
+	}
+
 // Domain ==========================================================================================
 	override var properties: [String] {
 		super.properties + ["apiid", "serial", "block", "coreStatus", "config", "launchAPIIDs", "attempts", "landings", "disposition", "note"]

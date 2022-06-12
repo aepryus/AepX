@@ -23,6 +23,16 @@ class LaunchCore: Domain {
 				case .expended:		return .cyan.tone(tonePercent)
 			}
 		}
+
+		var toLaunchResult: Launch.Result {
+			switch self {
+				case .pending:	return .planned
+				case .destroyed:return .failure
+				case .expended:	return .successExpended
+				case .landed:	return .successLanded
+				case .lost:		return .successLost
+			}
+		}
 	}
 
 	@objc dynamic var apiid: String = ""

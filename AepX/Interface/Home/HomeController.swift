@@ -16,9 +16,7 @@ class HomeController {
 		self.vc = vc
 	}
 
-	func onNextFaceTapped() {
-		let core: Core? = Loom.selectOne(where: "serial", is: "B1060")
-		guard let core = core else { return }
+	func onBoosterTapped(core: Core) {
 		let rvc = RocketViewController(core: core)
 		vc.navigationController?.pushViewController(rvc, animated: true)
 	}

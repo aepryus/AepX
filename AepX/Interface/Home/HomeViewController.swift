@@ -14,9 +14,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 	let backView: UIImageView = UIImageView()
 	let tableView: UITableView = UITableView()
-
-	let nextFace: NextFace = NextFace()
-	let latestFace: LatestFace = LatestFace()
+	let nextFace: LaunchFace = LaunchFace(title: "next launch")
+	let latestFace: LaunchFace = LaunchFace(title: "latest launch")
 	let statsFace: StatsFace = StatsFace()
 	let yearsFace: YearsFace = YearsFace()
 	let creditsFace: CreditsFace = CreditsFace()
@@ -37,9 +36,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			}
 			i += 1
 		}
-		latestFace.launch = launches[i+1]
-		nextFace.controller =  controller
-		nextFace.launch = launches[i]
+//		let core: Core = Loom.selectOne(where: "serial", is: "B1023")!
+//		latestFace.load(controller: controller, launch: core.launches.first!)
+
+		latestFace.load(controller: controller, launch: launches[i+1])
+		nextFace.load(controller: controller, launch: launches[i])
 		statsFace.loadData()
 		yearsFace.loadData()
 		tableView.reloadData()
@@ -52,7 +53,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		view.backgroundColor = UIColor.axBackgroundColor
 
 		navigationController?.navigationBar.tintColor = .white
-		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: controller, action: #selector(RocketsController.onFilterTapped))
 		navigationItem.backButtonDisplayMode = .minimal
 
 		backView.image = UIImage(named: "Starship")

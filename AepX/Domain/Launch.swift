@@ -64,6 +64,7 @@ class Launch: Anchor {
 		else { return .successExpended }
 	}
 
+	var hasCores: Bool { cores.count > 0 }
 	var hasExpendedCores: Bool {
 		guard successful else { return false }
 		return cores.first(where: { !$0.landingAttempt }) != nil
