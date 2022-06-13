@@ -31,7 +31,6 @@ class CoreAPI: Codable {
 	var asdsLandings: Int
 	var rtlsAttempts: Int
 	var rtlsLandings: Int
-
 	var launches: [String] = []
 }
 

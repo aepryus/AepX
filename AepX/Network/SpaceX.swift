@@ -14,97 +14,75 @@ enum DateError: String, Error {
 
 class SpaceX {
 	static let url = "https://api.spacexdata.com"
+	static let iso8601Formatter1: DateFormatter = {
+		let formatter = DateFormatter()
+		formatter.calendar = Calendar(identifier: .iso8601)
+		formatter.locale = Locale(identifier: "en_US_POSIX")
+		formatter.timeZone = TimeZone(secondsFromGMT: 0)
+		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+		return formatter
+	}()
+	static let iso8601Formatter2: DateFormatter = {
+		let formatter = DateFormatter()
+		formatter.calendar = Calendar(identifier: .iso8601)
+		formatter.locale = Locale(identifier: "en_US_POSIX")
+		formatter.timeZone = TimeZone(secondsFromGMT: 0)
+		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
+		return formatter
+	}()
+	static let decoder: JSONDecoder = {
+		let decoder: JSONDecoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .custom({ (decoder: Decoder) -> Date in
+			let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
+			let string: String = try container.decode(String.self)
+			if let date: Date = SpaceX.iso8601Formatter1.date(from: string) { return date }
+			if let date: Date = SpaceX.iso8601Formatter2.date(from: string) { return date }
+			throw DateError.invalidDate
+		})
+		decoder.keyDecodingStrategy = .convertFromSnakeCase
+		return decoder
+	}()
 
 // Private =========================================================================================
-	private static func attributesRequest(path: String, method: String, params: [String:Any]? = nil, success: @escaping ([String:Any])->(), failure: @escaping ()->()) {
-		let url: URL = URL(string: "\(SpaceX.url)\(path)")!
-		var request: URLRequest = URLRequest(url: url)
-		request.httpMethod = method
-
-		if let params = params {
-			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-			request.httpBody = params.toJSON().data(using: .utf8)
-		}
-
-		let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-			guard error == nil else {
-				print("error: \(error!)")
-				failure();return
-			}
-
-			guard let data = data else { failure();return }
-
-			if let response = response as? HTTPURLResponse, !(200...299).contains(response.statusCode) {
-				print("\n[ \(path) : \(response.statusCode) ] ===================================================")
-				if let headers = request.allHTTPHeaderFields { print("headers ========================\n\(headers.toJSON())\n") }
-				if let params = params { print("params =========================\n\(params.toJSON())\n") }
-				if let message = String(data: data, encoding: .utf8) { print("message =========================\n\(message)\n") }
-				failure();return
-			}
-
-			if let result = String(data: data, encoding: .utf8) {
-				success(result.toAttributes())
-			} else {
-				failure()
-			}
-		}
-		task.resume()
-	}
 	private static func decodableRequest<T: Decodable>(path: String, method: String, params: [String:Any]? = nil, success: @escaping (T)->(), failure: @escaping ()->()) {
 		let url: URL = URL(string: "\(SpaceX.url)\(path)")!
 		var request: URLRequest = URLRequest(url: url)
 		request.httpMethod = method
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
 
-		if let params = params {
-			request.httpBody = params.toJSON().data(using: .utf8)
-			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-			request.addValue("application/json", forHTTPHeaderField: "Accept")
-		}
+		if let params = params { request.httpBody = params.toJSON().data(using: .utf8) }
 
 		let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
 			guard error == nil else {
-				print("error: \(error!)")
-				failure();return
+				print("decodableRequest error:\n\(error!)")
+				failure()
+				return
 			}
 
-			guard let data = data else { failure();return }
+			guard let data = data else {
+				print("decodableRequest no data returned")
+				failure()
+				return
+			}
 
 			if let response = response as? HTTPURLResponse, !(200...299).contains(response.statusCode) {
 				print("\n[ \(path) : \(response.statusCode) ] ===================================================")
 				if let headers = request.allHTTPHeaderFields { print("headers ========================\n\(headers.toJSON())\n") }
 				if let params = params { print("params =========================\n\(params.toJSON())\n") }
 				if let message = String(data: data, encoding: .utf8) { print("message =========================\n\(message)\n") }
-				failure();return
+				failure()
+				return
 			}
-
-			let decoder = JSONDecoder()
-			let formatter = DateFormatter()
-			formatter.calendar = Calendar(identifier: .iso8601)
-			formatter.locale = Locale(identifier: "en_US_POSIX")
-			formatter.timeZone = TimeZone(secondsFromGMT: 0)
-
-			decoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
-				let container = try decoder.singleValueContainer()
-				let dateStr = try container.decode(String.self)
-
-				formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-				if let date = formatter.date(from: dateStr) {
-					return date
-				}
-				formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
-				if let date = formatter.date(from: dateStr) {
-					return date
-				}
-				throw DateError.invalidDate
-			})
-			decoder.keyDecodingStrategy = .convertFromSnakeCase
 
 //			let json = String(data: data, encoding: .utf8)!
 //			let attributes = json.toArray()
 //			print(attributes.toJSON())
 
-			let result: T = try! decoder.decode(T.self, from: data)
-			success(result)
+			do {
+				let result: T = try decoder.decode(T.self, from: data)
+				success(result)
+			} catch { failure() }
 		}
 		task.resume()
 	}
