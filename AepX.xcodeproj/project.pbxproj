@@ -50,6 +50,7 @@
 		D8EAAF2D28532DF7001AF7E7 /* YouTubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAAF2C28532DF7001AF7E7 /* YouTubeView.swift */; };
 		D8EAAF2F28553F2E001AF7E7 /* LaunchFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAAF2E28553F2E001AF7E7 /* LaunchFace.swift */; };
 		D8EAAF3128553F3E001AF7E7 /* BoosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAAF3028553F3E001AF7E7 /* BoosterView.swift */; };
+		D8EAAF382857EB58001AF7E7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAAF372857EB58001AF7E7 /* AboutViewController.swift */; };
 		D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE378C2833C2BF007EAD22 /* LinkView.swift */; };
 		D8EE37912838F01A007EAD22 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE37902838F01A007EAD22 /* RollView.swift */; };
 		D8EE3793283B5257007EAD22 /* OoviumFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE3792283B5257007EAD22 /* OoviumFace.swift */; };
@@ -101,6 +102,7 @@
 		D8EAAF2C28532DF7001AF7E7 /* YouTubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeView.swift; sourceTree = "<group>"; };
 		D8EAAF2E28553F2E001AF7E7 /* LaunchFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFace.swift; sourceTree = "<group>"; };
 		D8EAAF3028553F3E001AF7E7 /* BoosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoosterView.swift; sourceTree = "<group>"; };
+		D8EAAF372857EB58001AF7E7 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		D8EE378C2833C2BF007EAD22 /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
 		D8EE37902838F01A007EAD22 /* RollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		D8EE3792283B5257007EAD22 /* OoviumFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumFace.swift; sourceTree = "<group>"; };
@@ -139,7 +141,7 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		D869174F281C286500D550F2 /* Rockets */ = {
+		D869174F281C286500D550F2 /* Boosters */ = {
 			isa = PBXGroup;
 			children = (
 				D8CA3B6A2830DE2C009E0CA8 /* RocketsFilterView.swift */,
@@ -149,7 +151,7 @@
 				D869176C281E997D00D550F2 /* RocketsController.swift */,
 				D869173F281BC86B00D550F2 /* RocketsViewController.swift */,
 			);
-			path = Rockets;
+			path = Boosters;
 			sourceTree = "<group>";
 		};
 		D8691750281C286C00D550F2 /* Launches */ = {
@@ -254,7 +256,8 @@
 				D8691751281C287800D550F2 /* Root */,
 				D8691758281E127E00D550F2 /* Home */,
 				D8691750281C286C00D550F2 /* Launches */,
-				D869174F281C286500D550F2 /* Rockets */,
+				D869174F281C286500D550F2 /* Boosters */,
+				D8EAAF362857EB37001AF7E7 /* About */,
 				D8691767281E4B7500D550F2 /* Rocket */,
 			);
 			path = Interface;
@@ -289,6 +292,14 @@
 				D80BC30F2828B8190048C74F /* LaunchCore.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		D8EAAF362857EB37001AF7E7 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				D8EAAF372857EB58001AF7E7 /* AboutViewController.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		D8EE378B2833C2A5007EAD22 /* Shared */ = {
@@ -383,6 +394,7 @@
 				D8551FFF28226D3B00A8D5E8 /* LaunchExpansion.swift in Sources */,
 				D8EAAF2D28532DF7001AF7E7 /* YouTubeView.swift in Sources */,
 				D80BC3102828B8190048C74F /* LaunchCore.swift in Sources */,
+				D8EAAF382857EB58001AF7E7 /* AboutViewController.swift in Sources */,
 				D869173C281BC70600D550F2 /* RootViewController.swift in Sources */,
 				D8691775281EA0D300D550F2 /* HomeController.swift in Sources */,
 				D8EE3793283B5257007EAD22 /* OoviumFace.swift in Sources */,

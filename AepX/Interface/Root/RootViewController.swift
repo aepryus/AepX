@@ -14,10 +14,12 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 	let homeViewController: HomeViewController
 	let launchesViewController: LaunchesViewController
 	let rocketsViewController: RocketsViewController
+	let aboutViewController: AboutViewController
 
 	let homeNavigationController: UINavigationController
 	let launchesNavigationController: UINavigationController
 	let rocketsNavigationController: UINavigationController
+	let aboutNavigationController: UINavigationController
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		homeViewController = HomeViewController()
@@ -27,12 +29,16 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 		homeNavigationController = UINavigationController(rootViewController: homeViewController)
 
 		launchesViewController = LaunchesViewController()
-		launchesViewController.title = "Launches"
+		launchesViewController.title = "Launches".localized
 		launchesNavigationController = UINavigationController(rootViewController: launchesViewController)
 
 		rocketsViewController = RocketsViewController()
-		rocketsViewController.title = "Boosters"
+		rocketsViewController.title = "Boosters".localized
 		rocketsNavigationController = UINavigationController(rootViewController: rocketsViewController)
+
+		aboutViewController = AboutViewController()
+		aboutViewController.title = "About".localized
+		aboutNavigationController = UINavigationController(rootViewController: aboutViewController)
 
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
@@ -70,14 +76,16 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 		let image2 = UIImage(named: "Launches")!
 		let image3 = UIImage(named: "Boosters")!
 
-		homeNavigationController.tabBarItem = UITabBarItem(title: "Starbase", image: image1, selectedImage: image1.withTintColor(.white))
+		homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: image1, selectedImage: image1.withTintColor(.white))
 		launchesNavigationController.tabBarItem = UITabBarItem(title: "Launches", image: image2, selectedImage: image2.withTintColor(.white))
 		rocketsNavigationController.tabBarItem = UITabBarItem(title: "Boosters", image: image3, selectedImage: image3.withTintColor(.white))
+		aboutNavigationController.tabBarItem = UITabBarItem(title: "About", image: image3, selectedImage: image3.withTintColor(.white))
 
 		self.viewControllers = [
 			homeNavigationController,
 			launchesNavigationController,
-			rocketsNavigationController
+			rocketsNavigationController,
+			aboutNavigationController
 		]
 	}
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

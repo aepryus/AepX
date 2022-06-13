@@ -115,7 +115,6 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	let pastView: HeaderView = HeaderView("Completed".localized)
 
 // UIViewController ================================================================================
-	override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .axBackground
