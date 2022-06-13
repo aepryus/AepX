@@ -178,7 +178,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 			addSubview(line)
 
 			label.text = title
-			label.pen = Pen(font: .axDemiBold(size: 19*s), color: .white, alignment: .left)
+			label.pen = Pen(font: .axDemiBold(size: 19*s), color: .white)
 			addSubview(label)
 		}
 		required init?(coder: NSCoder) { fatalError() }

@@ -17,7 +17,7 @@ class Specifier: UIView {
 		super.init(frame: .zero)
 
 		label.text = text
-		label.pen = Pen(font: .axMedium(size: 19*Screen.s), color: .white, alignment: .left)
+		label.pen = Pen(font: .axMedium(size: 19*Screen.s), color: .white)
 		addSubview(label)
 
 		line.backgroundColor = .white

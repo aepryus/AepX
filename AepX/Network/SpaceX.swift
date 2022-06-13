@@ -68,9 +68,12 @@ class SpaceX {
 
 			if let response = response as? HTTPURLResponse, !(200...299).contains(response.statusCode) {
 				print("\n[ \(path) : \(response.statusCode) ] ===================================================")
-				if let headers = request.allHTTPHeaderFields { print("headers ========================\n\(headers.toJSON())\n") }
-				if let params = params { print("params =========================\n\(params.toJSON())\n") }
-				if let message = String(data: data, encoding: .utf8) { print("message =========================\n\(message)\n") }
+				if let headers = request.allHTTPHeaderFields
+					{ print("headers ========================\n\(headers.toJSON())\n") }
+				if let params = params
+					{ print("params =========================\n\(params.toJSON())\n") }
+				if let message = String(data: data, encoding: .utf8)
+					{ print("message =========================\n\(message)\n") }
 				failure()
 				return
 			}

@@ -34,8 +34,8 @@ fileprivate class LaunchCoreView: UIView {
 	let label: UILabel = UILabel()
 	let resultView: LaunchCoreResultView = LaunchCoreResultView()
 
-	let serialPen = Pen(font: .axMedium(size: 19*Screen.s), color: .white, alignment: .left)
-	let statePen = Pen(font: .axMedium(size: 15*Screen.s), color: .white, alignment: .left)
+	let serialPen = Pen(font: .axMedium(size: 19*Screen.s), color: .white)
+	let statePen = Pen(font: .axMedium(size: 15*Screen.s), color: .white)
 
 	var launchCore: LaunchCore? = nil {
 		didSet {
@@ -98,11 +98,11 @@ class LaunchExpansion: UIView {
 		page1.addSubview(imageView)
 
 		timeValue.text = launch.date.format("hh:mm a")
-		timeValue.pen = Pen(font: .axHeavy(size: 19*Screen.s), color: .white, alignment: .left)
+		timeValue.pen = Pen(font: .axHeavy(size: 19*Screen.s), color: .white)
 //		page1.addSubview(timeValue)
 
 		crewValue.text = "\(launch.noOfCrew)"
-		crewValue.pen = Pen(font: .axHeavy(size: 19*Screen.s), color: .white, alignment: .left)
+		crewValue.pen = Pen(font: .axHeavy(size: 19*Screen.s), color: .white)
 //		page1.addSubview(crewValue)
 
 		if launch.cores.count == 1 {

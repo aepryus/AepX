@@ -82,7 +82,7 @@ fileprivate class YearView: UIView {
 		addSubview(stratView)
 
 		totalLabel.text = data.total > 0 ? "\(data.total)" : ""
-		totalLabel.pen = Pen(font: .axMedium(size: 14*s), color: .white, alignment: .left)
+		totalLabel.pen = Pen(font: .axMedium(size: 14*s), color: .white)
 		addSubview(totalLabel)
 	}
 	required init?(coder: NSCoder) { fatalError() }

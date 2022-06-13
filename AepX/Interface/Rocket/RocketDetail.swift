@@ -22,7 +22,7 @@ fileprivate class FlightsHeader: UIView {
 
 		backgroundColor = .axBorder
 
-		label.pen = Pen(font: .axDemiBold(size: 19*s), color: .white, alignment: .left)
+		label.pen = Pen(font: .axDemiBold(size: 19*s), color: .white)
 		addSubview(label)
 
 		line.backgroundColor = .axBorder.tint(0.3)
@@ -64,11 +64,11 @@ class RocketDetail: ExpandableCell {
 		backgroundColor = .axBackground
 
 		serialLabel.text = core.serial
-		serialLabel.pen = Pen(font: .axDemiBold(size: 29*s), color: .white, alignment: .left)
+		serialLabel.pen = Pen(font: .axDemiBold(size: 29*s), color: .white)
 		addSubview(serialLabel)
 
 		statusLabel.text = core.state
-		statusLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .left)
+		statusLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white)
 		addSubview(statusLabel)
 
 		boosterLabel.text = core.booster.name

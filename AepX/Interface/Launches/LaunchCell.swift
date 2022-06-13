@@ -17,7 +17,7 @@ class LaunchCell: ExpandableCell {
 	let patchView: UIImageView = UIImageView()
 	let resultView: ResultView = ResultView()
 
-	let pen: Pen = Pen(font: .axMedium(size: 16*Screen.s), color: .white, alignment: .left)
+	let pen: Pen = Pen(font: .axMedium(size: 16*Screen.s), color: .white)
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -31,10 +31,10 @@ class RocketCell: UITableViewCell {
 		super.init(style: .default, reuseIdentifier: nil)
 		backgroundColor = UIColor.axDarkBack
 
-		nameLabel.pen = Pen(font: .axDemiBold(size: 29*s), color: .white, alignment: .left)
+		nameLabel.pen = Pen(font: .axDemiBold(size: 29*s), color: .white)
 		addSubview(nameLabel)
 
-		statusLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .left)
+		statusLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white)
 		addSubview(statusLabel)
 
 		flightsLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .center)
