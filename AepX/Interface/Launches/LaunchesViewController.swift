@@ -93,9 +93,9 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		init(_ title: String) {
 			super.init(frame: .zero)
 
-			backgroundColor = .axBorderColor
+			backgroundColor = .axBorder
 
-			line.backgroundColor = .axBorderColor.tint(0.3)
+			line.backgroundColor = .axBorder.tint(0.3)
 			addSubview(line)
 
 			label.text = title
@@ -118,7 +118,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = UIColor.axBackgroundColor
+		view.backgroundColor = .axBackground
 
 		navigationController?.navigationBar.tintColor = .white
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: controller, action: #selector(LaunchesController.onFilterTapped))

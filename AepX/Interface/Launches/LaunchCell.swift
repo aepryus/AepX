@@ -17,16 +17,15 @@ class LaunchCell: ExpandableCell {
 	let patchView: UIImageView = UIImageView()
 	let resultView: ResultView = ResultView()
 
-	let pen: Pen = Pen(font: UIFont(name: "AvenirNext-Medium", size: 16*Screen.s)!, color: .white, alignment: .left)
+	let pen: Pen = Pen(font: .axMedium(size: 16*Screen.s), color: .white, alignment: .left)
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-		flightNoLabel.pen = Pen(font: UIFont(name: "AvenirNext-Bold", size: 40*Screen.s)!, color: .axBackgroundColor, alignment: .right)
+		flightNoLabel.pen = Pen(font: .axBold(size: 40*s), color: .axBackground, alignment: .right)
 		addSubview(flightNoLabel)
 
-		nameLabel.textColor = .white
-		nameLabel.font = UIFont(name: "AvenirNext-Bold", size: 19*s)
+		nameLabel.pen = Pen(font: .axBold(size: 19*s), color: .white)
 		nameLabel.adjustsFontSizeToFitWidth = true
 		addSubview(nameLabel)
 
@@ -42,7 +41,7 @@ class LaunchCell: ExpandableCell {
 	required init?(coder: NSCoder) { fatalError() }
 
 	func load(launch: Launch) {
-		backgroundColor = launch.completed ? UIColor.axBackgroundColor.shade(0.5) : UIColor.axBackgroundColor.shade(0.2)
+		backgroundColor = launch.completed ? UIColor.axDarkBack : UIColor.axBackground.shade(0.2)
 
 		nameLabel.text = launch.name
 		dateLabel.text = "\(launch.date.format("MMM d, yyyy"))"

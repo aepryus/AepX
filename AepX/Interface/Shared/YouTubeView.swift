@@ -6,14 +6,14 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import YouTubeiOSPlayerHelper
 
 class YouTubeView: UIView, YTPlayerViewDelegate {
 	var youTubeID: String?
 
 	let player: YTPlayerView = YTPlayerView()
-	let preferredColor: UIColor = .axBackgroundColor.shade(0.5)
+	let preferredColor: UIColor = .axDarkBack
 
 	var lastState: YTPlayerState = .unstarted
 
@@ -62,14 +62,7 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 		player.load(withVideoId: youTubeID)
 	}
 
-//	func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
-//		print("playerView:didPlayTime [\(playTime)]")
-//	}
-
-	func playerViewPreferredWebViewBackgroundColor(_ playerView: YTPlayerView) -> UIColor {
-		return preferredColor
-	}
-
+	func playerViewPreferredWebViewBackgroundColor(_ playerView: YTPlayerView) -> UIColor { preferredColor }
 	func playerViewPreferredInitialLoading(_ playerView: YTPlayerView) -> UIView? {
 		let view = UIView()
 		view.backgroundColor = preferredColor

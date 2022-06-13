@@ -31,9 +31,8 @@ class DoneButton: UIButton {
 // UIView ==========================================================================================
 	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? { path.contains(point) ? self : nil }
 	override func draw(_ rect: CGRect) {
-
-		let p: CGFloat = 1*s
-		let q: CGFloat = (height-2*p)/2
+		let p: CGFloat = 1*s					// padding
+		let q: CGFloat = (height-2*p)/2			// width and height of the angled segments
 
 		let x1: CGFloat = p
 		let x2: CGFloat = x1 + q
@@ -56,9 +55,9 @@ class DoneButton: UIButton {
 		c.addPath(path)
 		c.setLineWidth(1*s)
 		c.setStrokeColor(UIColor.white.cgColor)
-		c.setFillColor((!touchDown ? UIColor.axBackgroundColor.shade(0.5) : UIColor.axBackgroundColor.tint(0.5)).cgColor)
+		c.setFillColor((!touchDown ? UIColor.axDarkBack : UIColor.axBackground.tint(0.5)).cgColor)
 		c.drawPath(using: .fillStroke)
 
-		("Done".localized as NSString).draw(in: rect.offsetBy(dx: 0, dy: 3.5*s), pen: Pen(font: .axHeavy(size: 19*s), color: !touchDown ? .white : .axBackgroundColor, alignment: .center))
+		("Done".localized as NSString).draw(in: rect.offsetBy(dx: 0, dy: 3.5*s), pen: Pen(font: .axHeavy(size: 19*s), color: !touchDown ? .white : .axBackground, alignment: .center))
 	}
 }

@@ -16,9 +16,6 @@ class StatsFace: Face {
 	let failureLabel: UILabel = UILabel()
 	let totalLabel: UILabel = UILabel()
 
-
-
-
 	let missionsYes: UILabel = UILabel()
 	let missionsNo: UILabel = UILabel()
 	let missionsAll: UILabel = UILabel()
@@ -33,9 +30,9 @@ class StatsFace: Face {
 	let humansLabel: UILabel = UILabel()
 	let humansValue: UILabel = UILabel()
 
-	let lefterPen: Pen = Pen(font: UIFont(name: "AvenirNext-Medium", size: 17*Screen.s)!, color: .white, alignment: .right)
-	let headerPen: Pen = Pen(font: UIFont(name: "AvenirNext-Medium", size: 17*Screen.s)!, color: .white, alignment: .right)
-	let valuePen: Pen = Pen(font: UIFont(name: "AvenirNext-Heavy", size: 19*Screen.s)!, color: .white, alignment: .right)
+	let lefterPen: Pen = Pen(font: .axMedium(size: 17*Screen.s), color: .white, alignment: .right)
+	let headerPen: Pen = Pen(font: .axMedium(size: 17*Screen.s), color: .white, alignment: .right)
+	let valuePen: Pen = Pen(font: .axHeavy(size: 19*Screen.s), color: .white, alignment: .right)
 
 	init() {
 		super.init(frame: .zero)
@@ -116,33 +113,6 @@ class StatsFace: Face {
 
 		reflightsValue.text = "\(cores.summate { $0.launches.count > 1 ? $0.launches.count-1 : 0 })"
 		humansValue.text = "\(launches.summate { $0.noOfCrew })"
-
-		var launchLandings: [String:Int] = [:]
-		var coreLandings: [String:Int] = [:]
-
-		cores.forEach {
-			launchLandings[$0.apiid] = 0
-			coreLandings[$0.apiid] = 0
-		}
-
-		launches.forEach { (launch: Launch) in
-			launch.cores.forEach { (launchCore: LaunchCore) in
-				guard launchCore.landingSuccess else { return }
-				launchLandings[launchCore.apiid] = launchLandings[launchCore.apiid]! + 1
-			}
-		}
-
-		cores.forEach { (core: Core) in
-			coreLandings[core.apiid] = coreLandings[core.apiid]! + core.landings
-		}
-
-		launchLandings.keys.forEach {
-			if launchLandings[$0] != coreLandings[$0] {
-				let core: Core = Loom.selectBy(only: $0)!
-				print("])> \(core.serial): [\(launchLandings[$0]!)][\(coreLandings[$0]!)]")
-			}
-		}
-
 	}
 
 // Face ============================================================================================
@@ -150,7 +120,7 @@ class StatsFace: Face {
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		let cw: CGFloat = 72*s
+		let cw: CGFloat = 72*s				// column width
 
 		successLabel.topLeft(dx: 100*s, dy: 6*s, width: cw, height: 30*s)
 		failureLabel.topLeft(dx: successLabel.right, dy: successLabel.top, width: cw, height: 30*s)

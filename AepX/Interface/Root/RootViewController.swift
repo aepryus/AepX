@@ -34,7 +34,6 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 		rocketsViewController.title = "Boosters"
 		rocketsNavigationController = UINavigationController(rootViewController: rocketsViewController)
 
-
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
 		delegate = self
@@ -51,7 +50,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 
 		let appearance = UITabBarAppearance()
 		appearance.configureWithOpaqueBackground()
-		appearance.backgroundColor = .axBackgroundColor.shade(0.5).alpha(0.9)
+		appearance.backgroundColor = .axDarkBack.alpha(0.9)
 
 		tabBar.standardAppearance = appearance
 		tabBar.scrollEdgeAppearance = tabBar.standardAppearance
@@ -60,7 +59,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 
 		let navApp = UINavigationBarAppearance()
 		navApp.configureWithOpaqueBackground()
-		navApp.backgroundColor = .axBackgroundColor.shade(0.5).alpha(0.9)
+		navApp.backgroundColor = .axDarkBack.alpha(0.9)
 		navApp.titleTextAttributes = Pen(font: .axHeavy(size: 22*s), color: .white, alignment: .center).attributes
 		navApp.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 		navApp.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -86,9 +85,6 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 		coordinator.animate { (context: UIViewControllerTransitionCoordinatorContext) in
 			self.view.bounds = CGRect(origin: .zero, size: size)
 		}
-//		DispatchQueue.main.async {
-//			self.view.bounds = CGRect(origin: .zero, size: size)
-//		}
 	}
 
 // UITabBarControllerDelegate ======================================================================

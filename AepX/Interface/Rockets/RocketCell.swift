@@ -29,7 +29,7 @@ class RocketCell: UITableViewCell {
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .default, reuseIdentifier: nil)
-		backgroundColor = UIColor.axBackgroundColor.shade(0.5)
+		backgroundColor = UIColor.axDarkBack
 
 		nameLabel.pen = Pen(font: .axDemiBold(size: 29*s), color: .white, alignment: .left)
 		addSubview(nameLabel)
@@ -49,9 +49,9 @@ class RocketCell: UITableViewCell {
 		addSubview(resultView)
 
 //		patchesContent.layer.cornerRadius = 12*s
-//		patchesContent.backgroundColor = UIColor.axBackgroundColor.shade(0.2)
+//		patchesContent.backgroundColor = UIColor.axBackground.shade(0.2)
 //		patchesContent.layer.borderWidth = 0.5*s
-//		patchesContent.layer.borderColor = UIColor.axBorderColor.shade(0.5).tint(0.2).cgColor
+//		patchesContent.layer.borderColor = UIColor.axBorder.shade(0.5).tint(0.2).cgColor
 //		patchesContent.addSubview(patchesView)
 
 		lineView.backgroundColor = UIColor.blue.tone(0.85).tint(0.1)

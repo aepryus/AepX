@@ -20,12 +20,12 @@ fileprivate class FlightsHeader: UIView {
 	init() {
 		super.init(frame: .zero)
 
-		backgroundColor = .axBorderColor
+		backgroundColor = .axBorder
 
 		label.pen = Pen(font: .axDemiBold(size: 19*s), color: .white, alignment: .left)
 		addSubview(label)
 
-		line.backgroundColor = .axBorderColor.tint(0.3)
+		line.backgroundColor = .axBorder.tint(0.3)
 		addSubview(line)
 	}
 	required init?(coder: NSCoder) { fatalError() }
@@ -61,7 +61,7 @@ class RocketDetail: ExpandableCell {
 		else { rocket = .falcon9b5 }
 
 		super.init(style: .default, reuseIdentifier: nil)
-		backgroundColor = UIColor.axBackgroundColor
+		backgroundColor = .axBackground
 
 		serialLabel.text = core.serial
 		serialLabel.pen = Pen(font: .axDemiBold(size: 29*s), color: .white, alignment: .left)
@@ -80,7 +80,7 @@ class RocketDetail: ExpandableCell {
 		addSubview(versionLabel)
 
 		noteLabel.text = core.note
-		noteLabel.pen = Pen(font: UIFont(name: "AvenirNext-Medium", size: 18*s)!, color: .white)
+		noteLabel.pen = Pen(font: .axMedium(size: 18*s), color: .white)
 		noteLabel.numberOfLines = 0
 		addSubview(noteLabel)
 

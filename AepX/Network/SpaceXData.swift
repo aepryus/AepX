@@ -8,9 +8,6 @@
 
 import Foundation
 
-class RocketAPI: Codable {
-}
-
 class PatchAPI: Codable {
 	var small: String?
 	var large: String?
@@ -24,36 +21,18 @@ class LinksAPI: Codable {
 }
 
 class CoreAPI: Codable {
-	var id: String = ""
-	var block: Int? = nil
-	var status: String = ""
-	var serial: String = ""
-	var lastUpdate: String? = nil
-	var reuseCount: Int = 0
-	var asdsAttempts: Int = 0
-	var asdsLandings: Int = 0
-	var rtlsAttempts: Int = 0
-	var rtlsLandings: Int = 0
+	var id: String
+	var block: Int?
+	var status: String
+	var serial: String
+	var lastUpdate: String?
+	var reuseCount: Int
+	var asdsAttempts: Int
+	var asdsLandings: Int
+	var rtlsAttempts: Int
+	var rtlsLandings: Int
 
 	var launches: [String] = []
-
-	func load(core: Core) {
-		core.apiid = id
-		core.serial = serial
-		core.block = block ?? 0
-		core.coreStatus = status
-		core.launchAPIIDs = launches
-		core.attempts = asdsAttempts + rtlsAttempts
-		core.landings = asdsLandings + rtlsLandings
-		if status == "active" {
-			core.disposition = "active"
-		} else if status == "inactive" {
-			core.disposition = "retired"
-		} else {
-			core.disposition = "destroyed"
-		}
-		core.note = lastUpdate ?? ""
-	}
 }
 
 class LaunchCoreAPI: Codable {
@@ -78,14 +57,30 @@ class LaunchAPI: Codable {
 	var cores: [LaunchCoreAPI]
 	var crew: [LaunchCrewAPI]
 	var success: Bool?
+}
 
-	var relative: String {
-		let formatter = DateComponentsFormatter()
-		formatter.unitsStyle = .abbreviated
-		formatter.allowedUnits = [.second, .minute, .hour, .day]
-		return formatter.string(from: Date.now, to: dateUtc)!
+// Loaders =========================================================================================
+extension CoreAPI {
+	func load(core: Core) {
+		core.apiid = id
+		core.serial = serial
+		core.block = block ?? 0
+		core.coreStatus = status
+		core.launchAPIIDs = launches
+		core.attempts = asdsAttempts + rtlsAttempts
+		core.landings = asdsLandings + rtlsLandings
+		if status == "active" {
+			core.disposition = "active"
+		} else if status == "inactive" {
+			core.disposition = "retired"
+		} else {
+			core.disposition = "destroyed"
+		}
+		core.note = lastUpdate ?? ""
 	}
+}
 
+extension LaunchAPI {
 	func load(launch: Launch) {
 		launch.apiid = id
 		launch.name = name

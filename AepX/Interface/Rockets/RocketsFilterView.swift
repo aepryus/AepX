@@ -17,7 +17,7 @@ class Specifier: UIView {
 		super.init(frame: .zero)
 
 		label.text = text
-		label.pen = .axLabel.clone(alignment: .left)
+		label.pen = Pen(font: .axMedium(size: 19*Screen.s), color: .white, alignment: .left)
 		addSubview(label)
 
 		line.backgroundColor = .white
@@ -73,7 +73,7 @@ class RocketsFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 		container.addSubview(statesView)
 		container.addSubview(statesSpecifier)
 
-		container.backgroundColor = UIColor.axBackgroundColor.tone(-0.7).tint(0.2).alpha(0.7)
+		container.backgroundColor = UIColor.axBackground.tone(-0.7).tint(0.2).alpha(0.7)
 		addSubview(container)
 
 		addSubview(doneButton)
@@ -129,6 +129,6 @@ class RocketsFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 			case pickerView: text = states[row]
 			default: fatalError()
 		}
-		return text.attributed(pen: .axLabel)
+		return text.attributed(pen: Pen(font: .axMedium(size: 19*Screen.s), color: .white, alignment: .right))
 	}
 }

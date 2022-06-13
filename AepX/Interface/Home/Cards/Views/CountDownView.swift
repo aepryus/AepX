@@ -13,8 +13,8 @@ fileprivate class Plaque: UIView {
 	private let nameLabel: UILabel = UILabel()
 	private let valueLabel: UILabel = UILabel()
 
-	let namePen: Pen = Pen(font: UIFont(name: "AvenirNext-Medium", size: 11*Screen.s)!, color: .white, alignment: .center)
-	let valuePen: Pen = Pen(font: UIFont(name: "AvenirNext-Bold", size: 18*Screen.s)!, color: .white, alignment: .center)
+	let namePen: Pen = Pen(font: .axMedium(size: 11*Screen.s), color: .white, alignment: .center)
+	let valuePen: Pen = Pen(font: .axBold(size: 18*Screen.s), color: .white, alignment: .center)
 
 	init(name: String) {
 		super.init(frame: .zero)
@@ -22,7 +22,7 @@ fileprivate class Plaque: UIView {
 		layer.borderWidth = 0.5*s
 		layer.borderColor = UIColor.white.cgColor
 		layer.cornerRadius = 1*s
-		layer.backgroundColor = UIColor.axBackgroundColor.cgColor
+		layer.backgroundColor = UIColor.axBackground.cgColor
 
 		nameLabel.text = name
 		nameLabel.pen = namePen
@@ -91,8 +91,8 @@ class CountDownView: UIView {
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		let p: CGFloat = 9*s
-		let pw: CGFloat = width/4-p
+		let p: CGFloat = 9*s				// padding
+		let pw: CGFloat = width/4-p			// plaque width
 		daysPlaque.left(width: pw, height: height)
 		hoursPlaque.left(dx: daysPlaque.right+p, width: pw, height: height)
 		minutesPlaque.left(dx: hoursPlaque.right+p, width: pw, height: height)

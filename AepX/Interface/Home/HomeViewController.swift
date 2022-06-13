@@ -36,8 +36,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			}
 			i += 1
 		}
-//		let core: Core = Loom.selectOne(where: "serial", is: "B1023")!
-//		latestFace.load(controller: controller, launch: core.launches.first!)
 
 		latestFace.load(controller: controller, launch: launches[i+1])
 		nextFace.load(controller: controller, launch: launches[i])
@@ -47,10 +45,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 	}
 
 // UIViewController ================================================================================
-	override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = UIColor.axBackgroundColor
 
 		navigationController?.navigationBar.tintColor = .white
 		navigationItem.backButtonDisplayMode = .minimal

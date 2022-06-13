@@ -12,7 +12,7 @@ import UIKit
 class CreditsFace: Face {
 	let imageView: UIImageView = UIImageView()
 
-	var creditRoll: [UIView] = []
+	var creditRoll: [RollView] = []
 	var rolling: Bool = false
 	var crI: Int = 0
 
@@ -37,12 +37,12 @@ class CreditsFace: Face {
 	var pen48: Pen { pen18.clone(font: UIFont(name: "Copperplate", size: 48*s * faceScale)!) }
 
 	func renderCredits() {
-		(creditRoll[0] as! RollView).label.attributedText = "AepX".attributed(pen: pen48).append("\nv1.0", pen: pen24)
-		(creditRoll[1] as! RollView).label.attributedText = "by\n".attributed(pen: pen24).append("Aepryus", pen: pen36).append("\nSoftware", pen: pen24)
-		(creditRoll[2] as! RollView).label.attributedText = "written using\n".attributed(pen: pen18).append("Acheron\n", pen: pen36).append("Aepryus'\niOS toolkit", pen: pen18)
-		(creditRoll[3] as! RollView).label.attributedText = "both\n".attributed(pen: pen18).append("AepX and Acheron's\n", pen: pen24).append("source code are\navailable at ", pen: pen18).append("github", pen: pen24)
-		(creditRoll[4] as! RollView).label.attributedText = "Data driven by\nr/spacex's\n".attributed(pen: pen18).append("SpaceX-API", pen: pen24)
-		(creditRoll[5] as! RollView).label.attributedText = "Much\nthanks to\n".attributed(pen: pen24).append("E.M.", pen: pen36)
+		creditRoll[0].label.attributedText = "AepX".attributed(pen: pen48).append("\nv1.0", pen: pen24)
+		creditRoll[1].label.attributedText = "by\n".attributed(pen: pen24).append("Aepryus", pen: pen36).append("\nSoftware", pen: pen24)
+		creditRoll[2].label.attributedText = "written using\n".attributed(pen: pen18).append("Acheron\n", pen: pen36).append("Aepryus'\niOS toolkit", pen: pen18)
+		creditRoll[3].label.attributedText = "both\n".attributed(pen: pen18).append("AepX and Acheron's\n", pen: pen24).append("source code are\navailable at ", pen: pen18).append("github", pen: pen24)
+		creditRoll[4].label.attributedText = "Data driven by\nr/spacex's\n".attributed(pen: pen18).append("SpaceX-API", pen: pen24)
+		creditRoll[5].label.attributedText = "Much\nthanks to\n".attributed(pen: pen24).append("E.M.", pen: pen36)
 	}
 
 	func startRoll() {

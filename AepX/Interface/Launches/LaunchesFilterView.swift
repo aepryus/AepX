@@ -51,7 +51,7 @@ class LaunchesFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 		container.addSubview(landingsView)
 		container.addSubview(landingsSpecifier)
 
-		container.backgroundColor = UIColor.axBackgroundColor.tone(-0.7).tint(0.2).alpha(0.7)
+		container.backgroundColor = UIColor.axBackground.tone(-0.7).tint(0.2).alpha(0.7)
 		addSubview(container)
 
 		addSubview(doneButton)
@@ -107,7 +107,7 @@ class LaunchesFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 			case landingsView: text = landings[row]
 			default: fatalError()
 		}
-		return text.attributed(pen: .axLabel)
+		return text.attributed(pen: Pen(font: .axMedium(size: 19*Screen.s), color: .white, alignment: .right))
 	}
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		guard pickerView == missionsView else { return }

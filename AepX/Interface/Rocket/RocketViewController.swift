@@ -30,7 +30,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = UIColor.axBackgroundColor
+		view.backgroundColor = .axBackground
 
 		navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 

@@ -20,12 +20,13 @@ class Card: UITableViewCell {
 
 	init(face: Face) {
 		self.face = face
+
 		super.init(style: .default, reuseIdentifier: nil)
 
-		faceView.backgroundColor = UIColor.axBackgroundColor.shade(0.5)
+		faceView.backgroundColor = UIColor.axDarkBack
 		faceView.layer.cornerRadius = 12*s
 		faceView.layer.masksToBounds = true
-		faceView.layer.borderColor = UIColor.axBorderColor.tint(0.1).cgColor
+		faceView.layer.borderColor = UIColor.axBorder.tint(0.1).cgColor
 		faceView.layer.borderWidth = 2*s
 
 		faceView.addSubview(self.face)

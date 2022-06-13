@@ -10,9 +10,7 @@ import UIKit
 
 class ResultView: UIView {
 	var result: Launch.Result? = nil {
-		didSet {
-			backgroundColor = result?.color
-		}
+		didSet { backgroundColor = result?.color }
 	}
 
 	init() {

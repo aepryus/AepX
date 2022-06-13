@@ -10,6 +10,7 @@ import Acheron
 import UIKit
 
 extension UIColor {
-	static let axBackgroundColor: UIColor = UIColor.blue.tone(0.85).shade(0.5)
-	static let axBorderColor: UIColor = UIColor.blue.tone(0.85)
+	static let axBackground: UIColor = UIColor.blue.tone(0.85).shade(0.5)
+	static let axDarkBack: UIColor = .axBackground.shade(0.5)
+	static let axBorder: UIColor = UIColor.blue.tone(0.85)
 }

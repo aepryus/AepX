@@ -38,7 +38,7 @@ class ParaView: UIView, UIScrollViewDelegate {
 	private var numb: Bool = true
 	private var pw: CGFloat = 0
 
-	let pen: Pen = Pen(font: UIFont(name: "AvenirNext-DemiBold", size: 16*Screen.s)!, color: .white, alignment: .center)
+	let pen: Pen = Pen(font: .axDemiBold(size: 16*Screen.s), color: .white, alignment: .center)
 
 	init(names: [String]) {
 		thumb = UIView()

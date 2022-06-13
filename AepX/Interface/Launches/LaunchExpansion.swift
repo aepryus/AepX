@@ -89,7 +89,7 @@ class LaunchExpansion: UIView {
 
 		super.init(frame: .zero)
 
-		backgroundColor = UIColor.axBackgroundColor
+		backgroundColor = .axBackground
 
 		paraView.scrollView = scrollView
 		addSubview(paraView)
@@ -98,11 +98,11 @@ class LaunchExpansion: UIView {
 		page1.addSubview(imageView)
 
 		timeValue.text = launch.date.format("hh:mm a")
-		timeValue.pen = Pen.axValue
+		timeValue.pen = Pen(font: .axHeavy(size: 19*Screen.s), color: .white, alignment: .left)
 //		page1.addSubview(timeValue)
 
 		crewValue.text = "\(launch.noOfCrew)"
-		crewValue.pen = Pen.axValue
+		crewValue.pen = Pen(font: .axHeavy(size: 19*Screen.s), color: .white, alignment: .left)
 //		page1.addSubview(crewValue)
 
 		if launch.cores.count == 1 {
@@ -125,7 +125,7 @@ class LaunchExpansion: UIView {
 
 		youTubeFrame.addSubview(youTubeView)
 
-		youTubeFrame.backgroundColor = .axBackgroundColor.shade(0.3)
+		youTubeFrame.backgroundColor = .axBackground.shade(0.3)
 		youTubeFrame.layer.cornerRadius = 16*s
 		page2.addSubview(youTubeFrame)
 
