@@ -15,7 +15,7 @@ class RollView: UIView {
 	private init(text: String? = nil, attributed: NSAttributedString? = nil, size: CGFloat? = nil) {
 		if let text = text  {
 			label.text = text
-			label.pen = Pen(font: UIFont(name: "Copperplate", size: size ?? 24*Screen.s)!, color: .red.tone(0.3).shade(0.5), alignment: .center)
+			label.pen = Pen(font: .axCopper(size: size ?? 24*Screen.s), color: .red.tone(0.3).shade(0.5), alignment: .center)
 		} else if let attributed = attributed {
 			label.attributedText = attributed
 		}

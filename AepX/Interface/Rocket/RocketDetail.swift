@@ -47,8 +47,6 @@ class RocketDetail: ExpandableCell {
 	let versionLabel: UILabel = UILabel()
 
 	let statusLabel: UILabel = UILabel()
-//	let reasonLabel: UILabel = UILabel()
-//	let blockLabel: UILabel = UILabel()
 
 	let noteLabel: UILabel = UILabel()
 	let rocketView: UIImageView = UIImageView()

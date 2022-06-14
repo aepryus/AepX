@@ -32,7 +32,6 @@ class RocketsFooterCell: UITableViewCell {
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		super.layoutSubviews()
 		label.center(width: 320*s, height: 50*s)
 		line.bottom(width: width, height: 1*s)
 	}

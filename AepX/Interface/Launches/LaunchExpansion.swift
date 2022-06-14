@@ -67,8 +67,6 @@ class LaunchExpansion: UIView {
 	let scrollView: UIScrollView = UIScrollView()
 	let paraView: ParaView
 	let imageView: UIImageView = UIImageView()
-//	let blockValue: UILabel = UILabel()
-//	let detailsValue: UILabel = UILabel()
 	let timeValue: UILabel = UILabel()
 	let crewValue: UILabel = UILabel()
 	private let core1View: LaunchCoreView = LaunchCoreView()
@@ -145,7 +143,6 @@ class LaunchExpansion: UIView {
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		super.layoutSubviews()
 		paraView.top(dy: 12*s, width: width*0.9, height: 32*s)
 		scrollView.frame = CGRect(x: 0, y: paraView.bottom, width: width, height: height-paraView.bottom)
 		scrollView.contentSize = CGSize(width: width*2, height: scrollView.height)

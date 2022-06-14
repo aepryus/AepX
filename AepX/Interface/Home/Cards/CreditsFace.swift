@@ -31,10 +31,10 @@ class CreditsFace: Face {
 
 	var faceScale: CGFloat { AepX.window.width/(375*s) }
 
-	var pen18: Pen { Pen(font: UIFont(name: "Copperplate", size: 18*s * faceScale)!, color: .red.tone(0.3).shade(0.5), alignment: .center) }
-	var pen24: Pen { pen18.clone(font: UIFont(name: "Copperplate", size: 24*s * faceScale)!) }
-	var pen36: Pen { pen18.clone(font: UIFont(name: "Copperplate", size: 36*s * faceScale)!) }
-	var pen48: Pen { pen18.clone(font: UIFont(name: "Copperplate", size: 48*s * faceScale)!) }
+	var pen18: Pen { Pen(font: .axCopper(size: 18*s * faceScale), color: .red.tone(0.3).shade(0.5), alignment: .center) }
+	var pen24: Pen { pen18.clone(font: .axCopper(size: 24*s * faceScale)) }
+	var pen36: Pen { pen18.clone(font: .axCopper(size: 36*s * faceScale)) }
+	var pen48: Pen { pen18.clone(font: .axCopper(size: 48*s * faceScale)) }
 
 	func renderCredits() {
 		creditRoll[0].label.attributedText = "AepX".attributed(pen: pen48).append("\nv1.0", pen: pen24)

@@ -13,4 +13,5 @@ extension UIFont {
 	static func axDemiBold(size: CGFloat) -> UIFont { UIFont(name: "AvenirNext-DemiBold", size: size)! }
 	static func axBold(size: CGFloat) -> UIFont { UIFont(name: "AvenirNext-Bold", size: size)! }
 	static func axHeavy(size: CGFloat) -> UIFont { UIFont(name: "AvenirNext-Heavy", size: size)! }
+	static func axCopper(size: CGFloat) -> UIFont { UIFont(name: "Copperplate", size: size)! }
 }

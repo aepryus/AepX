@@ -22,8 +22,6 @@ class RocketCell: UITableViewCell {
 	let versionLabel: UILabel = UILabel()
 	let statusLabel: UILabel = UILabel()
 	let flightsLabel: UILabel = UILabel()
-//	let patchesView: PatchesView = PatchesView(size: 27*Screen.s)
-//	let patchesContent: UIView = UIView()
 	let resultView: ResultView = ResultView()
 	let lineView: UIView = UIView()
 
@@ -48,12 +46,6 @@ class RocketCell: UITableViewCell {
 
 		addSubview(resultView)
 
-//		patchesContent.layer.cornerRadius = 12*s
-//		patchesContent.backgroundColor = UIColor.axBackground.shade(0.2)
-//		patchesContent.layer.borderWidth = 0.5*s
-//		patchesContent.layer.borderColor = UIColor.axBorder.shade(0.5).tint(0.2).cgColor
-//		patchesContent.addSubview(patchesView)
-
 		lineView.backgroundColor = UIColor.blue.tone(0.85).tint(0.1)
 		addSubview(lineView)
 
@@ -71,9 +63,6 @@ class RocketCell: UITableViewCell {
 		flightsLabel.text = (core.launches.count != 1 ? "\(core.launches.count) " + "flights".localized : "1 " + "flight".localized)
 		boosterLabel.text = core.booster.name
 		versionLabel.text = core.version
-//		patchesView.load(core: core)
-//		if core.launches.count == 0 { patchesContent.removeFromSuperview() }
-//		else { addSubview(patchesContent) }
 		resultView.result = core.launches.first?.result ?? .planned
 	}
 
@@ -84,14 +73,11 @@ class RocketCell: UITableViewCell {
 
 // UITableViewCell =================================================================================
 	override func layoutSubviews() {
-		super.layoutSubviews()
 		nameLabel.topLeft(dx: 9*s, dy: 6*s, width: 300*s, height: 30*s)
 		statusLabel.topLeft(dx: nameLabel.left+6*s, dy: nameLabel.bottom-8*s, width: 300*s, height: 30*s)
 		flightsLabel.center(width: 180*s, height: 20*s)
 		boosterLabel.topRight(dx: -9*s, dy: 4*s, width: 200*s, height: 30*s)
 		versionLabel.topLeft(dx: boosterLabel.left-2*s, dy: boosterLabel.bottom-9*s, width: 200*s, height: 30*s)
-//		patchesContent.bottom(dy: -1*s, width: width, height: 33*s)
-//		patchesView.right(dx: -9*s)
 		resultView.right(dx: -1*s, width: 4*s, height: height*0.6)
 		lineView.bottom(width: width, height: 1*s)
 	}
