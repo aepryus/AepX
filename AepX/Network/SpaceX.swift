@@ -78,9 +78,9 @@ class SpaceX {
 				return
 			}
 
-			let json = String(data: data, encoding: .utf8)!
-			let attributes = json.toArray()
-			print(attributes.toJSON())
+//			let json = String(data: data, encoding: .utf8)!
+//			let attributes = json.toArray()
+//			print(attributes.toJSON())
 
 			do {
 				let result: T = try decoder.decode(T.self, from: data)
