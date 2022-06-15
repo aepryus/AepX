@@ -99,7 +99,7 @@ class Launch: Anchor {
 			if core.block == 0 { return .falcon1 }
 			else if core.serial[1] == "0" { return .falcon9v10 }
 
-			let hasCrew: Bool = noOfCrew > 0 || name.contains("Crew")
+			let hasCrew: Bool = noOfCrew > 0 || name.contains("Crew") || name.contains("CCtCap")
 			let hasLegs: Bool = cores.count > 0 ? cores[0].landingAttempt : false
 
 			if core.block <= 3 {

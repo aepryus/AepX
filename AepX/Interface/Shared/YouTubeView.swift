@@ -28,10 +28,7 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 	required init?(coder: NSCoder) { fatalError() }
 
 	func load(id: String) {
-		print("Requested load from state [\(lastState)]")
-		guard id != youTubeID && lastState != .unknown else { return }
 		youTubeID = id
-		player.removeFromSuperview()
 		player.load(withVideoId: youTubeID!)
 	}
 

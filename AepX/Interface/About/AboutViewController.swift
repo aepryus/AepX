@@ -99,9 +99,9 @@ class AboutViewController: UIViewController {
 		""", pen: pen)
 
 		text.append("\n\n\tAepX", pen: Pen(font: .axCopper(size: 36*s), color: .white))
-		text.append(" v1.0\n", pen: Pen(font: .axCopper(size: 21*s), color: .white))
-		text.append("\t\tby Aepryus Software\n", pen: Pen(font: .axCopper(size: 22*s), color: .white))
-		text.append("\t\t\t© 2022\n\n", pen: Pen(font: .axCopper(size: 17*s), color: .white))
+		text.append(" v1.0\n", pen: Pen(font: .axCopper(size: 22*s), color: .white))
+		text.append("\t\tby Aepryus Software\n", pen: Pen(font: .axCopper(size: 21*s), color: .white))
+		text.append("\t\t\t© 2022\n\n", pen: Pen(font: .axCopper(size: 23*s), color: .white))
 
 		text.append(image: imageView.asImage())
 		text.append("\n\n\n", pen: pen)
