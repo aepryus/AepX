@@ -72,14 +72,15 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 		UINavigationBar.appearance().standardAppearance = navApp
 		UINavigationBar.appearance().scrollEdgeAppearance = navApp
 
-		let image1 = UIImage(named: "Starbase")!
+		let image1 = UIImage(named: "Home")!
 		let image2 = UIImage(named: "Launches")!
 		let image3 = UIImage(named: "Boosters")!
+		let image4 = UIImage(named: "About")!
 
 		homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: image1, selectedImage: image1.withTintColor(.white))
 		launchesNavigationController.tabBarItem = UITabBarItem(title: "Launches", image: image2, selectedImage: image2.withTintColor(.white))
 		rocketsNavigationController.tabBarItem = UITabBarItem(title: "Boosters", image: image3, selectedImage: image3.withTintColor(.white))
-		aboutNavigationController.tabBarItem = UITabBarItem(title: "About", image: image3, selectedImage: image3.withTintColor(.white))
+		aboutNavigationController.tabBarItem = UITabBarItem(title: "About", image: image4, selectedImage: image4.withTintColor(.white))
 
 		self.viewControllers = [
 			homeNavigationController,
