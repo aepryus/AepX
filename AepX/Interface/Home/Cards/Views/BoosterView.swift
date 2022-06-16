@@ -59,7 +59,7 @@ class BoosterView: UIView {
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		resultView.left(width: 24*s, height: 20*s)
+		resultView.left(width: 20*s, height: 20*s)
 		label.left(dx: resultView.right+7*s, width: 200*s, height: 30*s)
 		patchesView.right(dx: -9*s, width: patchesView.patchesWidth, height: 30*s)
 		patchesContainer.frame = bounds
