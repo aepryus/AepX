@@ -38,7 +38,6 @@
 		D869177E281F4A5500D550F2 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = D869177D281F4A5500D550F2 /* YouTubeiOSPlayerHelper */; };
 		D8691781281F998A00D550F2 /* UIColor+AepX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8691780281F998A00D550F2 /* UIColor+AepX.swift */; };
 		D8B3467128271AFD003C794B /* BootPond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3467028271AFD003C794B /* BootPond.swift */; };
-		D8B3467328271B1B003C794B /* WakePond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3467228271B1B003C794B /* WakePond.swift */; };
 		D8B3467528277798003C794B /* SpaceXData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3467428277798003C794B /* SpaceXData.swift */; };
 		D8C1FB33284449A0001B678C /* LaunchesFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1FB32284449A0001B678C /* LaunchesFooterCell.swift */; };
 		D8C1FB35284449B0001B678C /* RocketsFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */; };
@@ -88,7 +87,6 @@
 		D8691774281EA0D300D550F2 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		D8691780281F998A00D550F2 /* UIColor+AepX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AepX.swift"; sourceTree = "<group>"; };
 		D8B3467028271AFD003C794B /* BootPond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootPond.swift; sourceTree = "<group>"; };
-		D8B3467228271B1B003C794B /* WakePond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePond.swift; sourceTree = "<group>"; };
 		D8B3467428277798003C794B /* SpaceXData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXData.swift; sourceTree = "<group>"; };
 		D8C1FB32284449A0001B678C /* LaunchesFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesFooterCell.swift; sourceTree = "<group>"; };
 		D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsFooterCell.swift; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 			children = (
 				D8DE1CB9281B9CA700F8EABE /* AepXDelegate.swift */,
 				D8B3467028271AFD003C794B /* BootPond.swift */,
-				D8B3467228271B1B003C794B /* WakePond.swift */,
 				D8DE1CD0281B9CFF00F8EABE /* AepX.swift */,
 			);
 			path = Global;
@@ -424,7 +421,6 @@
 				D8691773281EA07200D550F2 /* RocketController.swift in Sources */,
 				D8DE1CBA281B9CA700F8EABE /* AepXDelegate.swift in Sources */,
 				D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */,
-				D8B3467328271B1B003C794B /* WakePond.swift in Sources */,
 				D869175E281E323C00D550F2 /* Card.swift in Sources */,
 				D869175A281E129000D550F2 /* HomeViewController.swift in Sources */,
 				D8EE3795283B5262007EAD22 /* AexelsFace.swift in Sources */,

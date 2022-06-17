@@ -16,7 +16,7 @@ class AepXDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 	func applicationWillEnterForeground(_ application: UIApplication) {
-		if AepX.wakePond.complete { AepX.wakePond.reset() }
-		if !AepX.wakePond.started { AepX.wakePond.start() }
+		if AepX.bootPond.complete { AepX.bootPond.reset() }
+		if !AepX.bootPond.started { AepX.bootPond.start() }
 	}
 }

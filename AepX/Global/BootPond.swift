@@ -10,11 +10,6 @@ import Acheron
 import Foundation
 
 class BootPond: Pond {
-	lazy var ping: Pebble = pebble(name: "ping") { (complete: @escaping (Bool) -> ()) in
-		complete(true)
-//		Pequod.ping { complete(true) }
-//			failure: { complete(false) }
-	}
 	lazy var loadLaunches: Pebble = pebble(name: "loadLaunches") { (complete: @escaping (Bool) -> ()) in
 		SpaceX.launches { (launches: [LaunchAPI]) in
 			launches.forEach { (launchAPI: LaunchAPI) in
@@ -52,10 +47,8 @@ class BootPond: Pond {
 	override init() {
 		 super.init()
 
-		ping.ready = { true }
-
-		loadLaunches.ready = { self.ping.succeeded }
-		loadCores.ready = { self.ping.succeeded }
+		loadLaunches.ready = { true }
+		loadCores.ready = { true }
 
 		refreshScreens.ready = {
 			self.loadLaunches.completed

@@ -67,8 +67,6 @@ class LaunchExpansion: UIView {
 	let scrollView: UIScrollView = UIScrollView()
 	let paraView: ParaView
 	let imageView: UIImageView = UIImageView()
-	let timeValue: UILabel = UILabel()
-	let crewValue: UILabel = UILabel()
 	private let core1View: LaunchCoreView = LaunchCoreView()
 	private let core2View: LaunchCoreView = LaunchCoreView()
 	private let core3View: LaunchCoreView = LaunchCoreView()
@@ -94,14 +92,6 @@ class LaunchExpansion: UIView {
 
 		imageView.image = launch.rocket.image
 		page1.addSubview(imageView)
-
-		timeValue.text = launch.date.format("hh:mm a")
-		timeValue.pen = Pen(font: .axHeavy(size: 19*Screen.s), color: .white)
-//		page1.addSubview(timeValue)
-
-		crewValue.text = "\(launch.noOfCrew)"
-		crewValue.pen = Pen(font: .axHeavy(size: 19*Screen.s), color: .white)
-//		page1.addSubview(crewValue)
 
 		if launch.cores.count == 1 {
 			core3View.launchCore = launch.cores[0]
@@ -155,8 +145,6 @@ class LaunchExpansion: UIView {
 			let height: CGFloat = maxHeight*launch.rocket.height
 			imageView.bottomLeft(dx: 20*s, dy: -12*s, width: image.size.width*height/image.size.height, height: height)
 		}
-		timeValue.topLeft(dx: imageView.right, width: 200*s, height: 30*s)
-		crewValue.topLeft(dx: 75*s, dy: 110*s, width: 200*s, height: 30*s)
 		core3View.bottomLeft(dx: imageView.right+12*s, dy: -16*s, width: 200*s, height: 30*s)
 		core1View.topLeft(dx: core3View.left, dy: core3View.top-60*s, width: 200*s, height: 30*s)
 		core2View.topLeft(dx: core3View.left, dy: core1View.bottom, width: 200*s, height: 30*s)

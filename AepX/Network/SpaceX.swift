@@ -14,6 +14,7 @@ enum DateError: String, Error {
 
 class SpaceX {
 	static let url = "https://api.spacexdata.com"
+
 	static let iso8601Formatter1: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.calendar = Calendar(identifier: .iso8601)
@@ -78,13 +79,10 @@ class SpaceX {
 				return
 			}
 
-//			let json = String(data: data, encoding: .utf8)!
-//			let attributes = json.toArray()
-//			print(attributes.toJSON())
+//			print(String(data: data, encoding: .utf8)!.toArray().toJSON())
 
 			do {
-				let result: T = try decoder.decode(T.self, from: data)
-				success(result)
+				success(try decoder.decode(T.self, from: data))
 			} catch { failure() }
 		}
 		task.resume()
