@@ -143,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				D8CA3B6A2830DE2C009E0CA8 /* RocketsFilterView.swift */,
-				D80BC3112828FED70048C74F /* PatchesView.swift */,
 				D8691752281C289000D550F2 /* RocketCell.swift */,
 				D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */,
 				D869176C281E997D00D550F2 /* RocketsController.swift */,
@@ -304,6 +303,7 @@
 			children = (
 				D8EE378C2833C2BF007EAD22 /* LinkView.swift */,
 				D81490CE284D8BF70031A1FB /* ResultView.swift */,
+				D80BC3112828FED70048C74F /* PatchesView.swift */,
 				D84E2D5B2851CD190063823A /* DoneButton.swift */,
 				D8EAAF2C28532DF7001AF7E7 /* YouTubeView.swift */,
 			);

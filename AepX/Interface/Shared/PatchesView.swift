@@ -37,6 +37,7 @@ class PatchesView: UIView {
 			if patchInfo.count > 1 {
 				label.text = "\u{00D7}\(patchInfo.count)"
 				label.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .center)
+				label.adjustsFontSizeToFitWidth = true
 				addSubview(label)
 			}
 		}
