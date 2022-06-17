@@ -78,7 +78,7 @@ class LaunchFace: Face {
 		var height: CGFloat = 72*s
 		let p: CGFloat = 12*s
 		if let launch = launch {
-			if launch.hasVideo { height += 180*s + p }
+			if launch.hasVideo { height += 180*s * AepX.widthScale + p }
 			if launch.hasCores { height += 30*s*CGFloat(launch.cores.count) + p }
 			if launch.date >= Date.now { height += 43*s + p }
 			height += 6*s
@@ -100,7 +100,7 @@ class LaunchFace: Face {
 		dy = patchView.bottom + 12*s
 
 		if launch.hasVideo {
-			youTubeView.top(dy: dy, width: 320*s, height: 180*s)
+			youTubeView.top(dy: dy, width: 320*s * AepX.widthScale, height: 180*s * AepX.widthScale)
 			dy += youTubeView.height + 12*s
 		}
 

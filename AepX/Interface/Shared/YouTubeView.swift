@@ -6,6 +6,7 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import UIKit
 import YouTubeiOSPlayerHelper
 
@@ -39,17 +40,17 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 
 // YTPlayerViewDelegate ============================================================================
 	func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-		print("playerViewDidBecomeReady")
+//		print("playerViewDidBecomeReady")
 		addSubview(player)
 	}
 
 	func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
-		print("playerView:didChangeToState [\(state)]")
+//		print("playerView:didChangeToState [\(state)]")
 		lastState = state
 	}
 
 	func playerView(_ playerView: YTPlayerView, didChangeTo quality: YTPlaybackQuality) {
-		print("playerView:didChangeToQuality [\(quality)]")
+//		print("playerView:didChangeToQuality [\(quality)]")
 	}
 
 	func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
@@ -61,8 +62,6 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 
 	func playerViewPreferredWebViewBackgroundColor(_ playerView: YTPlayerView) -> UIColor { preferredColor }
 	func playerViewPreferredInitialLoading(_ playerView: YTPlayerView) -> UIView? {
-		let view = UIView()
-		view.backgroundColor = preferredColor
-		return view
+		return ColorView(preferredColor)
 	}
 }

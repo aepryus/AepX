@@ -19,24 +19,18 @@ class AboutViewController: UIViewController {
 	let backView: UIImageView = UIImageView(image: UIImage(named: "Starship"))
 	let scrollView: UIScrollView = UIScrollView()
 	let label: UILabel = UILabel()
-	let imageView: UIImageView = {
+	var imageView: UIImageView = {
 		let imageView: UIImageView = UIImageView(image: UIImage(named: "Banner"))
 		imageView.layer.cornerRadius = 24*Screen.s
 		imageView.layer.borderColor = UIColor.red.tone(0.6).shade(0.6).cgColor
 		imageView.layer.borderWidth = 6*Screen.s
 		imageView.layer.masksToBounds = true
-		imageView.topLeft(width: 360*Screen.s, height: 144*Screen.s)
+		let width: CGFloat = AepX.window.width - 15*Screen.s
+		imageView.topLeft(width: width, height: width * 144/360)
 		return imageView
 	}()
 
-// UIViewController ================================================================================
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		view.addSubview(backView)
-
-		scrollView.alwaysBounceVertical = true
-		view.addSubview(scrollView)
-
+	func render() {
 		let pen: Pen = Pen(font: .axMedium(size: 17*s), color: .white)
 		let headerPen: Pen = pen.clone(font: .axBold(size: 19*s))
 		let imagePen: Pen = Pen(font: .axMedium(size: 18*s), color: .white, baselineOffset: 10*s)
@@ -99,19 +93,34 @@ class AboutViewController: UIViewController {
 		""", pen: pen)
 
 		text.append("\n\n\tAepX", pen: Pen(font: .axCopper(size: 36*s), color: .white))
-		text.append(" v1.0\n", pen: Pen(font: .axCopper(size: 22*s), color: .white))
+		text.append(" v\(AepX.version)\n", pen: Pen(font: .axCopper(size: 22*s), color: .white))
 		text.append("\t\tby Aepryus Software\n", pen: Pen(font: .axCopper(size: 21*s), color: .white))
 		text.append("\t\t\t© 2022\n\n", pen: Pen(font: .axCopper(size: 23*s), color: .white))
 
+		let width: CGFloat = AepX.window.width - 20*Screen.s
+		imageView.topLeft(width: width, height: width * 144/360)
 		text.append(image: imageView.asImage())
 		text.append("\n\n\n", pen: pen)
 
 		label.attributedText = text
 		label.numberOfLines = 0
+	}
+
+// UIViewController ================================================================================
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		view.addSubview(backView)
+
+		scrollView.alwaysBounceVertical = true
+		if Screen.mac { scrollView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
+		else { scrollView.showsVerticalScrollIndicator = false }
+		view.addSubview(scrollView)
+
 		scrollView.addSubview(label)
 	}
 	override func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
+		render()
 		backView.frame = view.bounds
 		scrollView.frame = view.bounds
 		label.topLeft(width: view.width-16*s, height: 999*s)

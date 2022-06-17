@@ -60,9 +60,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 	func expandableTableView(_ tableView: ExpandableTableView, expandableRowAt indexPath: IndexPath) -> Bool {
 		indexPath.row != 0
 	}
-	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat {
-		270*s
-	}
+	func expandableTableView(_ tableView: ExpandableTableView, expansionHeightForRowAt indexPath: IndexPath) -> CGFloat { 90*s + 180*s*AepX.widthScale }
 	func expandableTableView(_ tableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
 		return core.launches.count+1
 	}

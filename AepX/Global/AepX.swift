@@ -15,6 +15,11 @@ class AepX {
 	static let bootPond: Pond = BootPond()
 	static let wakePond: Pond = WakePond()
 
+	static var version: String {
+		return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
+	}
+	static var widthScale: CGFloat { AepX.window.width/(375*Screen.s) }
+
 	static func start() {
 		print("[ AepX ] ======================================================================")
 
@@ -27,11 +32,11 @@ class AepX {
 		window.makeKeyAndVisible()
 
 		if Screen.mac, #available(iOS 13.0, *) {
-			UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { (windowScene: UIWindowScene) in
-				let size: CGSize = CGSize(width: 375*Screen.s, height: 812*Screen.s)
-				windowScene.sizeRestrictions?.minimumSize = size
-				windowScene.sizeRestrictions?.maximumSize = size
-			}
+//			UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { (windowScene: UIWindowScene) in
+//				let size: CGSize = CGSize(width: 375*Screen.s, height: 812*Screen.s)
+//				windowScene.sizeRestrictions?.minimumSize = size
+//				windowScene.sizeRestrictions?.maximumSize = size
+//			}
 		}
 
 		bootPond.start()

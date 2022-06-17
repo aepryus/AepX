@@ -133,6 +133,7 @@ class LaunchExpansion: UIView {
 
 		scrollView.isPagingEnabled = true
 		scrollView.showsHorizontalScrollIndicator = false
+		if Screen.mac { scrollView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		addSubview(scrollView)
 		scrollView.delegate = paraView
 
@@ -150,18 +151,18 @@ class LaunchExpansion: UIView {
 		page2.left(dx: width, width: width, height: scrollView.height)
 
 		if let image = imageView.image {
-			let maxHeight: CGFloat = height*0.7
+			let maxHeight: CGFloat = height - 81*s
 			let height: CGFloat = maxHeight*launch.rocket.height
 			imageView.bottomLeft(dx: 20*s, dy: -12*s, width: image.size.width*height/image.size.height, height: height)
 		}
 		timeValue.topLeft(dx: imageView.right, width: 200*s, height: 30*s)
 		crewValue.topLeft(dx: 75*s, dy: 110*s, width: 200*s, height: 30*s)
-		core1View.topLeft(dx: imageView.right+12*s, dy: 120*s, width: 200*s, height: 30*s)
-		core2View.topLeft(dx: core1View.left, dy: core1View.bottom, width: 200*s, height: 30*s)
-		core3View.topLeft(dx: core1View.left, dy: core2View.bottom, width: 200*s, height: 30*s)
+		core3View.bottomLeft(dx: imageView.right+12*s, dy: -16*s, width: 200*s, height: 30*s)
+		core1View.topLeft(dx: core3View.left, dy: core3View.top-60*s, width: 200*s, height: 30*s)
+		core2View.topLeft(dx: core3View.left, dy: core1View.bottom, width: 200*s, height: 30*s)
 		wikipedia.bottomRight(dx: -12*s, dy: -12*s, width: 103*s/2, height: 94*s/2)
 
-		youTubeFrame.center(width: (320+2*12)*s, height: (180+2*12)*s)
-		youTubeView.center(width: 320*s, height: 180*s)
+		youTubeFrame.center(width: (320*AepX.widthScale+2*12)*s, height: (180*AepX.widthScale+2*12)*s)
+		youTubeView.center(width: 320*s * AepX.widthScale, height: 180*s * AepX.widthScale)
 	}
 }

@@ -29,15 +29,13 @@ class CreditsFace: Face {
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
-	var faceScale: CGFloat { AepX.window.width/(375*s) }
-
-	var pen18: Pen { Pen(font: .axCopper(size: 18*s * faceScale), color: .red.tone(0.3).shade(0.5), alignment: .center) }
-	var pen24: Pen { pen18.clone(font: .axCopper(size: 24*s * faceScale)) }
-	var pen36: Pen { pen18.clone(font: .axCopper(size: 36*s * faceScale)) }
-	var pen48: Pen { pen18.clone(font: .axCopper(size: 48*s * faceScale)) }
+	var pen18: Pen { Pen(font: .axCopper(size: 18*s * AepX.widthScale), color: .red.tone(0.3).shade(0.5), alignment: .center) }
+	var pen24: Pen { pen18.clone(font: .axCopper(size: 24*s * AepX.widthScale)) }
+	var pen36: Pen { pen18.clone(font: .axCopper(size: 36*s * AepX.widthScale)) }
+	var pen48: Pen { pen18.clone(font: .axCopper(size: 48*s * AepX.widthScale)) }
 
 	func renderCredits() {
-		creditRoll[0].label.attributedText = "AepX".attributed(pen: pen48).append("\nv1.0", pen: pen24)
+		creditRoll[0].label.attributedText = "AepX".attributed(pen: pen48).append("\nv\(AepX.version)", pen: pen24)
 		creditRoll[1].label.attributedText = "by\n".attributed(pen: pen24).append("Aepryus", pen: pen36).append("\nSoftware", pen: pen24)
 		creditRoll[2].label.attributedText = "written using\n".attributed(pen: pen18).append("Acheron\n", pen: pen36).append("Aepryus'\niOS toolkit", pen: pen18)
 		creditRoll[3].label.attributedText = "both\n".attributed(pen: pen18).append("AepX and Acheron's\n", pen: pen24).append("source code are\navailable at ", pen: pen18).append("github", pen: pen24)
@@ -80,11 +78,11 @@ class CreditsFace: Face {
 	}
 
 // Face ============================================================================================
-	override var faceHeight: CGFloat { 150*s * faceScale }
+	override var faceHeight: CGFloat { 150*s * AepX.widthScale }
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
 		imageView.frame = bounds
-		creditRoll.forEach { $0.center(dx: -28*s * faceScale, width: width, height: height) }
+		creditRoll.forEach { $0.center(dx: -28*s * AepX.widthScale, width: width, height: height) }
 	}
 }
