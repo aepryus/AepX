@@ -13,6 +13,9 @@
 		D80BC330282A6EBD0048C74F /* ParaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BC32F282A6EBD0048C74F /* ParaView.swift */; };
 		D80BC332282D378C0048C74F /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BC331282D378B0048C74F /* CountDownView.swift */; };
 		D81490CF284D8BF70031A1FB /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81490CE284D8BF70031A1FB /* ResultView.swift */; };
+		D84B5681285DA1D9008EAB34 /* Booster.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B5680285DA1D9008EAB34 /* Booster.swift */; };
+		D84B5683285DA1E2008EAB34 /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B5682285DA1E2008EAB34 /* Rocket.swift */; };
+		D84B5685285DAABF008EAB34 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B5684285DAABF008EAB34 /* Result.swift */; };
 		D84E2D5C2851CD190063823A /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84E2D5B2851CD190063823A /* DoneButton.swift */; };
 		D8551FFF28226D3B00A8D5E8 /* LaunchExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8551FFE28226D3B00A8D5E8 /* LaunchExpansion.swift */; };
 		D85520012823CE1200A8D5E8 /* RocketDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520002823CE1200A8D5E8 /* RocketDetail.swift */; };
@@ -64,6 +67,9 @@
 		D80BC331282D378B0048C74F /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 		D811DAE3283E253F00204205 /* AepX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AepX.entitlements; sourceTree = "<group>"; };
 		D81490CE284D8BF70031A1FB /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		D84B5680285DA1D9008EAB34 /* Booster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booster.swift; sourceTree = "<group>"; };
+		D84B5682285DA1E2008EAB34 /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
+		D84B5684285DAABF008EAB34 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		D84E2D5B2851CD190063823A /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
 		D8551FFE28226D3B00A8D5E8 /* LaunchExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchExpansion.swift; sourceTree = "<group>"; };
 		D85520002823CE1200A8D5E8 /* RocketDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketDetail.swift; sourceTree = "<group>"; };
@@ -128,6 +134,16 @@
 				D8EE37902838F01A007EAD22 /* RollView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D84B567F285DA1CC008EAB34 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				D84B5680285DA1D9008EAB34 /* Booster.swift */,
+				D84B5684285DAABF008EAB34 /* Result.swift */,
+				D84B5682285DA1E2008EAB34 /* Rocket.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		D8691738281BA13600D550F2 /* Network */ = {
@@ -283,6 +299,7 @@
 		D8DE1CD2281B9D5F00F8EABE /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				D84B567F285DA1CC008EAB34 /* Enums */,
 				D869174D281BECA600D550F2 /* Core.swift */,
 				D8691754281C316900D550F2 /* Launch.swift */,
 				D80BC30F2828B8190048C74F /* LaunchCore.swift */,
@@ -413,6 +430,7 @@
 				D8691771281EA06600D550F2 /* LaunchesController.swift in Sources */,
 				D85520012823CE1200A8D5E8 /* RocketDetail.swift in Sources */,
 				D80BC3122828FED70048C74F /* PatchesView.swift in Sources */,
+				D84B5683285DA1E2008EAB34 /* Rocket.swift in Sources */,
 				D869173A281BA14D00D550F2 /* SpaceX.swift in Sources */,
 				D8691753281C289000D550F2 /* RocketCell.swift in Sources */,
 				D8C1FB33284449A0001B678C /* LaunchesFooterCell.swift in Sources */,
@@ -421,8 +439,10 @@
 				D8691773281EA07200D550F2 /* RocketController.swift in Sources */,
 				D8DE1CBA281B9CA700F8EABE /* AepXDelegate.swift in Sources */,
 				D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */,
+				D84B5681285DA1D9008EAB34 /* Booster.swift in Sources */,
 				D869175E281E323C00D550F2 /* Card.swift in Sources */,
 				D869175A281E129000D550F2 /* HomeViewController.swift in Sources */,
+				D84B5685285DAABF008EAB34 /* Result.swift in Sources */,
 				D8EE3795283B5262007EAD22 /* AexelsFace.swift in Sources */,
 				D801A3892844A2DE0074DD3F /* UIFont+AepX.swift in Sources */,
 				D869176B281E4BA400D550F2 /* RocketViewController.swift in Sources */,

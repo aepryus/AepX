@@ -43,7 +43,7 @@ class BoosterView: UIView {
 	func load(controller: HomeController, launchCore: LaunchCore) {
 		self.controller = controller
 		self.launchCore = launchCore
-		resultView.result = launchCore.result.toLaunchResult
+		resultView.result = launchCore.result
 		let core: Core = Loom.selectBy(only: launchCore.apiid)!
 		label.text = core.serial
 		patchesView.load(core: core)

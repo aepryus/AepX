@@ -93,17 +93,28 @@ extension LaunchAPI {
 		launch.wikipedia = links?.wikipedia
 		launch.completed = success != nil
 		launch.successful = success ?? false
-		launch.cores = cores.compactMap {
+
+		launch.launchCores = cores.compactMap {
 			guard let appid = $0.core else { return nil }
 			let launchCore: LaunchCore = LaunchCore()
 			launchCore.apiid = appid
-			launchCore.pending = !launch.completed
-			launchCore.destroyed = launch.completed && !launch.successful
-			if $0.landingType != "Ocean" {
-				launchCore.landingAttempt = $0.landingAttempt ?? false
-				launchCore.landingSuccess = $0.landingSuccess ?? false
-			}
+
+			if !launch.completed { launchCore.result = .planned }
+			else if !launch.successful { launchCore.result = .failed }
+			else if $0.landingType != "Ocean" && ($0.landingAttempt ?? false) {
+				if $0.landingSuccess ?? false { launchCore.result = .landed }
+				else { launchCore.result = .lost }
+			} else { launchCore.result = .expended }
+
 			return launchCore
 		}
+
+		if !launch.completed { launch.result = .planned }
+		else if !launch.successful { launch.result = .failed }
+		else if launch.hasLostCores && launch.hasLandedCores { launch.result = .partial }
+		else if launch.hasLostCores { launch.result = .lost }
+		else if launch.hasLandedCores { launch.result = .landed }
+		else { launch.result = .expended }
+
 	}
 }

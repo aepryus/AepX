@@ -64,7 +64,7 @@ class LaunchFace: Face {
 
 		if launch.hasCores {
 			boosterViews.forEach { $0.removeFromSuperview() }
-			boosterViews = launch.cores.compactMap {
+			boosterViews = launch.launchCores.compactMap {
 				let boosterView: BoosterView = BoosterView()
 				boosterView.load(controller: controller, launchCore: $0)
 				addSubview(boosterView)
@@ -79,7 +79,7 @@ class LaunchFace: Face {
 		let p: CGFloat = 12*s
 		if let launch = launch {
 			if launch.hasVideo { height += 180*s * AepX.widthScale + p }
-			if launch.hasCores { height += 30*s*CGFloat(launch.cores.count) + p }
+			if launch.hasCores { height += 30*s*CGFloat(launch.launchCores.count) + p }
 			if launch.date >= Date.now { height += 43*s + p }
 			height += 6*s
 		}

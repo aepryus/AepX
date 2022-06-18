@@ -10,48 +10,16 @@ import Acheron
 import UIKit
 
 class LaunchCore: Domain {
-	enum Result {
-		case pending, destroyed, expended, landed, lost
-
-		var color: UIColor {
-			let tonePercent: CGFloat = 0.6
-			switch self {
-				case .pending:		return .white.tone(tonePercent)
-				case .destroyed:	return .red.tone(tonePercent)
-				case .landed:		return .blue.tone(tonePercent)
-				case .lost:			return .orange.tone(tonePercent)
-				case .expended:		return .cyan.tone(tonePercent)
-			}
-		}
-
-		var toLaunchResult: Launch.Result {
-			switch self {
-				case .pending:	return .planned
-				case .destroyed:return .failure
-				case .expended:	return .successExpended
-				case .landed:	return .successLanded
-				case .lost:		return .successLost
-			}
-		}
-	}
-
 	@objc dynamic var apiid: String = ""
-	@objc dynamic var pending: Bool = false
-	@objc dynamic var destroyed: Bool = false
-	@objc dynamic var landingAttempt: Bool = false
-	@objc dynamic var landingSuccess: Bool = false
+	@objc dynamic var resultString: String = ""
 
 	var result: Result {
-		if pending { return .pending }
-		else if destroyed { return .destroyed }
-		else if landingAttempt {
-			if landingSuccess { return .landed }
-			else { return .lost }
-		} else { return .expended }
+		set { resultString = newValue.toString() }
+		get { Result.from(string: resultString) ?? .planned }
 	}
 
 // Domain ==========================================================================================
 	override var properties: [String] {
-		super.properties + ["apiid", "pending", "destroyed", "landingAttempt", "landingSuccess"]
+		super.properties + ["apiid", "resultString"]
 	}
 }

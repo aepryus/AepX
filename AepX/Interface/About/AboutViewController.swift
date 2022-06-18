@@ -40,7 +40,7 @@ class AboutViewController: UIViewController {
 		colorView.layer.borderColor = UIColor.white.cgColor
 		colorView.layer.borderWidth = 1*s
 		colorView.center(width: 30*s, height: 30*s)
-		colorView.backgroundColor = Launch.Result.successLanded.color
+		colorView.backgroundColor = Result.landed.color
 
 		let text: NSMutableAttributedString = NSMutableAttributedString()
 
@@ -50,19 +50,19 @@ class AboutViewController: UIViewController {
 		text.append(image: colorView.asImage()).append("  - landed", pen: imagePen)
 		text.append("\nThe primary mission succeeded with the booster(s) landing successfully.\n\n", pen: pen)
 
-		colorView.backgroundColor = Launch.Result.successPartial.color
+		colorView.backgroundColor = Result.partial.color
 		text.append(image: colorView.asImage()).append("  - partial", pen: imagePen)
 		text.append("\nThe primary mission succeeded with some boosters landing and others being lost.\n\n", pen: pen)
 
-		colorView.backgroundColor = Launch.Result.successLost.color
+		colorView.backgroundColor = Result.lost.color
 		text.append(image: colorView.asImage()).append("  - lost", pen: imagePen)
 		text.append("\nThe primary mission succeeded however the landing attempt failed.\n\n", pen: pen)
 
-		colorView.backgroundColor = Launch.Result.successExpended.color
+		colorView.backgroundColor = Result.expended.color
 		text.append(image: colorView.asImage()).append("  - expended", pen: imagePen)
 		text.append("\nThe primary mission succeeded however no landing attempt was made; the booster being expended.\n\n", pen: pen)
 
-		colorView.backgroundColor = Launch.Result.failure.color
+		colorView.backgroundColor = Result.failed.color
 		text.append(image: colorView.asImage()).append("  - destroyed", pen: imagePen)
 		text.append("\nThe primary mission failed and the booster was destroyed.\n", pen: pen)
 

@@ -10,7 +10,7 @@ import Acheron
 import UIKit
 
 fileprivate class LaunchCoreResultView: UIView {
-	var result: LaunchCore.Result? = nil {
+	var result: Result? = nil {
 		didSet {
 			backgroundColor = result?.color
 		}
@@ -93,15 +93,15 @@ class LaunchExpansion: UIView {
 		imageView.image = launch.rocket.image
 		page1.addSubview(imageView)
 
-		if launch.cores.count == 1 {
-			core3View.launchCore = launch.cores[0]
+		if launch.launchCores.count == 1 {
+			core3View.launchCore = launch.launchCores[0]
 			page1.addSubview(core3View)
-		} else if launch.cores.count == 3 {
-			core1View.launchCore = launch.cores[0]
+		} else if launch.launchCores.count == 3 {
+			core1View.launchCore = launch.launchCores[0]
 			page1.addSubview(core1View)
-			core2View.launchCore = launch.cores[1]
+			core2View.launchCore = launch.launchCores[1]
 			page1.addSubview(core2View)
-			core3View.launchCore = launch.cores[2]
+			core3View.launchCore = launch.launchCores[2]
 			page1.addSubview(core3View)
 		}
 
@@ -123,6 +123,7 @@ class LaunchExpansion: UIView {
 
 		scrollView.isPagingEnabled = true
 		scrollView.showsHorizontalScrollIndicator = false
+		scrollView.alwaysBounceHorizontal = true
 		if Screen.mac { scrollView.perform(NSSelectorFromString("_setSupportsPointerDragScrolling:"), with: true) }
 		addSubview(scrollView)
 		scrollView.delegate = paraView
@@ -136,7 +137,7 @@ class LaunchExpansion: UIView {
 	override func layoutSubviews() {
 		paraView.top(dy: 12*s, width: width*0.9, height: 32*s)
 		scrollView.frame = CGRect(x: 0, y: paraView.bottom, width: width, height: height-paraView.bottom)
-		scrollView.contentSize = CGSize(width: width*2, height: scrollView.height)
+		scrollView.contentSize = CGSize(width: width*(launch.youtubeID != nil ? 2 : 1), height: scrollView.height)
 		page1.left(width: width, height: scrollView.height)
 		page2.left(dx: width, width: width, height: scrollView.height)
 
