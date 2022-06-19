@@ -137,6 +137,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
 		shield.frame = view.bounds
+		if filter.superview != nil { filter.bottom(width: self.view.width, height: RocketsViewController.filterHeight) }
 	}
 
 // UITableViewDataSource ===========================================================================

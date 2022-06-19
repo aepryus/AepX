@@ -147,6 +147,8 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
 		shield.frame = view.bounds
+		tableView.reloadData()
+		if filter.superview != nil { filter.bottom(width: self.view.width, height: LaunchesViewController.filterHeight) }
 	}
 
 // ExpandableTableViewDelegate =====================================================================

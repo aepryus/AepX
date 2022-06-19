@@ -51,6 +51,11 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 		super.viewDidAppear(animated)
 		controller.load(apiid: core.apiid)
 	}
+	override func viewWillLayoutSubviews() {
+		backView.frame = view.bounds
+		tableView.frame = view.bounds
+		tableView.reloadData()
+	}
 
 // ExpandableTableViewDelegate =====================================================================
 	func expandableTableView(_ tableView: ExpandableTableView, baseHeightForRowAt indexPath: IndexPath) -> CGFloat {
