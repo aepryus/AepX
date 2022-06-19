@@ -61,7 +61,5 @@ class YouTubeView: UIView, YTPlayerViewDelegate {
 	}
 
 	func playerViewPreferredWebViewBackgroundColor(_ playerView: YTPlayerView) -> UIColor { preferredColor }
-	func playerViewPreferredInitialLoading(_ playerView: YTPlayerView) -> UIView? {
-		return ColorView(preferredColor)
-	}
+	func playerViewPreferredInitialLoading(_ playerView: YTPlayerView) -> UIView? { ColorView(preferredColor) }
 }

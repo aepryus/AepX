@@ -86,9 +86,7 @@ class LaunchesFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	}
 
 // UIPickerViewDataSource ==========================================================================
-	func numberOfComponents(in pickerView: UIPickerView) -> Int {
-		return 1
-	}
+	func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		switch pickerView {
 			case rocketsView: return rockets.count

@@ -48,7 +48,6 @@ fileprivate class LaunchCoreView: UIView {
 
 	init() {
 		super.init(frame: .zero)
-
 		addSubview(resultView)
 		addSubview(label)
 	}

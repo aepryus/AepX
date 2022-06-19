@@ -9,7 +9,6 @@
 import Acheron
 import UIKit
 
-
 class PatchesView: UIView {
 	let size: CGFloat
 	private var core: Core? = nil

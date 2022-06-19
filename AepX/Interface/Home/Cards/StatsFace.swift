@@ -120,8 +120,8 @@ class StatsFace: Face {
 
 // UIView ==========================================================================================
 	override func layoutSubviews() {
-		let cw: CGFloat = 72*s				// column width
-		let dx: CGFloat = (width - 355*s) / 2
+		let cw: CGFloat = 72*s					// column width
+		let dx: CGFloat = (width - 355*s) / 2	// starting x position
 
 		successLabel.topLeft(dx: dx + 100*s, dy: 6*s, width: cw, height: 30*s)
 		failureLabel.topLeft(dx: successLabel.right, dy: successLabel.top, width: cw, height: 30*s)

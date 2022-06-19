@@ -9,12 +9,6 @@
 import Acheron
 import UIKit
 
-extension UIView {
-	func asImage() -> UIImage {
-		return UIGraphicsImageRenderer(bounds: bounds).image { layer.render(in: $0.cgContext) }
-	}
-}
-
 class AboutViewController: UIViewController {
 	let backView: UIImageView = UIImageView(image: UIImage(named: "Starship"))
 	let scrollView: UIScrollView = UIScrollView()
@@ -35,12 +29,11 @@ class AboutViewController: UIViewController {
 		let headerPen: Pen = pen.clone(font: .axBold(size: 19*s))
 		let imagePen: Pen = Pen(font: .axMedium(size: 18*s), color: .white, baselineOffset: 10*s)
 
-		let colorView: UIView = UIView()
+		let colorView: ColorView = ColorView(Result.landed.color)
 		colorView.layer.cornerRadius = 5*s
 		colorView.layer.borderColor = UIColor.white.cgColor
 		colorView.layer.borderWidth = 1*s
 		colorView.center(width: 30*s, height: 30*s)
-		colorView.backgroundColor = Result.landed.color
 
 		let text: NSMutableAttributedString = NSMutableAttributedString()
 
