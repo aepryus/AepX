@@ -77,8 +77,8 @@ class BoosterView: UIView {
 		label.sizeToFit()
 		label.left(dx: resultView.right+7*s)
 		if !leftJustified {
-			patchesView.right(dx: -9*s, width: patchesView.patchesWidth, height: 30*s)
 			patchesContainer.frame = bounds
+			patchesView.right(dx: -9*s, width: patchesView.patchesWidth, height: 30*s)
 		} else {
 			patchesContainer.left(dx: label.right+8*s, width: width-(label.right+8*s), height: 30*s)
 			patchesView.frame = patchesContainer.bounds

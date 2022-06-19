@@ -176,8 +176,10 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		}
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionForRowAt indexPath: IndexPath) -> UIView {
-		if indexPath.section == 2 { fatalError() }
-		return LaunchExpansion(delegate: controller, launch: indexPath.section == 0 ? planned[indexPath.row] : completed[indexPath.row])
+		let expansion: LaunchExpansion = tableView.dequeueExpansionView() as? LaunchExpansion
+				?? LaunchExpansion(delegate: controller)
+		expansion.load(launch: indexPath.section == 0 ? planned[indexPath.row] : completed[indexPath.row])
+		return expansion
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, viewForHeaderInSection section: Int) -> UIView? {
 		switch section {

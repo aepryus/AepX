@@ -76,6 +76,8 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 		return cell
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionForRowAt indexPath: IndexPath) -> UIView {
-		return LaunchExpansion(launch: core.launches[indexPath.row-1])
+		let expansion: LaunchExpansion = tableView.dequeueExpansionView() as? LaunchExpansion ?? LaunchExpansion()
+		expansion.load(launch: core.launches[indexPath.row-1])
+		return expansion
 	}
 }
