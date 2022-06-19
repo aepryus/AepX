@@ -59,7 +59,6 @@ class Core: Anchor {
 
 	var state: String {
 		if disposition == "active" { return "active" }
-		else if disposition == "retired" { return "retired" }
 
 		guard let lastLaunch: Launch = lastLaunch,
 			  let launchCore: LaunchCore = lastLaunch.launchCores.first(where: { $0.apiid == self.apiid })
@@ -69,8 +68,12 @@ class Core: Anchor {
 			case .expended:	return "expended"
 			case .lost:		return "lost"
 			case .failed:	return "destroyed"
-			default:		return "oops"
+			default:		break
 		}
+
+		if disposition == "retired" { return "retired" }
+
+		return "oops"
 	}
 
 // Domain ==========================================================================================
