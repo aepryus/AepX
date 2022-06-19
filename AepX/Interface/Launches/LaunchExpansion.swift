@@ -9,66 +9,16 @@
 import Acheron
 import UIKit
 
-fileprivate class LaunchCoreResultView: UIView {
-	var result: Result? = nil {
-		didSet {
-			backgroundColor = result?.color
-		}
-	}
-
-	init() {
-		super.init(frame: .zero)
-		layer.borderColor = UIColor.black.cgColor
-	}
-	required init?(coder: NSCoder) { fatalError() }
-
-// UIView ==========================================================================================
-	override func layoutSubviews() {
-		let size: CGFloat = min(width, height)
-		layer.cornerRadius = size/2
-		layer.borderWidth = size/20
-	}
-}
-
-fileprivate class LaunchCoreView: UIView {
-	let label: UILabel = UILabel()
-	let resultView: LaunchCoreResultView = LaunchCoreResultView()
-
-	let serialPen = Pen(font: .axMedium(size: 19*Screen.s), color: .white)
-	let statePen = Pen(font: .axMedium(size: 15*Screen.s), color: .white)
-
-	var launchCore: LaunchCore? = nil {
-		didSet {
-			guard let launchCore = launchCore else { return }
-			let core: Core = Loom.selectBy(only: launchCore.apiid)!
-			label.attributedText = core.serial.attributed(pen: serialPen).append(" - \(launchCore.result)", pen: statePen)
-			resultView.result = launchCore.result
-		}
-	}
-
-	init() {
-		super.init(frame: .zero)
-		addSubview(resultView)
-		addSubview(label)
-	}
-	required init?(coder: NSCoder) { fatalError() }
-
-// UIView ==========================================================================================
-	override func layoutSubviews() {
-		resultView.left(width: 20*s, height: 20*s)
-		label.left(dx: resultView.right+7*s, width: 200*s, height: 30*s)
-	}
-}
-
 class LaunchExpansion: UIView {
+	weak var delegate: BoosterViewDelegate?
 	let launch: Launch
 
 	let scrollView: UIScrollView = UIScrollView()
 	let paraView: ParaView
 	let imageView: UIImageView = UIImageView()
-	private let core1View: LaunchCoreView = LaunchCoreView()
-	private let core2View: LaunchCoreView = LaunchCoreView()
-	private let core3View: LaunchCoreView = LaunchCoreView()
+	let core1View: BoosterView = BoosterView(leftJustified: true)
+	let core2View: BoosterView = BoosterView(leftJustified: true)
+	let core3View: BoosterView = BoosterView(leftJustified: true)
 	let wikipedia: LinkView = LinkView()
 	let page1: UIView = UIView()
 	let page2: UIView = UIView()
@@ -76,7 +26,8 @@ class LaunchExpansion: UIView {
 	let youTubeView: YouTubeView = YouTubeView()
 	let youTubeFrame: UIView = UIView()
 
-	init(launch: Launch) {
+	init(delegate: BoosterViewDelegate? = nil, launch: Launch) {
+		self.delegate = delegate
 		self.launch = launch
 
 		if launch.youtubeID != nil { paraView = ParaView(names: ["Info", "Video"]) }
@@ -93,14 +44,14 @@ class LaunchExpansion: UIView {
 		page1.addSubview(imageView)
 
 		if launch.launchCores.count == 1 {
-			core3View.launchCore = launch.launchCores[0]
+			core3View.load(delegate: delegate, launchCore: launch.launchCores[0])
 			page1.addSubview(core3View)
 		} else if launch.launchCores.count == 3 {
-			core1View.launchCore = launch.launchCores[0]
+			core1View.load(delegate: delegate, launchCore: launch.launchCores[0])
 			page1.addSubview(core1View)
-			core2View.launchCore = launch.launchCores[1]
+			core2View.load(delegate: delegate, launchCore: launch.launchCores[1])
 			page1.addSubview(core2View)
-			core3View.launchCore = launch.launchCores[2]
+			core3View.load(delegate: delegate, launchCore: launch.launchCores[2])
 			page1.addSubview(core3View)
 		}
 
@@ -139,16 +90,20 @@ class LaunchExpansion: UIView {
 		scrollView.contentSize = CGSize(width: width*(launch.youtubeID != nil ? 2 : 1), height: scrollView.height)
 		page1.left(width: width, height: scrollView.height)
 		page2.left(dx: width, width: width, height: scrollView.height)
+		wikipedia.bottomRight(dx: -12*s, dy: -12*s, width: 103*s/2, height: 94*s/2)
 
 		if let image = imageView.image {
 			let maxHeight: CGFloat = height - 81*s
 			let height: CGFloat = maxHeight*launch.rocket.height
 			imageView.bottomLeft(dx: 20*s, dy: -12*s, width: image.size.width*height/image.size.height, height: height)
 		}
-		core3View.bottomLeft(dx: imageView.right+12*s, dy: -16*s, width: 200*s, height: 30*s)
-		core1View.topLeft(dx: core3View.left, dy: core3View.top-60*s, width: 200*s, height: 30*s)
-		core2View.topLeft(dx: core3View.left, dy: core1View.bottom, width: 200*s, height: 30*s)
-		wikipedia.bottomRight(dx: -12*s, dy: -12*s, width: 103*s/2, height: 94*s/2)
+
+		let boosterDX: CGFloat = imageView.right+12*s
+		let boosterWidth: CGFloat = width - wikipedia.width - 12*s - boosterDX
+
+		core3View.bottomLeft(dx: boosterDX, dy: -16*s, width: boosterWidth, height: 30*s)
+		core1View.topLeft(dx: core3View.left, dy: core3View.top-60*s, width: boosterWidth, height: 30*s)
+		core2View.topLeft(dx: core3View.left, dy: core1View.bottom, width: boosterWidth, height: 30*s)
 
 		youTubeFrame.center(width: (320*AepX.widthScale+2*12)*s, height: (180*AepX.widthScale+2*12)*s)
 		youTubeView.center(width: 320*s * AepX.widthScale, height: 180*s * AepX.widthScale)

@@ -129,7 +129,6 @@
 		D80BC333282D37950048C74F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D8EAAF3028553F3E001AF7E7 /* BoosterView.swift */,
 				D80BC331282D378B0048C74F /* CountDownView.swift */,
 				D8EE37902838F01A007EAD22 /* RollView.swift */,
 			);
@@ -318,10 +317,11 @@
 		D8EE378B2833C2A5007EAD22 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D8EE378C2833C2BF007EAD22 /* LinkView.swift */,
-				D81490CE284D8BF70031A1FB /* ResultView.swift */,
-				D80BC3112828FED70048C74F /* PatchesView.swift */,
+				D8EAAF3028553F3E001AF7E7 /* BoosterView.swift */,
 				D84E2D5B2851CD190063823A /* DoneButton.swift */,
+				D8EE378C2833C2BF007EAD22 /* LinkView.swift */,
+				D80BC3112828FED70048C74F /* PatchesView.swift */,
+				D81490CE284D8BF70031A1FB /* ResultView.swift */,
 				D8EAAF2C28532DF7001AF7E7 /* YouTubeView.swift */,
 			);
 			path = Shared;

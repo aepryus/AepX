@@ -121,6 +121,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 
 		navigationController?.navigationBar.tintColor = .white
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: controller, action: #selector(LaunchesController.onFilterTapped))
+		navigationItem.backButtonDisplayMode = .minimal
 
 		backView.image = UIImage(named: "Starship")
 		view.addSubview(backView)
@@ -174,7 +175,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, expansionForRowAt indexPath: IndexPath) -> UIView {
 		if indexPath.section == 2 { fatalError() }
-		return LaunchExpansion(launch: indexPath.section == 0 ? planned[indexPath.row] : completed[indexPath.row])
+		return LaunchExpansion(delegate: controller, launch: indexPath.section == 0 ? planned[indexPath.row] : completed[indexPath.row])
 	}
 	func expandableTableView(_ tableView: ExpandableTableView, viewForHeaderInSection section: Int) -> UIView? {
 		switch section {

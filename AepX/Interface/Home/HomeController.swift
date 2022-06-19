@@ -9,13 +9,14 @@
 import Acheron
 import Foundation
 
-class HomeController {
+class HomeController: BoosterViewDelegate {
 	let vc: HomeViewController
 
 	init(vc: HomeViewController) {
 		self.vc = vc
 	}
 
+// BoosterViewDelegate =============================================================================
 	func onBoosterTapped(core: Core) {
 		let rvc = RocketViewController(core: core)
 		vc.navigationController?.pushViewController(rvc, animated: true)

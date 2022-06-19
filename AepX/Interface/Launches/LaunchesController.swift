@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LaunchesController {
+class LaunchesController: BoosterViewDelegate {
 	let vc: LaunchesViewController
 
 	init(vc: LaunchesViewController) {
@@ -19,5 +19,11 @@ class LaunchesController {
 // Events ==========================================================================================
 	@objc func onFilterTapped() {
 		vc.toggleFilter()
+	}
+
+// BoosterViewDelegate =============================================================================
+	func onBoosterTapped(core: Core) {
+		let rvc = RocketViewController(core: core)
+		vc.navigationController?.pushViewController(rvc, animated: true)
 	}
 }

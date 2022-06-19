@@ -11,6 +11,7 @@ import UIKit
 
 class PatchesView: UIView {
 	let size: CGFloat
+	let leftJustified: Bool
 	private var core: Core? = nil
 	fileprivate var patches: [PatchInfo] = []
 	fileprivate var patchesViews: [PatchView] = []
@@ -50,8 +51,9 @@ class PatchesView: UIView {
 		}
 	}
 
-	init(size: CGFloat) {
+	init(size: CGFloat, leftJustified: Bool = false) {
 		self.size = size
+		self.leftJustified = leftJustified
 		super.init(frame: .zero)
 	}
 	required init?(coder: NSCoder) { fatalError() }
@@ -75,8 +77,13 @@ class PatchesView: UIView {
 			patchesIndex[patch]!.count = patchesIndex[patch]!.count + 1
 		}
 		patches = patchesIndex.values.sorted { (a: PatchInfo, b: PatchInfo) in
-			if a.count != b.count { return a.count < b.count }
-			return a.date < b.date
+			if !leftJustified {
+				if a.count != b.count { return a.count < b.count }
+				return a.date < b.date
+			} else {
+				if a.count != b.count { return a.count > b.count }
+				return a.date > b.date
+			}
 		}
 
 		subviews.forEach { $0.removeFromSuperview() }

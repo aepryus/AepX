@@ -66,7 +66,7 @@ class LaunchFace: Face {
 			boosterViews.forEach { $0.removeFromSuperview() }
 			boosterViews = launch.launchCores.compactMap {
 				let boosterView: BoosterView = BoosterView()
-				boosterView.load(controller: controller, launchCore: $0)
+				boosterView.load(delegate: controller, launchCore: $0)
 				addSubview(boosterView)
 				return boosterView
 			}
