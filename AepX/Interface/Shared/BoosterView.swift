@@ -45,7 +45,7 @@ class BoosterView: UIView {
 			gradient.locations = [0, 0.3, 0.5, 1]
 		} else {
 			gradient.colors = [UIColor.white.cgColor, UIColor.white.cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor]
-			gradient.locations = [0, 0.5, 0.8, 1]
+			gradient.locations = [0, 0.85, 0.96, 1]
 		}
 		patchesContainer.layer.mask = gradient
 		addSubview(patchesContainer)
@@ -61,6 +61,7 @@ class BoosterView: UIView {
 		let core: Core = Loom.selectBy(only: launchCore.apiid)!
 		label.text = core.serial
 		patchesView.load(core: core)
+        setNeedsLayout()
 	}
 
 // Events ==========================================================================================
@@ -80,7 +81,7 @@ class BoosterView: UIView {
 			patchesContainer.frame = bounds
 			patchesView.right(dx: -9*s, width: patchesView.patchesWidth, height: 30*s)
 		} else {
-			patchesContainer.left(dx: label.right+8*s, width: width-(label.right+8*s), height: 30*s)
+			patchesContainer.left(dx: label.right+6*s, width: width-(label.right+8*s), height: 30*s)
 			patchesView.frame = patchesContainer.bounds
 		}
 		gradient.frame = patchesContainer.bounds

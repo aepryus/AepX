@@ -73,6 +73,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 	}
 	func dismissFilter() {
 		UIView.animate(withDuration: 0.2) {
+            self.tableView.collapseSilent()
 			self.filter.bottom(dy: LaunchesViewController.filterHeight, width: self.view.width, height: LaunchesViewController.filterHeight)
 			self.shield.alpha = 0
 			self.loadData()

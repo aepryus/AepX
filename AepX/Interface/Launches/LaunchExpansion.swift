@@ -53,6 +53,8 @@ class LaunchExpansion: UIView {
 
 	func load(launch: Launch) {
 		self.launch = launch
+        
+        paraView.snapTo(pageNo: 0)
 
 		imageView.image = launch.rocket.image
 
@@ -108,7 +110,7 @@ class LaunchExpansion: UIView {
 		}
 
 		let boosterDX: CGFloat = imageView.right+12*s
-		let boosterWidth: CGFloat = width - wikipedia.width - 12*s - boosterDX
+        let boosterWidth: CGFloat = width - (wikipedia.superview != nil ? wikipedia.width + 8*s : 0) - 8*s - boosterDX
 
 		core3View.bottomLeft(dx: boosterDX, dy: -16*s, width: boosterWidth, height: 30*s)
 		core1View.topLeft(dx: core3View.left, dy: core3View.top-60*s, width: boosterWidth, height: 30*s)
