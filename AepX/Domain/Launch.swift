@@ -79,12 +79,12 @@ class Launch: Anchor {
 				if hasLegs { return .falcon9v11 }
 				return .falcon9v11NoLegs
 			}
-			if core.version == "FT" || core.version == "Block 4" {
+			if core.version == "FT" || core.version == "block 4" {
 				if hasCrew { return .falcon9v12Dragon }
 				if hasLegs { return .falcon9v12 }
 				return .falcon9v12NoLegs
 			}
-			if core.version == "Block 5" {
+			if core.version == "block 5" {
 				if hasCrew { return .falcon9b5Dragon }
 				if hasLegs { return .falcon9b5 }
 				return .falcon9b5NoLegs
