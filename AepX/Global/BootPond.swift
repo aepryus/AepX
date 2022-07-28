@@ -11,11 +11,11 @@ import Foundation
 
 class BootPond: Pond {
 	lazy var loadLaunches: Pebble = pebble(name: "loadLaunches") { (complete: @escaping (Bool) -> ()) in
-		SpaceX.launches { (launches: [LaunchAPI]) in
-			launches.forEach { (launchAPI: LaunchAPI) in
+        Calypso.launches { (launches: [Calypso.LaunchQ]) in
+			launches.forEach { (launchAPI: Calypso.LaunchQ) in
 				Loom.transact {
-					var launch: Launch = Loom.selectBy(only: launchAPI.id) ?? Loom.create()
-					launchAPI.load(launch: launch)
+					var launch: Launch = Loom.selectBy(only: launchAPI.apiid) ?? Loom.create()
+                    launch.load(attributes: launchAPI.toJSON().toAttributes())
 				}
 			}
 			complete(true)
@@ -24,11 +24,11 @@ class BootPond: Pond {
 		}
 	}
 	lazy var loadCores: Pebble = pebble(name: "loadCores") { (complete: @escaping (Bool) -> ()) in
-		SpaceX.cores { (cores: [CoreAPI]) in
-			cores.forEach { (coreAPI: CoreAPI) in
+        Calypso.cores { (cores: [Calypso.CoreQ]) in
+			cores.forEach { (coreAPI: Calypso.CoreQ) in
 				Loom.transact {
-					var core: Core = Loom.selectBy(only: coreAPI.id) ?? Loom.create()
-					coreAPI.load(core: core)
+					var core: Core = Loom.selectBy(only: coreAPI.apiid) ?? Loom.create()
+                    core.load(attributes: coreAPI.toJSON().toAttributes())
 				}
 			}
 			complete(true)

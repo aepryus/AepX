@@ -57,6 +57,7 @@
 		D8EE37912838F01A007EAD22 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE37902838F01A007EAD22 /* RollView.swift */; };
 		D8EE3793283B5257007EAD22 /* OoviumFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE3792283B5257007EAD22 /* OoviumFace.swift */; };
 		D8EE3795283B5262007EAD22 /* AexelsFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE3794283B5262007EAD22 /* AexelsFace.swift */; };
+		D8FED61A2881E37E00076589 /* Calypso.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FED6192881E37E00076589 /* Calypso.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 		D8EE37902838F01A007EAD22 /* RollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		D8EE3792283B5257007EAD22 /* OoviumFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumFace.swift; sourceTree = "<group>"; };
 		D8EE3794283B5262007EAD22 /* AexelsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AexelsFace.swift; sourceTree = "<group>"; };
+		D8FED6192881E37E00076589 /* Calypso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calypso.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +150,8 @@
 		D8691738281BA13600D550F2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				D8B3467428277798003C794B /* SpaceXData.swift */,
-				D8691739281BA14D00D550F2 /* SpaceX.swift */,
+				D8FED6182881E36C00076589 /* Calypso */,
+				D8FED6172881E36100076589 /* rSpaceX */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -327,6 +329,23 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		D8FED6172881E36100076589 /* rSpaceX */ = {
+			isa = PBXGroup;
+			children = (
+				D8B3467428277798003C794B /* SpaceXData.swift */,
+				D8691739281BA14D00D550F2 /* SpaceX.swift */,
+			);
+			path = rSpaceX;
+			sourceTree = "<group>";
+		};
+		D8FED6182881E36C00076589 /* Calypso */ = {
+			isa = PBXGroup;
+			children = (
+				D8FED6192881E37E00076589 /* Calypso.swift */,
+			);
+			path = Calypso;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -440,6 +459,7 @@
 				D8DE1CBA281B9CA700F8EABE /* AepXDelegate.swift in Sources */,
 				D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */,
 				D84B5681285DA1D9008EAB34 /* Booster.swift in Sources */,
+				D8FED61A2881E37E00076589 /* Calypso.swift in Sources */,
 				D869175E281E323C00D550F2 /* Card.swift in Sources */,
 				D869175A281E129000D550F2 /* HomeViewController.swift in Sources */,
 				D84B5685285DAABF008EAB34 /* Result.swift in Sources */,
@@ -591,7 +611,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.AepX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -621,7 +641,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.AepX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
