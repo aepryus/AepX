@@ -47,10 +47,9 @@ class Core: Anchor {
 	var name: String { booster.name + version }
 
 	var launches: [Launch] {
-        return []
-//		launchAPIIDs.map { Loom.selectBy(only: $0)! }.sorted { (a: Launch, b: Launch) in
-//			return a.date > b.date
-//		}
+		launchAPIIDs.map { Loom.selectBy(only: $0)! }.sorted { (a: Launch, b: Launch) in
+			return a.date > b.date
+		}
 	}
 	var lastLaunch: Launch? { launches.first }
 	var lastResult: Result {

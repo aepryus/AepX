@@ -39,8 +39,7 @@ class CreditsFace: Face {
 		creditRoll[1].label.attributedText = "by\n".attributed(pen: pen24).append("Aepryus", pen: pen36).append("\nSoftware", pen: pen24)
 		creditRoll[2].label.attributedText = "written using\n".attributed(pen: pen18).append("Acheron\n", pen: pen36).append("Aepryus'\niOS toolkit", pen: pen18)
 		creditRoll[3].label.attributedText = "both\n".attributed(pen: pen18).append("AepX and Acheron's\n", pen: pen24).append("source code are\navailable at ", pen: pen18).append("github", pen: pen24)
-		creditRoll[4].label.attributedText = "Data driven by\nr/spacex's\n".attributed(pen: pen18).append("SpaceX-API", pen: pen24)
-		creditRoll[5].label.attributedText = "Much\nthanks to\n".attributed(pen: pen24).append("E.M.", pen: pen36)
+		creditRoll[4].label.attributedText = "Much\nthanks to\n".attributed(pen: pen24).append("E.M.", pen: pen36)
 	}
 
 	func startRoll() {

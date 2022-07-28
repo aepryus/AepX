@@ -49,7 +49,7 @@ class Calypso {
         var launches: [LaunchQ] = []
     }
     
-    static let url = "http://137.184.116.194:8080"
+    static let url = "http://137.184.116.194:8931"
 
     static let iso8601Formatter1: DateFormatter = {
         let formatter = DateFormatter()
@@ -138,5 +138,46 @@ class Calypso {
         decodableRequest(path: "/launches", method: "GET") { (launches: LaunchesQ) in
             success(launches.launches)
         } failure: { failure() }
+    }
+}
+
+// Loaders =========================================================================================
+extension Calypso.CoreQ {
+    func load(core: Core) {
+        core.apiid = apiid
+        core.serial = serial
+        core.block = block
+        core.coreStatus = coreStatus
+        core.launchAPIIDs = launchAPIIDs
+        core.attempts = attempts
+        core.landings = landings
+        core.disposition = disposition
+        core.note = note
+    }
+}
+
+extension Calypso.LaunchQ {
+    func load(launch: Launch) {
+        launch.apiid = apiid
+        launch.name = name
+        launch.flightNo = flightNo
+        launch.youtubeID = youtubeID
+        launch.webcast = webcast
+        launch.patch = patch
+        launch.noOfCrew = noOfCrew
+        launch.date = date
+        launch.details = details
+        launch.wikipedia = wikipedia
+        launch.completed = completed
+        launch.successful = successful
+        launch.result = Result.from(string: resultString) ?? .failed
+
+        launch.launchCores = launchCores.compactMap {
+            let launchCore: LaunchCore = LaunchCore()
+            launchCore.apiid = $0.apiid
+            launchCore.result = Result.from(string: resultString) ?? .failed
+            return launchCore
+        }
+        
     }
 }

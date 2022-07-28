@@ -15,7 +15,7 @@ class BootPond: Pond {
 			launches.forEach { (launchAPI: Calypso.LaunchQ) in
 				Loom.transact {
 					var launch: Launch = Loom.selectBy(only: launchAPI.apiid) ?? Loom.create()
-                    launch.load(attributes: launchAPI.toJSON().toAttributes())
+                    launchAPI.load(launch: launch)
 				}
 			}
 			complete(true)
@@ -28,7 +28,7 @@ class BootPond: Pond {
 			cores.forEach { (coreAPI: Calypso.CoreQ) in
 				Loom.transact {
 					var core: Core = Loom.selectBy(only: coreAPI.apiid) ?? Loom.create()
-                    core.load(attributes: coreAPI.toJSON().toAttributes())
+                    coreAPI.load(core: core)
 				}
 			}
 			complete(true)

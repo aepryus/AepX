@@ -81,8 +81,6 @@ class AboutViewController: UIViewController {
 
 		- the 'YouTube-Player-iOS-Helper' library, originally authored by Ikai Lan, Ibrahim Ulukaya and Yoshifumi Yamaguchi.
 
-		- AepX also makes use of the subreddit /r/spacex's SpaceX-API data feed in order to drive the data contained in this app.
-
 		""", pen: pen)
 
 		text.append("\n\n\tAepX", pen: Pen(font: .axCopper(size: 36*s), color: .white))
