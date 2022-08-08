@@ -71,7 +71,7 @@ class CreditsFace: Face {
 
 // Events ==========================================================================================
 	@objc func onTap() {
-		if let url = URL(string: "https://github.com/aepryus/Acheron") {
+		if let url = URL(string: "https://github.com/aepryus/AepX") {
 			UIApplication.shared.open(url)
 		}
 	}

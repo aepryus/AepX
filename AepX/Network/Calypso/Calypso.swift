@@ -9,8 +9,12 @@
 import Acheron
 import Foundation
 
+enum DateError: String, Error {
+    case invalidDate
+}
+
 class Calypso {
-    class CoreQ: Codable {
+    class Core: Codable {
         var apiid: String = ""
         var serial: String = ""
         var block: Int = 0
@@ -22,14 +26,14 @@ class Calypso {
         var disposition: String = ""
         var note: String = ""
     }
-    class CoresQ: Codable {
-        var cores: [CoreQ] = []
+    class Cores: Codable {
+        var cores: [Core] = []
     }
-    class LaunchCoreQ: Codable {
+    class LaunchCore: Codable {
         var apiid: String = ""
         var resultString: String = ""
     }
-    class LaunchQ: Codable {
+    class Launch: Codable {
         var apiid: String = ""
         var name: String = ""
         var flightNo: Int = 0
@@ -42,38 +46,23 @@ class Calypso {
         var webcast: String? = nil
         var patch: String? = nil
         var wikipedia: String? = nil
-        var launchCores: [LaunchCoreQ] = []
+        var launchCores: [LaunchCore] = []
         var resultString: String = ""
     }
-    class LaunchesQ: Codable {
-        var launches: [LaunchQ] = []
+    class Launches: Codable {
+        var launches: [Launch] = []
     }
     
-    static let url = "http://137.184.116.194:8931"
+    static let url = "https://aepry.us/calypso"
 
-    static let iso8601Formatter1: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-        return formatter
-    }()
-    static let iso8601Formatter2: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
-        return formatter
-    }()
+    static let iso8601Formatter: ISO8601DateFormatter = ISO8601DateFormatter()
+
     static let decoder: JSONDecoder = {
         let decoder: JSONDecoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom({ (decoder: Decoder) -> Date in
             let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
             let string: String = try container.decode(String.self)
-            if let date: Date = Calypso.iso8601Formatter1.date(from: string) { return date }
-            if let date: Date = Calypso.iso8601Formatter2.date(from: string) { return date }
+            if let date: Date = Calypso.iso8601Formatter.date(from: string) { return date }
             throw DateError.invalidDate
         })
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -129,20 +118,20 @@ class Calypso {
     }
 
 // Public ==========================================================================================
-    static func cores(success: @escaping ([CoreQ])->(), failure: @escaping ()->()) {
-        decodableRequest(path: "/cores", method: "GET") { (cores: CoresQ) in
+    static func cores(success: @escaping ([Core])->(), failure: @escaping ()->()) {
+        decodableRequest(path: "/cores", method: "GET") { (cores: Cores) in
             success(cores.cores)
         } failure: { failure() }
     }
-    static func launches(success: @escaping ([LaunchQ])->(), failure: @escaping ()->()) {
-        decodableRequest(path: "/launches", method: "GET") { (launches: LaunchesQ) in
+    static func launches(success: @escaping ([Launch])->(), failure: @escaping ()->()) {
+        decodableRequest(path: "/launches", method: "GET") { (launches: Launches) in
             success(launches.launches)
         } failure: { failure() }
     }
 }
 
 // Loaders =========================================================================================
-extension Calypso.CoreQ {
+extension Calypso.Core {
     func load(core: Core) {
         core.apiid = apiid
         core.serial = serial
@@ -156,7 +145,7 @@ extension Calypso.CoreQ {
     }
 }
 
-extension Calypso.LaunchQ {
+extension Calypso.Launch {
     func load(launch: Launch) {
         launch.apiid = apiid
         launch.name = name
@@ -175,7 +164,7 @@ extension Calypso.LaunchQ {
         launch.launchCores = launchCores.compactMap {
             let launchCore: LaunchCore = LaunchCore()
             launchCore.apiid = $0.apiid
-            launchCore.result = Result.from(string: resultString) ?? .failed
+            launchCore.result = Result.from(string: $0.resultString) ?? .failed
             return launchCore
         }
         

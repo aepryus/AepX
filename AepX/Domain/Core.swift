@@ -9,7 +9,6 @@
 import Acheron
 import UIKit
 
-
 class Core: Anchor {
 	@objc dynamic var apiid: String = ""
 	@objc dynamic var serial: String = ""

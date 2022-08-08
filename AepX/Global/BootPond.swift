@@ -11,8 +11,8 @@ import Foundation
 
 class BootPond: Pond {
 	lazy var loadLaunches: Pebble = pebble(name: "loadLaunches") { (complete: @escaping (Bool) -> ()) in
-        Calypso.launches { (launches: [Calypso.LaunchQ]) in
-			launches.forEach { (launchAPI: Calypso.LaunchQ) in
+        Calypso.launches { (launches: [Calypso.Launch]) in
+			launches.forEach { (launchAPI: Calypso.Launch) in
 				Loom.transact {
 					var launch: Launch = Loom.selectBy(only: launchAPI.apiid) ?? Loom.create()
                     launchAPI.load(launch: launch)
@@ -24,8 +24,8 @@ class BootPond: Pond {
 		}
 	}
 	lazy var loadCores: Pebble = pebble(name: "loadCores") { (complete: @escaping (Bool) -> ()) in
-        Calypso.cores { (cores: [Calypso.CoreQ]) in
-			cores.forEach { (coreAPI: Calypso.CoreQ) in
+        Calypso.cores { (cores: [Calypso.Core]) in
+			cores.forEach { (coreAPI: Calypso.Core) in
 				Loom.transact {
 					var core: Core = Loom.selectBy(only: coreAPI.apiid) ?? Loom.create()
                     coreAPI.load(core: core)

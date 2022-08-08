@@ -85,7 +85,11 @@ class LaunchExpansion: UIView {
 			page1.addSubview(core1View)
 			page1.addSubview(core2View)
 			page1.addSubview(core3View)
-		}
+        } else {
+            core1View.removeFromSuperview()
+            core2View.removeFromSuperview()
+            core3View.removeFromSuperview()
+        }
 
 		if let youtubeID = launch.youtubeID {
 			youTubeView.load(id: youtubeID)

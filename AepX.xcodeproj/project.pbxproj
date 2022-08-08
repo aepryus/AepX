@@ -23,7 +23,6 @@
 		D85520052823CFC200A8D5E8 /* YearsFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520042823CFC200A8D5E8 /* YearsFace.swift */; };
 		D85520092823CFEE00A8D5E8 /* CreditsFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85520082823CFEE00A8D5E8 /* CreditsFace.swift */; };
 		D8691737281BA05000D550F2 /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D8691736281BA05000D550F2 /* Acheron */; };
-		D869173A281BA14D00D550F2 /* SpaceX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8691739281BA14D00D550F2 /* SpaceX.swift */; };
 		D869173C281BC70600D550F2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D869173B281BC70600D550F2 /* RootViewController.swift */; };
 		D869173E281BC85E00D550F2 /* LaunchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D869173D281BC85E00D550F2 /* LaunchesViewController.swift */; };
 		D8691740281BC86B00D550F2 /* RocketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D869173F281BC86B00D550F2 /* RocketsViewController.swift */; };
@@ -41,7 +40,6 @@
 		D869177E281F4A5500D550F2 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = D869177D281F4A5500D550F2 /* YouTubeiOSPlayerHelper */; };
 		D8691781281F998A00D550F2 /* UIColor+AepX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8691780281F998A00D550F2 /* UIColor+AepX.swift */; };
 		D8B3467128271AFD003C794B /* BootPond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3467028271AFD003C794B /* BootPond.swift */; };
-		D8B3467528277798003C794B /* SpaceXData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3467428277798003C794B /* SpaceXData.swift */; };
 		D8C1FB33284449A0001B678C /* LaunchesFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1FB32284449A0001B678C /* LaunchesFooterCell.swift */; };
 		D8C1FB35284449B0001B678C /* RocketsFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */; };
 		D8CA3B692830DE17009E0CA8 /* LaunchesFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CA3B682830DE17009E0CA8 /* LaunchesFilterView.swift */; };
@@ -77,7 +75,6 @@
 		D85520022823CFB800A8D5E8 /* StatsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsFace.swift; sourceTree = "<group>"; };
 		D85520042823CFC200A8D5E8 /* YearsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsFace.swift; sourceTree = "<group>"; };
 		D85520082823CFEE00A8D5E8 /* CreditsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsFace.swift; sourceTree = "<group>"; };
-		D8691739281BA14D00D550F2 /* SpaceX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceX.swift; sourceTree = "<group>"; };
 		D869173B281BC70600D550F2 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		D869173D281BC85E00D550F2 /* LaunchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewController.swift; sourceTree = "<group>"; };
 		D869173F281BC86B00D550F2 /* RocketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +91,6 @@
 		D8691774281EA0D300D550F2 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		D8691780281F998A00D550F2 /* UIColor+AepX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AepX.swift"; sourceTree = "<group>"; };
 		D8B3467028271AFD003C794B /* BootPond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootPond.swift; sourceTree = "<group>"; };
-		D8B3467428277798003C794B /* SpaceXData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXData.swift; sourceTree = "<group>"; };
 		D8C1FB32284449A0001B678C /* LaunchesFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesFooterCell.swift; sourceTree = "<group>"; };
 		D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsFooterCell.swift; sourceTree = "<group>"; };
 		D8CA3B682830DE17009E0CA8 /* LaunchesFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesFilterView.swift; sourceTree = "<group>"; };
@@ -151,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				D8FED6182881E36C00076589 /* Calypso */,
-				D8FED6172881E36100076589 /* rSpaceX */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -329,15 +324,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		D8FED6172881E36100076589 /* rSpaceX */ = {
-			isa = PBXGroup;
-			children = (
-				D8B3467428277798003C794B /* SpaceXData.swift */,
-				D8691739281BA14D00D550F2 /* SpaceX.swift */,
-			);
-			path = rSpaceX;
-			sourceTree = "<group>";
-		};
 		D8FED6182881E36C00076589 /* Calypso */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,7 +421,6 @@
 				D8EE37912838F01A007EAD22 /* RollView.swift in Sources */,
 				D869176D281E997D00D550F2 /* RocketsController.swift in Sources */,
 				D8CA3B6B2830DE2C009E0CA8 /* RocketsFilterView.swift in Sources */,
-				D8B3467528277798003C794B /* SpaceXData.swift in Sources */,
 				D8EAAF2F28553F2E001AF7E7 /* LaunchFace.swift in Sources */,
 				D85520092823CFEE00A8D5E8 /* CreditsFace.swift in Sources */,
 				D8C1FB35284449B0001B678C /* RocketsFooterCell.swift in Sources */,
@@ -450,7 +435,6 @@
 				D85520012823CE1200A8D5E8 /* RocketDetail.swift in Sources */,
 				D80BC3122828FED70048C74F /* PatchesView.swift in Sources */,
 				D84B5683285DA1E2008EAB34 /* Rocket.swift in Sources */,
-				D869173A281BA14D00D550F2 /* SpaceX.swift in Sources */,
 				D8691753281C289000D550F2 /* RocketCell.swift in Sources */,
 				D8C1FB33284449A0001B678C /* LaunchesFooterCell.swift in Sources */,
 				D8691781281F998A00D550F2 /* UIColor+AepX.swift in Sources */,
