@@ -19,7 +19,6 @@ class Launch: Anchor {
 	@objc dynamic var completed: Bool = false
 	@objc dynamic var successful: Bool = false
 	@objc dynamic var youtubeID: String? = nil
-	@objc dynamic var webcast: String? = nil
 	@objc dynamic var patch: String? = nil
 	@objc dynamic var wikipedia: String? = nil
 	@objc dynamic var launchCores: [LaunchCore] = []
@@ -95,7 +94,7 @@ class Launch: Anchor {
 
 // Domain ==========================================================================================
 	override var properties: [String] {
-		super.properties + ["apiid", "name", "flightNo", "youtubeID", "date", "noOfCrew", "details", "completed",
-							"successful", "youtubeID", "webcast", "patch", "wikipedia", "launchCores", "resultString"]
+		super.properties + ["apiid", "flightNo", "name", "date", "noOfCrew", "details", "completed",
+							"successful", "resultString", "patch", "youtubeID", "wikipedia", "launchCores"]
 	}
 }

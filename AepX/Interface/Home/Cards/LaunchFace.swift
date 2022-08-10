@@ -55,15 +55,17 @@ class LaunchFace: Face {
 		nameLabel.text = launch.name
 		if let url = launch.patch {
 			patchView.loadImage(url: url)
-		}
+        } else {
+            patchView.cancelLoadImage()
+        }
 
 		if launch.hasVideo, let youtubeID = launch.youtubeID {
 			youTubeView.load(id: youtubeID)
 			addSubview(youTubeView)
 		} else { youTubeView.removeFromSuperview() }
 
+        boosterViews.forEach { $0.removeFromSuperview() }
 		if launch.hasCores {
-			boosterViews.forEach { $0.removeFromSuperview() }
 			boosterViews = launch.launchCores.compactMap {
 				let boosterView: BoosterView = BoosterView()
 				boosterView.load(delegate: controller, launchCore: $0)
@@ -93,7 +95,7 @@ class LaunchFace: Face {
 		var dy: CGFloat = 10*s
 
 		titleLabel.topLeft(dx: 18*s, dy: dy, width: 300*s, height: 18*s)
-		nameLabel.topLeft(dx: 12*s, dy: titleLabel.bottom, width: 300*s, height: 30*s)
+		nameLabel.topLeft(dx: 12*s, dy: titleLabel.bottom, width: width-75*s, height: 30*s)
 
 		patchView.topRight(dx: -12*s, dy: dy, width: 48*s, height: 48*s)
 

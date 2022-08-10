@@ -14,7 +14,6 @@ class Core: Anchor {
 	@objc dynamic var serial: String = ""
 	@objc dynamic var block: Int = 0
 	@objc dynamic var coreStatus: String = ""
-	@objc dynamic var config: String = ""
 	@objc dynamic var launchAPIIDs: [String] = []
 	@objc dynamic var attempts: Int = 0
 	@objc dynamic var landings: Int = 0
@@ -77,6 +76,6 @@ class Core: Anchor {
 
 // Domain ==========================================================================================
 	override var properties: [String] {
-		super.properties + ["apiid", "serial", "block", "coreStatus", "config", "launchAPIIDs", "attempts", "landings", "disposition", "note"]
+		super.properties + ["apiid", "serial", "block", "coreStatus", "launchAPIIDs", "attempts", "landings", "disposition", "note"]
 	}
 }

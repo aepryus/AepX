@@ -112,7 +112,7 @@ class StatsFace: Face {
 		landingsAll.text = "\(landingsTotal)"
 
 		reflightsValue.text = "\(cores.summate { $0.launches.count > 1 ? $0.launches.count-1 : 0 })"
-		humansValue.text = "\(launches.summate { $0.noOfCrew })"
+        humansValue.text = "\(launches.summate { $0.successful ? $0.noOfCrew : 0 })"
 	}
 
 // Face ============================================================================================

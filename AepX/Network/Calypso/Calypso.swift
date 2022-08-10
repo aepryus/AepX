@@ -43,7 +43,6 @@ class Calypso {
         var completed: Bool = false
         var successful: Bool = false
         var youtubeID: String? = nil
-        var webcast: String? = nil
         var patch: String? = nil
         var wikipedia: String? = nil
         var launchCores: [LaunchCore] = []
@@ -151,7 +150,6 @@ extension Calypso.Launch {
         launch.name = name
         launch.flightNo = flightNo
         launch.youtubeID = youtubeID
-        launch.webcast = webcast
         launch.patch = patch
         launch.noOfCrew = noOfCrew
         launch.date = date
