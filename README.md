@@ -23,7 +23,7 @@ In addition each device has a scaling factor ’s’, which is to be multiple by
 
 Let’s look at the layout code for the LaunchCell:
 
-```
+```Swift
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		patchView.left(dx: 9*s, width: 48*s, height: 48*s)
@@ -51,6 +51,7 @@ Once that is complete the pond is executed which coordinates the conditional run
 
 This tool has the effect of greatly simplifying app initialization and making the entire process more readily understandable and maintainable going forward.  App initialization for AepX is relatively simple, but provides a decent illustration of the tool:
 
+```Swift
 class BootPond: Pond {
 	lazy var loadLaunches: Pebble = pebble(name: "loadLaunches") { (complete: @escaping (Bool) -> ()) in
         Calypso.launches { (launches: [Calypso.Launch]) in
@@ -98,7 +99,7 @@ class BootPond: Pond {
 		}
 	}
 }
-
+```
 
 Local Data Persistence:
 
