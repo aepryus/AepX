@@ -17,8 +17,9 @@ As a modest alternative to all this insanity, I put forward the 347 lines of Aep
 
 The basic concept is that each UIView contains 9 anchor points (all the combinations of left, right, top, bottom and center).  All subviews are laid out relative to one of these 9 anchors of their parent view.
 
-| topLeft | top | topRight |
-| left | center | right |
+| ========== | ====== | =========== |
+| topLeft    | top    | topRight    |
+| left       | center | right       |
 | bottomLeft | bottom | bottomRight |
 
 In addition each device has a scaling factor ’s’, which is to be multiple by all scalar values; the result of which allows controls to look the same on any screen they appear on.
