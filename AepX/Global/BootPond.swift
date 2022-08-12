@@ -12,12 +12,18 @@ import Foundation
 class BootPond: Pond {
 	lazy var loadLaunches: Pebble = pebble(name: "loadLaunches") { (complete: @escaping (Bool) -> ()) in
         Calypso.launches { (launches: [Calypso.Launch]) in
-			launches.forEach { (launchAPI: Calypso.Launch) in
-				Loom.transact {
-					var launch: Launch = Loom.selectBy(only: launchAPI.apiid) ?? Loom.create()
+            Loom.transact {
+                let existing: [Launch] = Loom.selectAll()
+                existing.forEach { (launch: Launch) in
+                    if !launches.contains(where: { $0.apiid == launch.apiid }) {
+                        launch.delete()
+                    }
+                }
+                launches.forEach { (launchAPI: Calypso.Launch) in
+                    var launch: Launch = Loom.selectBy(only: launchAPI.apiid) ?? Loom.create()
                     launchAPI.load(launch: launch)
-				}
-			}
+                }
+            }
 			complete(true)
 		} failure: {
 			complete(false)
@@ -25,12 +31,18 @@ class BootPond: Pond {
 	}
 	lazy var loadCores: Pebble = pebble(name: "loadCores") { (complete: @escaping (Bool) -> ()) in
         Calypso.cores { (cores: [Calypso.Core]) in
-			cores.forEach { (coreAPI: Calypso.Core) in
-				Loom.transact {
-					var core: Core = Loom.selectBy(only: coreAPI.apiid) ?? Loom.create()
+            Loom.transact {
+                let existing: [Core] = Loom.selectAll()
+                existing.forEach { (core: Core) in
+                    if !cores.contains(where: { $0.apiid == core.apiid }) {
+                        core.delete()
+                    }
+                }
+                cores.forEach { (coreAPI: Calypso.Core) in
+                    var core: Core = Loom.selectBy(only: coreAPI.apiid) ?? Loom.create()
                     coreAPI.load(core: core)
-				}
-			}
+                }
+            }
 			complete(true)
 		} failure: {
 			complete(false)
