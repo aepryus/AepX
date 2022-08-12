@@ -4,7 +4,7 @@ AepX is a SpaceX launch tracking app developed by Aepryus Software.
 
 I developed this app in order to create a recommended sane iOS app architecture that could be the basis of signficantly easier to develop and maintain apps.
 
-There are a number of aspects of this code base that could bs discussed in more detail, but let's start out with three in particular.  (Although, if anyone wants me to talk about anything else, please let me know.)
+There are a number of aspects of this code base that could be discussed in more detail, but let's start out with three in particular.  (Although, if anyone wants me to talk about anything else, please let me know.)
 
 ## UILayout
 There are a number of questions asked in this forum recently about programatic UIKit coding.  Storyboards and Interface Builder have been instrumental in making iOS development a major pain in the ass, certainly because of git merge conflicts, but more importantly because multiple screen sizes is handled very poorly or dealing with dynamic screens is impossible or just the spectacularly poor UI/UX of Interface Builder itself.
