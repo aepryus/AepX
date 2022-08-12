@@ -37,51 +37,51 @@ class AboutViewController: UIViewController {
 
 		let text: NSMutableAttributedString = NSMutableAttributedString()
 
-		text.append("\nLegend\n", pen: headerPen)
-		text.append("Throughout this app the following colors are used to represent the results of a launch.\n\n", pen: pen)
+        text.append("\nLegend\n".localized, pen: headerPen)
+        text.append("Throughout this app the following colors are used to represent the results of a launch.\n\n".localized, pen: pen)
 
-		text.append(image: colorView.asImage()).append("  - landed", pen: imagePen)
-		text.append("\nThe primary mission succeeded with the booster(s) landing successfully.\n\n", pen: pen)
+        text.append(image: colorView.asImage()).append("  - landed".localized, pen: imagePen)
+        text.append("\nThe primary mission succeeded with the booster(s) landing successfully.\n\n".localized, pen: pen)
 
 		colorView.backgroundColor = Result.partial.color
-		text.append(image: colorView.asImage()).append("  - partial", pen: imagePen)
-		text.append("\nThe primary mission succeeded with some boosters landing and others being lost.\n\n", pen: pen)
+        text.append(image: colorView.asImage()).append("  - partial".localized, pen: imagePen)
+        text.append("\nThe primary mission succeeded with some boosters landing and others being lost.\n\n".localized, pen: pen)
 
 		colorView.backgroundColor = Result.lost.color
-		text.append(image: colorView.asImage()).append("  - lost", pen: imagePen)
-		text.append("\nThe primary mission succeeded however the landing attempt failed.\n\n", pen: pen)
+        text.append(image: colorView.asImage()).append("  - lost".localized, pen: imagePen)
+        text.append("\nThe primary mission succeeded however the landing attempt failed.\n\n".localized, pen: pen)
 
 		colorView.backgroundColor = Result.expended.color
-		text.append(image: colorView.asImage()).append("  - expended", pen: imagePen)
-		text.append("\nThe primary mission succeeded however no landing attempt was made; the booster being expended.\n\n", pen: pen)
+        text.append(image: colorView.asImage()).append("  - expended".localized, pen: imagePen)
+        text.append("\nThe primary mission succeeded however no landing attempt was made; the booster being expended.\n\n".localized, pen: pen)
 
 		colorView.backgroundColor = Result.failed.color
-		text.append(image: colorView.asImage()).append("  - destroyed", pen: imagePen)
-		text.append("\nThe primary mission failed and the booster was destroyed.\n", pen: pen)
+        text.append(image: colorView.asImage()).append("  - destroyed".localized, pen: imagePen)
+        text.append("\nThe primary mission failed and the booster was destroyed.\n".localized, pen: pen)
 
-		text.append("\n\nTips and Tricks\n", pen: headerPen)
+        text.append("\n\nTips and Tricks\n".localized, pen: headerPen)
 		text.append("""
-		Both the 'Launches' and 'Boosters' screens have filters available.
+        Both the 'Launches' and 'Boosters' screens have filters available.
+        
+        The filter can be brought up by either tapping the magnifying glass in the upper right-hand corner or by tapping the 'Launches' or 'Booster' navigation icon a second time.
+        
+        The filter can be dimissed by hitting the 'Done' button or once again hitting the navigation icon.
 
-		The filter can be brought up by either tapping the magnifying glass in the upper right-hand corner or by tapping the 'Launches' or 'Booster' navigation icon a second time.
+        """.localized, pen: pen)
 
-		The filter can be dimissed by hitting the 'Done' button or once again hitting the navigation icon.
-
-		""", pen: pen)
-
-		text.append("\n\nAcknowledgements\n", pen: headerPen)
+        text.append("\n\nAcknowledgements\n".localized, pen: headerPen)
 		text.append("""
-		AepX makes use of the following 3rd party resources:
+        AepX makes use of the following 3rd party resources:
+        
+        - images of SpaceX rockets created by Lucabon (based on work of Markus Säynevirta and Craigboy and Rressi )
+        
+        - a modified version of 'mars-planets-moon-ufo-war-couple' image from Pixabay (via Affinity Photo) by user -MayaQ-
+        
+        - a blurred version of the Starship construction image from @elonmusk's twitter feed.
+        
+        - the 'YouTube-Player-iOS-Helper' library, originally authored by Ikai Lan, Ibrahim Ulukaya and Yoshifumi Yamaguchi.
 
-		- images of SpaceX rockets created by Lucabon (based on work of Markus Säynevirta and Craigboy and Rressi )
-
-		- a modified version of 'mars-planets-moon-ufo-war-couple' image from Pixabay (via Affinity Photo) by user -MayaQ-
-
-		- a blurred version of the Starship construction image from @elonmusk's twitter feed.
-
-		- the 'YouTube-Player-iOS-Helper' library, originally authored by Ikai Lan, Ibrahim Ulukaya and Yoshifumi Yamaguchi.
-
-		""", pen: pen)
+        """.localized, pen: pen)
 
 		text.append("\n\n\tAepX", pen: Pen(font: .axCopper(size: 36*s), color: .white))
 		text.append(" v\(AepX.version)\n", pen: Pen(font: .axCopper(size: 22*s), color: .white))

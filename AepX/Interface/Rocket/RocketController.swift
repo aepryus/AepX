@@ -15,9 +15,4 @@ class RocketController {
 	init(vc: RocketViewController) {
 		self.vc = vc
 	}
-
-	func load(apiid: String) {
-		vc.core = Loom.selectBy(only: apiid)!
-		vc.tableView.reloadData()
-	}
 }

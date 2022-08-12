@@ -11,7 +11,7 @@ import UIKit
 
 class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 	lazy var controller: RocketController = { RocketController(vc: self) }()
-	var core: Core { didSet {} }
+	let core: Core
 
 	let backView: UIImageView = UIImageView()
 	lazy var tableView: ExpandableTableView = { ExpandableTableView(delegate: self) }()
@@ -46,10 +46,6 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 
 		backView.frame = view.bounds
 		tableView.frame = view.bounds
-	}
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		controller.load(apiid: core.apiid)
 	}
 	override func viewWillLayoutSubviews() {
 		backView.frame = view.bounds

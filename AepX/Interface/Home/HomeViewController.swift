@@ -24,26 +24,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 	var cards: [Card] = []
 
-	func loadData() {
-		let launches: [Launch] = Loom.selectAll().sorted { (a: Launch, b: Launch) in
-			return a.flightNo > b.flightNo
-		}
-		guard launches.count > 2 else { return }
-		var i: Int = 0
-		while i < launches.count-1 {
-			if !launches[i].completed && launches[i+1].completed {
-				break
-			}
-			i += 1
-		}
-
-		latestFace.load(controller: controller, launch: launches[i+1])
-		nextFace.load(controller: controller, launch: launches[i])
-		statsFace.loadData()
-		yearsFace.loadData()
-		tableView.reloadData()
-	}
-
 // UIViewController ================================================================================
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -73,7 +53,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 			Card(face: aexelsFace),
 		]
 
-		loadData()
+        controller.loadData()
 	}
 	override func viewWillLayoutSubviews() {
 		backView.frame = view.bounds

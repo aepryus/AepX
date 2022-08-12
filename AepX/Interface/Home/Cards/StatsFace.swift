@@ -88,17 +88,10 @@ class StatsFace: Face {
 
 		humansValue.pen = valuePen.clone(alignment: .left)
 		addSubview(humansValue)
-
-		loadData()
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
-	func loadData() {
-		let launches: [Launch] = Loom.selectAll().sorted { (a: Launch, b: Launch) in
-			return a.flightNo < b.flightNo
-		}
-		let cores: [Core] = Loom.selectAll()
-
+    func loadData(launches: [Launch], cores: [Core]) {
 		let missionsSuccess = launches.summate { $0.successful ? 1 : 0 }
 		let missionsTotal = launches.summate { $0.completed ? 1 : 0 }
 		let landingsSuccess = launches.summate { $0.launchCores.summate{ $0.result == .landed ? 1 : 0 } }

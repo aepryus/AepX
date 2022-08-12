@@ -19,7 +19,6 @@ class Calypso {
         var serial: String = ""
         var block: Int = 0
         var coreStatus: String = ""
-        var config: String = ""
         var launchAPIIDs: [String] = []
         var attempts: Int = 0
         var landings: Int = 0

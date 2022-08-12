@@ -100,17 +100,14 @@ fileprivate class YearsView: UIView {
 
 	init() {
 		super.init(frame: .zero)
-		render()
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
-	func render() {
+    func loadData(launches: [Launch]) {
 		years.forEach { $0.removeFromSuperview() }
 		years = []
 
 		var datas:[String:YearData] = ["'11":YearData(year: "'11")]
-
-		let launches: [Launch] = Loom.selectAll().filter { $0.completed }
 
 		launches.forEach {
 			let year: String = "'"+$0.date.format("YY")
@@ -203,8 +200,8 @@ class YearsFace: Face {
 	}
 	required init?(coder: NSCoder) { fatalError() }
 
-	func loadData() {
-		yearsView.render()
+    func loadData(launches: [Launch]) {
+		yearsView.loadData(launches: launches)
 	}
 
 // Face ============================================================================================

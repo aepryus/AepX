@@ -37,9 +37,9 @@ class BootPond: Pond {
 		}
 	}
 	lazy var refreshScreens: Pebble = pebble(name: "refreshScreens") { (complete: @escaping (Bool) -> ()) in
-		(AepX.window.rootViewController as! RootViewController).homeViewController.loadData()
-		(AepX.window.rootViewController as! RootViewController).launchesViewController.loadData()
-		(AepX.window.rootViewController as! RootViewController).rocketsViewController.loadData()
+        (AepX.window.rootViewController as! RootViewController).homeViewController.controller.loadData()
+        (AepX.window.rootViewController as! RootViewController).launchesViewController.controller.loadData()
+        (AepX.window.rootViewController as! RootViewController).rocketsViewController.controller.loadData()
 		complete(true)
 	}
 

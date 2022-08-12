@@ -22,60 +22,6 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 	var activeCores: [Core] = []
 	var inactiveCores: [Core] = []
 
-	func loadData() {
-		activeCores = []
-		inactiveCores = []
-
-		let cores: [Core] = Loom.selectAll().filter { (core: Core) in
-			var result: Bool = true
-			switch filter.statesView.selectedRow(inComponent: 0) {
-				case 1: if core.state != "active" { result = false }
-				case 2: if core.state != "retired" { result = false }
-				case 3: if core.state != "expended" { result = false }
-				case 4: if core.state != "lost" && core.state != "oops" { result = false }
-				case 5: if core.state != "destroyed" { result = false }
-				default: break
-			}
-			switch filter.shipsView.selectedRow(inComponent: 0) {
-				case 1: if !(core.booster == .falcon9 && core.version == "block 5") { result = false }
-				case 2: if !(core.booster == .falcon9 && core.version == "block 4") { result = false }
-				case 3: if !(core.booster == .falcon9 && core.version == "FT") { result = false }
-				case 4: if !(core.booster == .falcon9 && core.version == "v1.1") { result = false }
-				case 5: if !(core.booster == .falcon9 && core.version == "v1.0") { result = false }
-				case 6: if !(core.booster == .falcon1) { result = false }
-				default: break
-			}
-			return result
-		}
-
-
-		if filter.sortsView.selectedRow(inComponent: 0) == 0 {
-			cores.forEach {
-				if $0.coreStatus == "active" { activeCores.append($0) }
-				else { inactiveCores.append($0) }
-			}
-			activeCores.sort(by: { (a: Core, b: Core) in
-				if a.launches.count != b.launches.count { return a.launches.count > b.launches.count }
-				return a.serial < b.serial
-			})
-			inactiveCores.sort(by: { (a: Core, b: Core) in
-				if a.launches.count != b.launches.count { return a.launches.count > b.launches.count }
-				if let aLast = a.launches.last, let bLast = b.launches.last {
-					return aLast.date > bLast.date
-				}
-				return a.serial < b.serial
-			})
-		} else {
-			activeCores = cores
-			activeCores.sort(by:  { (a: Core, b: Core) in
-				if a.booster.generation == b.booster.generation { return a.serial > b.serial }
-				return a.booster.generation > b.booster.generation
-			})
-		}
-
-		tableView.reloadData()
-	}
-
 	static let filterHeight: CGFloat = 120*3*Screen.s + 12*Screen.s + Screen.navBottom + 16*Screen.s
 	func invokeFilter() {
 		guard filter.superview == nil else { return }
@@ -93,7 +39,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		UIView.animate(withDuration: 0.2) {
 			self.filter.bottom(dy: RocketsViewController.filterHeight, width: self.view.width, height: RocketsViewController.filterHeight)
 			self.shield.alpha = 0
-			self.loadData()
+            self.controller.loadData()
 		} completion: { (completed: Bool) in
 			self.filter.removeFromSuperview()
 			self.shield.removeFromSuperview()
@@ -131,7 +77,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 
 		filter.doneButton.addAction { self.controller.onFilterTapped() }
 
-		loadData()
+        controller.loadData()
 	}
 	override func viewWillLayoutSubviews() {
 		backView.frame = view.bounds
