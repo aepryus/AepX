@@ -18,8 +18,6 @@ As a modest alternative to all this insanity, I put forward the 347 lines of Aep
 The basic concept is that each UIView contains 9 anchor points (all the combinations of left, right, top, bottom and center).  All subviews are laid out relative to one of these 9 anchors of their parent view.
 
 
-| header 1   |  head  | header 3    |
-| ---------- | ------ | ----------- |
 | topLeft    | top    | topRight    |
 | left       | center | right       |
 | bottomLeft | bottom | bottomRight |
