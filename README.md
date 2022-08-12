@@ -6,7 +6,7 @@ I developed this app in order to create a recommended sane iOS app architecture 
 
 There are a number of aspects of this code base that could bs discussed in more detail, but let's start out with three in particular.  (Although, if anyone wants me to talk about anything else, please let me know.)
 
-UILayout:
+## UILayout
 There are a number of questions asked in this forum recently about programatic UIKit coding.  Storyboards and Interface Builder have been instrumental in making iOS development a major pain in the ass, certainly because of git merge conflicts, but more importantly because multiple screen sizes is handled very poorly or dealing with dynamic screens is impossible or just the spectacularly poor UI/UX of Interface Builder itself.
 
 AutoLayout is way more complicated than it needs to be and fundamentally I’m against the desire to turn iOS development into web development; I want to decide where my controls are located not leave it to some (overly complicated) algorithm.  One of the major reasons why I was enthusiastic about bolting from web development to iOS was because I hated web development; I’ve never understood the continuing effort of Apple to turn iOS development into a CSS document.
@@ -40,7 +40,7 @@ The dx and dy specify the offset from those anchors and the width and height the
 
 These 9 simple commands are able to remove a spectacular amount of insanity from any code base and a spectacular amount of pain and suffering from any project.
 
-App Initialization:
+## App Initialization
 One aspect of app development that is almost always an adventure in start ups is app initialization.  There is often numerous possible states that app could be in and potentially a large number of network calls that go out asking for various pieces of data all coming back at different times.
 
 Coordinating all this is extremely difficult and often results in overly complicated and buggy code.  There are a few options in dealing with all this asynchronous code (such as Reactive).  Certainly, I can appreciate the async/await feature of Swift and for the trivial case it can clean up some code.  But, once you get a way from the trivial case one has to ask if the cure isn't worse than the disease.
@@ -101,7 +101,7 @@ class BootPond: Pond {
 }
 ```
 
-Local Data Persistence:
+## Local Data Persistence
 
 Device side data persistence on iOS is an unnecessary annoyance.  There are a few options:
 - CoreData
