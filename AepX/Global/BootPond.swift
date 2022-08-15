@@ -11,7 +11,7 @@ import Foundation
 
 class BootPond: Pond {
 	lazy var loadLaunches: Pebble = pebble(name: "loadLaunches") { (complete: @escaping (Bool) -> ()) in
-        Calypso.launches { (launches: [Calypso.Launch]) in
+        Calypso.launches { (launches: [CalypsoData.Launch]) in
             Loom.transact {
                 let existing: [Launch] = Loom.selectAll()
                 existing.forEach { (launch: Launch) in
@@ -19,7 +19,7 @@ class BootPond: Pond {
                         launch.delete()
                     }
                 }
-                launches.forEach { (launchAPI: Calypso.Launch) in
+                launches.forEach { (launchAPI: CalypsoData.Launch) in
                     var launch: Launch = Loom.selectBy(only: launchAPI.apiid) ?? Loom.create()
                     launchAPI.load(launch: launch)
                 }
@@ -30,7 +30,7 @@ class BootPond: Pond {
 		}
 	}
 	lazy var loadCores: Pebble = pebble(name: "loadCores") { (complete: @escaping (Bool) -> ()) in
-        Calypso.cores { (cores: [Calypso.Core]) in
+        Calypso.cores { (cores: [CalypsoData.Core]) in
             Loom.transact {
                 let existing: [Core] = Loom.selectAll()
                 existing.forEach { (core: Core) in
@@ -38,7 +38,7 @@ class BootPond: Pond {
                         core.delete()
                     }
                 }
-                cores.forEach { (coreAPI: Calypso.Core) in
+                cores.forEach { (coreAPI: CalypsoData.Core) in
                     var core: Core = Loom.selectBy(only: coreAPI.apiid) ?? Loom.create()
                     coreAPI.load(core: core)
                 }

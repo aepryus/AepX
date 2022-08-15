@@ -39,6 +39,7 @@
 		D8691775281EA0D300D550F2 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8691774281EA0D300D550F2 /* HomeController.swift */; };
 		D869177E281F4A5500D550F2 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = D869177D281F4A5500D550F2 /* YouTubeiOSPlayerHelper */; };
 		D8691781281F998A00D550F2 /* UIColor+AepX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8691780281F998A00D550F2 /* UIColor+AepX.swift */; };
+		D8AAB45E28A9E12F004FB93D /* CalypsoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AAB45D28A9E12F004FB93D /* CalypsoData.swift */; };
 		D8B3467128271AFD003C794B /* BootPond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3467028271AFD003C794B /* BootPond.swift */; };
 		D8C1FB33284449A0001B678C /* LaunchesFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1FB32284449A0001B678C /* LaunchesFooterCell.swift */; };
 		D8C1FB35284449B0001B678C /* RocketsFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */; };
@@ -90,6 +91,7 @@
 		D8691772281EA07200D550F2 /* RocketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketController.swift; sourceTree = "<group>"; };
 		D8691774281EA0D300D550F2 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		D8691780281F998A00D550F2 /* UIColor+AepX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AepX.swift"; sourceTree = "<group>"; };
+		D8AAB45D28A9E12F004FB93D /* CalypsoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalypsoData.swift; sourceTree = "<group>"; };
 		D8B3467028271AFD003C794B /* BootPond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootPond.swift; sourceTree = "<group>"; };
 		D8C1FB32284449A0001B678C /* LaunchesFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesFooterCell.swift; sourceTree = "<group>"; };
 		D8C1FB34284449B0001B678C /* RocketsFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsFooterCell.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 		D8FED6182881E36C00076589 /* Calypso */ = {
 			isa = PBXGroup;
 			children = (
+				D8AAB45D28A9E12F004FB93D /* CalypsoData.swift */,
 				D8FED6192881E37E00076589 /* Calypso.swift */,
 			);
 			path = Calypso;
@@ -440,6 +443,7 @@
 				D8691781281F998A00D550F2 /* UIColor+AepX.swift in Sources */,
 				D869174E281BECA600D550F2 /* Core.swift in Sources */,
 				D8691773281EA07200D550F2 /* RocketController.swift in Sources */,
+				D8AAB45E28A9E12F004FB93D /* CalypsoData.swift in Sources */,
 				D8DE1CBA281B9CA700F8EABE /* AepXDelegate.swift in Sources */,
 				D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */,
 				D84B5681285DA1D9008EAB34 /* Booster.swift in Sources */,
