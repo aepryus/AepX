@@ -13,7 +13,7 @@ AutoLayout is way more complicated than it needs to be and fundamentally I’m a
 
 I had such high hopes for SwiftUI when it was announced.  I figured they realized all the mistakes they made with IB and AutoLayout and were finally going to give us the UI library we needed.  But instead they embraced the ridiculous Reactive; tried to make everything even more like a CSS document and topped it all off with being buggy and wildly incomplete for the 3ish years since it was released.
 
-As a modest alternative to all this insanity, I put forward the 347 lines of AepLayout, which makes creating an app easy, precise, straightforward, easily maintainable, easily modifiable and easy to make things look the same on any and all screen sizes, unless one specifically wants them to look different.
+As a modest alternative to all this insanity, I put forward the 347 lines of AepLayout, which makes creating an app easy, precise, straightforward, easily maintainable, easily modifiable and easy to make things look the same on any and all screen sizes.  But also gives the option of making them look different if that is desired.
 
 The basic concept is that each UIView contains 9 anchor points (all the combinations of left, right, top, bottom and center).  All subviews are laid out relative to one of these 9 anchors of their parent view.
 
