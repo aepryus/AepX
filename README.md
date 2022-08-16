@@ -108,6 +108,8 @@ class BootPond: Pond {
 }
 ```
 
+A more involved example exists within [Oovium](https://github.com/aepryus/Oovium/blob/master/Oovium/Global/Ponds/BootPond.swift).
+
 ## Local Data Persistence
 
 Device side data persistence on iOS is an unnecessary annoyance.  There are a few options:
