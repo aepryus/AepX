@@ -1,6 +1,6 @@
 # AepX
 
-AepX is a SpaceX launch tracking app developed by Aepryus Software.  It is available in the AppStore: [AepX](https://apps.apple.com/us/app/aepx/id1630233662)).
+AepX is a SpaceX launch tracking app developed by Aepryus Software.  It is available in the AppStore: [AepX](https://apps.apple.com/us/app/aepx/id1630233662).
 
 I developed this app in order to create a recommended sane iOS app architecture that could be the basis of signficantly easier to develop and maintain apps.  AepX makes extensive use of my iOS toolkit [Acheron](https://github.com/aepryus/Acheron).  The app is small to mid sized; written using a modest 2654 lines of code (I've encountered AppDelegates with that much code).  The toolkit Acheron adds another 3204 lines of code, but of course AepX doesn't make use of all of its functionality.
 
