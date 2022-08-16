@@ -125,7 +125,7 @@ Alternatively, Acheron includes Loom, a mechanism that makes data persistence ex
 // Initialize a basket object using SQLite
 let basket: Basket = Basket(SQLitePersist("AepX"))
 
-// Set the default basket and define all namespaces Domain object could be defined in.
+// Set the default basket and define all namespaces Domain objects could be defined in.
 Loom.start(basket: basket, namesspaces: ["AepX"])
 
 let appid = "123456789abcdef"
