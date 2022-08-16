@@ -6,7 +6,7 @@ I developed this app in order to create a recommended sane iOS app architecture 
 
 There are a number of aspects of this code base that could be discussed in more detail, but let's start out with three in particular.  (Although, if anyone wants me to talk about anything else, please let me know.)
 
-## UILayout
+## User Interface Layout
 Storyboards and Interface Builder have been instrumental in making iOS development a major pain in the ass, certainly because of git merge conflicts, but more importantly because multiple screen sizes is handled very poorly or dealing with dynamic screens is impossible or just the spectacularly poor UI/UX of Interface Builder itself.
 
 AutoLayout is way more complicated than it needs to be and fundamentally I’m against the desire to turn iOS development into web development; I want to decide where my controls are located not leave it to some (overly complicated) algorithm.  One of the major reasons why I was enthusiastic about bolting from web development to iOS was because I hated web development; I’ve never understood the continuing effort of Apple to turn iOS development into a CSS document.
