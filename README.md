@@ -120,3 +120,21 @@ Device side data persistence on iOS is an unnecessary annoyance.  There are a fe
 The file system and NSUserDefaults are actually not bad choices especially if the data needs are simple.  As the persistence requirements become more sophisticated higher level options may be desired.  However, these higher level options tend to be complicated, hard to work with, may require fixed data struct specification with involved data migrations needs and in all the cases above (that I'm aware of), are not thread safe.
 
 Alternatively, Acheron includes Loom, a mechanism that makes data persistence extremely easy.  Loom is an ORM which includes a Basket object which is a collection of the persisted objects.  Any root persistent object simply need extend from Anchor.  Child objects extend from Domain.  Any changes the objects occur within a Basket.transact block.  Queries to the basket as well as calls to transact are entirely thread safe.
+
+```Swift
+// Initialize a basket object using SQLite
+let basket: Basket = Basket(SQLitePersist("AepX"))
+
+// Set the default basket and define all namespaces Domain object could be defined in.
+Loom.start(basket: basket, namesspaces: ["AepX"])
+
+let appid = "123456789abcdef"
+// Pull a Launch object out of the basket
+let launch: Launch = Loom.selectBy(only: apiid)
+
+// Modify the Launch object
+Loom.transact {
+	launch.name = "The New Launch Name"
+}
+```
+
