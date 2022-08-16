@@ -23,9 +23,9 @@ class LaunchesFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	private let missionsSpecifier: Specifier = Specifier(text: "mission")
 	private let landingsSpecifier: Specifier = Specifier(text: "landing")
 
-	let rockets: [String] = ["All", "Falcon 1", "Falcon 9", "Falcon Heavy"]
-	let missions: [String] = ["All", "Planned", "Succeeded", "Failed"]
-	let landings: [String] = ["All", "Landed", "Lost", "Expended"]
+    let rockets: [String] = ["All".localized, "Falcon 1", "Falcon 9", "Falcon Heavy"]
+	let missions: [String] = ["All".localized, "Planned".localized, "Succeeded".localized, "Failed".localized]
+	let landings: [String] = ["All".localized, "Landed".localized, "Lost".localized, "Expended".localized]
 
 	init() {
 		super.init(frame: .zero)

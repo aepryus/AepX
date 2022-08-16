@@ -103,9 +103,9 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 			return true
 		}
 
-		if let rocketsController = ((viewController as? UINavigationController)?.topViewController as? RocketsViewController)?.controller {
+        if let rocketsController: RocketsController = ((viewController as? UINavigationController)?.topViewController as? RocketsViewController)?.controller {
 			rocketsController.onFilterTapped()
-		} else if let launchesController = ((viewController as? UINavigationController)?.topViewController as? LaunchesViewController)?.controller {
+        } else if let launchesController: LaunchesController = ((viewController as? UINavigationController)?.topViewController as? LaunchesViewController)?.controller {
 			launchesController.onFilterTapped()
 		}
 

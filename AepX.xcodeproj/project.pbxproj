@@ -53,7 +53,6 @@
 		D8EAAF3128553F3E001AF7E7 /* BoosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAAF3028553F3E001AF7E7 /* BoosterView.swift */; };
 		D8EAAF382857EB58001AF7E7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAAF372857EB58001AF7E7 /* AboutViewController.swift */; };
 		D8EE378D2833C2BF007EAD22 /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE378C2833C2BF007EAD22 /* LinkView.swift */; };
-		D8EE37912838F01A007EAD22 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE37902838F01A007EAD22 /* RollView.swift */; };
 		D8EE3793283B5257007EAD22 /* OoviumFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE3792283B5257007EAD22 /* OoviumFace.swift */; };
 		D8EE3795283B5262007EAD22 /* AexelsFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE3794283B5262007EAD22 /* AexelsFace.swift */; };
 		D8FED61A2881E37E00076589 /* Calypso.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FED6192881E37E00076589 /* Calypso.swift */; };
@@ -107,7 +106,6 @@
 		D8EAAF3028553F3E001AF7E7 /* BoosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoosterView.swift; sourceTree = "<group>"; };
 		D8EAAF372857EB58001AF7E7 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		D8EE378C2833C2BF007EAD22 /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
-		D8EE37902838F01A007EAD22 /* RollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		D8EE3792283B5257007EAD22 /* OoviumFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumFace.swift; sourceTree = "<group>"; };
 		D8EE3794283B5262007EAD22 /* AexelsFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AexelsFace.swift; sourceTree = "<group>"; };
 		D8FED6192881E37E00076589 /* Calypso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calypso.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				D80BC331282D378B0048C74F /* CountDownView.swift */,
-				D8EE37902838F01A007EAD22 /* RollView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -421,7 +418,6 @@
 				D8691775281EA0D300D550F2 /* HomeController.swift in Sources */,
 				D8EE3793283B5257007EAD22 /* OoviumFace.swift in Sources */,
 				D8CA3B692830DE17009E0CA8 /* LaunchesFilterView.swift in Sources */,
-				D8EE37912838F01A007EAD22 /* RollView.swift in Sources */,
 				D869176D281E997D00D550F2 /* RocketsController.swift in Sources */,
 				D8CA3B6B2830DE2C009E0CA8 /* RocketsFilterView.swift in Sources */,
 				D8EAAF2F28553F2E001AF7E7 /* LaunchFace.swift in Sources */,
