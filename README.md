@@ -4,7 +4,7 @@ AepX is a SpaceX launch tracking app developed by Aepryus Software.  It is avail
 
 I developed this app in order to create a recommended sane iOS app architecture that could be the basis of signficantly easier to develop and maintain apps.  AepX makes extensive use of my iOS toolkit [Acheron](https://github.com/aepryus/Acheron).  The app is small to mid sized; written using a modest 2654 lines of code (I've encountered AppDelegates with that much code).  The toolkit Acheron adds another 3204 lines of code, but of course AepX doesn't make use of all of its functionality.
 
-There are a number of aspects of this code base that could be discussed in more detail, but let's start out with three in particular.
+Both AepX and Acheron are developed using the coding philosophy and best practices advocated for [here](https://github.com/aepryus/Cocytus).  There are a number of aspects of this code base that could be discussed in more detail, but let's start out with three in particular.
 
 ## User Interface Layout
 Storyboards and Interface Builder have been instrumental in making iOS development a major pain in the ass, certainly because of git merge conflicts, but more importantly because multiple screen sizes is handled very poorly or dealing with dynamic screens is impossible or just the spectacularly poor UI/UX of Interface Builder itself.
