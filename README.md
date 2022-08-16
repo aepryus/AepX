@@ -48,7 +48,7 @@ The dx and dy specify the offset from those anchors and the width and height the
 These 9 simple commands are able to remove a spectacular amount of insanity from any code base and a spectacular amount of pain and suffering from any project.
 
 ## App Initialization
-One aspect of app development that is almost always an adventure in Silicon Valley startups is app initialization.  There is often numerous possible states that app could be in and potentially a large number of network calls that go out asking for various pieces of data all coming back at different times.
+One aspect of app development that is almost always an adventure in Silicon Valley startups is app initialization.  When an app is first launched there are often numerous possible states that an app could be in and potentially a large number of network calls that go out asking for various pieces of data all coming back at different times.
 
 Coordinating all this is extremely difficult and often results in overly complicated and buggy code.  There are a few options in dealing with all this asynchronous code (such as Reactive).  Certainly, I can appreciate the async/await feature of Swift and for the trivial case it can clean up some code.  But, once you get a way from the trivial case one has to ask if the cure isn't worse than the disease.
 
