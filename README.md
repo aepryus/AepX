@@ -26,7 +26,7 @@ The basic concept is that each UIView contains 9 anchor points (all the combinat
 | bottomLeft | bottom | bottomRight |
 
 
-In addition each device has a scaling factor ’s’, which is to be multiploed by all scalar values; the result of which allows controls to look the same on any screen they appear on.
+In addition each device has a scaling factor ```s```, which is to be multiplied by all scalar values; the result of which allows controls to look the same on any screen they appear on.
 
 Let’s look at the layout code for the LaunchCell:
 
