@@ -52,7 +52,7 @@ One aspect of app development that is almost always an adventure in Silicon Vall
 
 Coordinating all this is extremely difficult and often results in overly complicated and buggy code.  There are a few options in dealing with all this asynchronous code (such as Reactive).  Certainly, I can appreciate the async/await feature of Swift and for the trivial case it can clean up some code.  But, once you get a way from the trivial case one has to ask if the cure isn't worse than the disease.
 
-To solve this issue Acheron has its Pond and Pebbles concept (179 lines of a code).  Each Pebble is a potentially asynchronous task.  These pebbles are pulled out of a single pond instance and defined.  Once a pond's pebbles are defined start conditions are indicated for each of the pebbles (related to the state of the other pebbles).
+To solve this issue Acheron has its Pond and Pebbles concept (179 lines of a code).  Each Pebble is a (potentially asynchronous) task.  These pebbles are pulled out of a single pond instance and defined.  Once a pond's pebbles are defined start conditions are indicated for each of the pebbles (related to the state of the other pebbles).
 
 Once that is complete the pond is executed which coordinates the conditional running of its pebbles until no pebbles are actively running.  The pond can also be made to be backgroundable so that it continues even after the app loses focus.
 
