@@ -54,7 +54,7 @@ Coordinating all this is extremely difficult and often results in overly complic
 
 To solve this issue Acheron has its Pond and Pebbles concept (179 lines of a code).  Each Pebble is a (potentially asynchronous) task.  These pebbles are pulled out of a single pond instance and defined.  Once a pond's pebbles are defined, start conditions are indicated for each of the pebbles (related to the state of the other pebbles).
 
-Once that is complete the pond is executed which coordinates the conditional running of its pebbles until no pebbles are actively running.  The pond can also be made to be backgroundable so that it continues even after the app loses focus.
+Once the pond and pebbles are fully defined, the pond can be started up, which will than coordinate the conditional execution of each of its pebbles.  This will continue until no pebbles are actively running.  The pond can also be made to be backgroundable so that it continues even after the app loses focus.
 
 This tool has the effect of greatly simplifying app initialization and making the entire process more readily understandable and maintainable going forward.  App initialization for AepX is relatively simple, but provides a decent illustration of the tool:
 
