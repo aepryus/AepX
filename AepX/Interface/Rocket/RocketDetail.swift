@@ -102,7 +102,7 @@ class RocketDetail: ExpandableCell {
 			let height: CGFloat = maxHeight*rocket.height
 			rocketView.bottomRight(dx: -18*s, dy: -(self.height-36*s-maxHeight)/2-36*s, width: image.size.width*height/image.size.height, height: height)
 		}
-        frameView.topLeft(dx: 12*s, dy: statusLabel.bottom+8*s, width: 400*s, height: 200*s)
+        frameView.topLeft(dx: 12*s, dy: statusLabel.bottom+8*s, width: min(400*s, rocketView.left-46*s), height: 200*s)
         yearsView.frame = frameView.bounds
 		boosterLabel.topLeft(dx: rocketView.left-209*s, dy: height-110*s, width: 200*s, height: 30*s)
 		versionLabel.topLeft(dx: boosterLabel.left-2*s, dy: boosterLabel.bottom-9*s, width: 200*s, height: 30*s)
