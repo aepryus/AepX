@@ -48,7 +48,8 @@ class RocketDetail: ExpandableCell {
 
 	let statusLabel: UILabel = UILabel()
 
-	let noteLabel: UILabel = UILabel()
+    let frameView: UIView = ColorView(.axDarkBack)
+    let yearsView: YearsView = YearsView(shouldAdd11: false)
 	let rocketView: UIImageView = UIImageView()
 	private let flightsHeader: FlightsHeader = FlightsHeader()
 
@@ -57,7 +58,7 @@ class RocketDetail: ExpandableCell {
 
 		if let rocket = core.launches.first?.rocket { self.rocket = rocket }
 		else { rocket = .falcon9b5 }
-
+        
 		super.init(style: .default, reuseIdentifier: nil)
 		backgroundColor = .axBackground
 
@@ -76,11 +77,12 @@ class RocketDetail: ExpandableCell {
 		versionLabel.text = core.version
 		versionLabel.pen = Pen(font: .axMedium(size: 15*s), color: .white, alignment: .right)
 		addSubview(versionLabel)
-
-		noteLabel.text = core.note
-		noteLabel.pen = Pen(font: .axMedium(size: 18*s), color: .white)
-		noteLabel.numberOfLines = 0
-		addSubview(noteLabel)
+        
+        yearsView.loadData(launches: core.launches)
+        frameView.addSubview(yearsView)
+        
+        frameView.layer.cornerRadius = 20*s
+        addSubview(frameView)
 
 		rocketView.image = rocket.image
 		addSubview(rocketView)
@@ -100,9 +102,8 @@ class RocketDetail: ExpandableCell {
 			let height: CGFloat = maxHeight*rocket.height
 			rocketView.bottomRight(dx: -18*s, dy: -(self.height-36*s-maxHeight)/2-36*s, width: image.size.width*height/image.size.height, height: height)
 		}
-		noteLabel.topLeft(width: rocketView.left-48*s, height: 200*s)
-		noteLabel.sizeToFit()
-		noteLabel.topLeft(dx: 12*s, dy: statusLabel.bottom+8*s)
+        frameView.topLeft(dx: 12*s, dy: statusLabel.bottom+8*s, width: 400*s, height: 200*s)
+        yearsView.frame = frameView.bounds
 		boosterLabel.topLeft(dx: rocketView.left-209*s, dy: height-110*s, width: 200*s, height: 30*s)
 		versionLabel.topLeft(dx: boosterLabel.left-2*s, dy: boosterLabel.bottom-9*s, width: 200*s, height: 30*s)
 		flightsHeader.bottom(width: width, height: 36*s)

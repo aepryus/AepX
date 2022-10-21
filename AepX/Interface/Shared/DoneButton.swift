@@ -58,6 +58,6 @@ class DoneButton: UIButton {
 		c.setFillColor((!touchDown ? UIColor.axDarkBack : UIColor.axBackground.tint(0.5)).cgColor)
 		c.drawPath(using: .fillStroke)
 
-		("Done".localized as NSString).draw(in: rect.offsetBy(dx: 0, dy: 3.5*s), pen: Pen(font: .axHeavy(size: 19*s), color: !touchDown ? .white : .axBackground, alignment: .center))
+		"Done".localized.draw(in: rect.offsetBy(dx: 0, dy: 3.5*s), pen: Pen(font: .axHeavy(size: 19*s), color: !touchDown ? .white : .axBackground, alignment: .center))
 	}
 }

@@ -15,7 +15,8 @@ class LaunchExpansion: UIView {
 
 	let scrollView: UIScrollView = UIScrollView()
 	var paraView: ParaView = ParaView(names: ["Info"])
-	let imageView: UIImageView = UIImageView()
+	let rocketView: UIImageView = UIImageView()
+    let patchView: UIImageView = UIImageView()
 	let core1View: BoosterView = BoosterView(leftJustified: true)
 	let core2View: BoosterView = BoosterView(leftJustified: true)
 	let core3View: BoosterView = BoosterView(leftJustified: true)
@@ -33,7 +34,8 @@ class LaunchExpansion: UIView {
 
 		backgroundColor = .axBackground
 
-		page1.addSubview(imageView)
+		page1.addSubview(rocketView)
+        page1.addSubview(patchView)
 
 		youTubeFrame.addSubview(youTubeView)
 
@@ -56,7 +58,8 @@ class LaunchExpansion: UIView {
         
         paraView.snapTo(pageNo: 0)
 
-		imageView.image = launch.rocket.image
+        rocketView.image = launch.rocket.image
+        if let urlString = launch.patch { patchView.loadImage(url: urlString) }
 
 		paraView.removeFromSuperview()
 		if launch.youtubeID != nil { paraView = ParaView(names: ["Info", "Video"]) }
@@ -106,14 +109,16 @@ class LaunchExpansion: UIView {
 		page1.left(width: width, height: scrollView.height)
 		page2.left(dx: width, width: width, height: scrollView.height)
 		wikipedia.bottomRight(dx: -12*s, dy: -12*s, width: 103*s/2, height: 94*s/2)
-
-		if let image = imageView.image {
+        
+		if let image = rocketView.image {
 			let maxHeight: CGFloat = height - 81*s
 			let height: CGFloat = maxHeight*launch.rocket.height
-			imageView.bottomLeft(dx: 20*s, dy: -12*s, width: image.size.width*height/image.size.height, height: height)
+            rocketView.bottomLeft(dx: 20*s, dy: -12*s, width: image.size.width*height/image.size.height, height: height)
 		}
 
-		let boosterDX: CGFloat = imageView.right+12*s
+        patchView.topRight(dx: -width/12, dy: width/20, width: width/4, height: width/4)
+
+		let boosterDX: CGFloat = rocketView.right+12*s
         let boosterWidth: CGFloat = width - (wikipedia.superview != nil ? wikipedia.width + 8*s : 0) - 8*s - boosterDX
 
 		core3View.bottomLeft(dx: boosterDX, dy: -16*s, width: boosterWidth, height: 30*s)

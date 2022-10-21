@@ -56,7 +56,7 @@ class Core: Anchor {
 	}
 
 	var state: String {
-		if disposition == "active" { return "active" }
+        if disposition == "active" { return launches.count > 0 ? "active" : "pending" }
 
 		guard let lastLaunch: Launch = lastLaunch,
 			  let launchCore: LaunchCore = lastLaunch.launchCores.first(where: { $0.apiid == self.apiid })

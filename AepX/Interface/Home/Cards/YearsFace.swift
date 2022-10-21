@@ -95,10 +95,12 @@ fileprivate class YearView: UIView {
 	}
 }
 
-fileprivate class YearsView: UIView {
-	var years: [YearView] = []
+class YearsView: UIView {
+	fileprivate var years: [YearView] = []
+    private let shouldAdd11: Bool
 
-	init() {
+    init(shouldAdd11: Bool = true) {
+        self.shouldAdd11 = shouldAdd11
 		super.init(frame: .zero)
 	}
 	required init?(coder: NSCoder) { fatalError() }
@@ -107,7 +109,7 @@ fileprivate class YearsView: UIView {
 		years.forEach { $0.removeFromSuperview() }
 		years = []
 
-		var datas:[String:YearData] = ["'11":YearData(year: "'11")]
+        var datas:[String:YearData] = shouldAdd11 ? ["'11":YearData(year: "'11")] : [:]
 
 		launches.forEach {
 			let year: String = "'"+$0.date.format("YY")

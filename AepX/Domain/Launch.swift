@@ -32,7 +32,7 @@ class Launch: Anchor {
 	var relativeDateComponents: DateComponents {
 		Calendar.current.dateComponents([.day, .hour, .minute, .second], from: Date.now, to: date)
 	}
-	var hasVideo: Bool {  youtubeID != nil && date.timeIntervalSince(Date.now) < 3600 }
+	var hasVideo: Bool {  youtubeID != nil && date.timeIntervalSince(Date.now) < 3600*2 }
 	var hasDetails: Bool { (details?.count ?? 0) > 0 }
 
 	var hasCores: Bool { launchCores.count > 0 }
@@ -66,7 +66,7 @@ class Launch: Anchor {
 		if launchCores.count == 3 {
 			return core.version == "Block 5" ? .falconHeavyb5 : .falconHeavy
 		} else {
-			if core.block == -1 { return .falcon9b5 }
+            if core.block == -1 { return noOfCrew == 0 ? .falcon9b5 : .falcon9b5Dragon }
 			if core.booster == .falcon1 { return .falcon1 }
 			else if core.version == "v1.0" { return .falcon9v10 }
 

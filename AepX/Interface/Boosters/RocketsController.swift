@@ -24,10 +24,11 @@ class RocketsController: RocketCellDelegate {
             var result: Bool = true
             switch vc.filter.statesView.selectedRow(inComponent: 0) {
                 case 1: if core.state != "active" { result = false }
-                case 2: if core.state != "retired" { result = false }
-                case 3: if core.state != "expended" { result = false }
-                case 4: if core.state != "lost" && core.state != "oops" { result = false }
-                case 5: if core.state != "destroyed" { result = false }
+                case 2: if core.state != "pending" { result = false }
+                case 3: if core.state != "retired" { result = false }
+                case 4: if core.state != "expended" { result = false }
+                case 5: if core.state != "lost" && core.state != "oops" { result = false }
+                case 6: if core.state != "destroyed" { result = false }
                 default: break
             }
             switch vc.filter.shipsView.selectedRow(inComponent: 0) {
