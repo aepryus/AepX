@@ -60,6 +60,7 @@ class LaunchExpansion: UIView {
 
         rocketView.image = launch.rocket.image
         if let urlString = launch.patch { patchView.loadImage(url: urlString) }
+        else { patchView.image = nil }
 
 		paraView.removeFromSuperview()
 		if launch.youtubeID != nil { paraView = ParaView(names: ["Info", "Video"]) }
