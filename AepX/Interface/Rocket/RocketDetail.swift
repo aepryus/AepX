@@ -49,7 +49,7 @@ class RocketDetail: ExpandableCell {
 	let statusLabel: UILabel = UILabel()
 
     let frameView: UIView = ColorView(.axDarkBack)
-    let yearsView: YearsView = YearsView(shouldAdd11: false)
+    lazy var yearsView: YearsView = YearsView(core: core)
 	let rocketView: UIImageView = UIImageView()
 	private let flightsHeader: FlightsHeader = FlightsHeader()
 

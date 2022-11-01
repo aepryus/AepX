@@ -96,11 +96,11 @@ fileprivate class YearView: UIView {
 }
 
 class YearsView: UIView {
+    let core: Core?
 	fileprivate var years: [YearView] = []
-    private let shouldAdd11: Bool
 
-    init(shouldAdd11: Bool = true) {
-        self.shouldAdd11 = shouldAdd11
+    init(core: Core? = nil) {
+        self.core = core
 		super.init(frame: .zero)
 	}
 	required init?(coder: NSCoder) { fatalError() }
@@ -109,17 +109,33 @@ class YearsView: UIView {
 		years.forEach { $0.removeFromSuperview() }
 		years = []
 
-        var datas:[String:YearData] = shouldAdd11 ? ["'11":YearData(year: "'11")] : [:]
+        var datas:[String:YearData] = core == nil ? ["'11":YearData(year: "'11")] : [:]
 
 		launches.forEach {
 			let year: String = "'"+$0.date.format("YY")
 			var yearData: YearData = datas[year] ?? YearData(year: year)
-			if !$0.successful { yearData.failed += 1 }
-			else if $0.hasLostCores && $0.hasLandedCores { yearData.partial += 1 }
-			else if $0.hasLostCores { yearData.lost += 1 }
-			else if $0.hasLandedCores { yearData.landed += 1 }
-			else { yearData.expended += 1 }
-			datas[year] = yearData
+
+            if let core = self.core {
+                let launchCore: LaunchCore = $0.launchCores.first(where: { $0.apiid == core.apiid })!
+                switch launchCore.result {
+                    case .landed:   yearData.landed += 1
+                    case .lost:     yearData.lost += 1
+                    case .expended: yearData.expended += 1
+                    case .failed:   yearData.failed += 1
+                    case .planned, .partial:  break
+                }
+            } else {
+                switch $0.result {
+                    case .landed:   yearData.landed += 1
+                    case .partial:  yearData.partial += 1
+                    case .lost:     yearData.lost += 1
+                    case .expended: yearData.expended += 1
+                    case .failed:   yearData.failed += 1
+                    case .planned:  break
+                }
+            }
+
+            datas[year] = yearData
 		}
 
 		let max: Int = datas.values.maximum { $0.landed + $0.partial + $0.lost + $0.expended + $0.failed } ?? 0
