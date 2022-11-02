@@ -45,7 +45,7 @@ class AboutViewController: UIViewController {
 
 		colorView.backgroundColor = Result.partial.color
         text.append(image: colorView.asImage()).append("  - partial".localized, pen: imagePen)
-        text.append("\nThe primary mission succeeded with some boosters landing and others being lost.\n\n".localized, pen: pen)
+        text.append("\nThe primary mission succeeded with some boosters landing and others being expended or lost.\n\n".localized, pen: pen)
 
 		colorView.backgroundColor = Result.lost.color
         text.append(image: colorView.asImage()).append("  - lost".localized, pen: imagePen)
