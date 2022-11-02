@@ -91,6 +91,10 @@ class Launch: Anchor {
 		}
 		return .falcon9b5
 	}
+    
+    func launchCore(for core: Core) -> LaunchCore? {
+        launchCores.first(where: { $0.apiid == core.apiid })
+    }
 
 // Domain ==========================================================================================
 	override var properties: [String] {

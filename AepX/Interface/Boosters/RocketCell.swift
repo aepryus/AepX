@@ -63,7 +63,7 @@ class RocketCell: UITableViewCell {
 		flightsLabel.text = (core.launches.count != 1 ? "\(core.launches.count) " + "flights".localized : "1 " + "flight".localized)
 		boosterLabel.text = core.booster.name
 		versionLabel.text = core.version
-		resultView.result = core.launches.first?.result ?? .planned
+        resultView.result = core.launches.first?.launchCore(for: core)?.result ?? .planned
 	}
 
 // Events ==========================================================================================
