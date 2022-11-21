@@ -32,7 +32,9 @@ class LaunchCell: ExpandableCell {
 		dateLabel.pen = pen
 		addSubview(dateLabel)
 
+        patchView.contentMode = .scaleAspectFit
 		addSubview(patchView)
+        
 		addSubview(resultView)
 
 		lineView.backgroundColor = UIColor.blue.tone(0.85).tint(0.1)

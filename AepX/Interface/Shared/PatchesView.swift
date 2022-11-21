@@ -31,6 +31,7 @@ class PatchesView: UIView {
 			self.patchInfo = patchInfo
 			super.init(frame: .zero)
 
+            imageView.contentMode = .scaleAspectFit
 			imageView.loadImage(url: self.patchInfo.url)
 			addSubview(imageView)
 

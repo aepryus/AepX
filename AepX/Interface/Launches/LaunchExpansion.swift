@@ -35,6 +35,8 @@ class LaunchExpansion: UIView {
 		backgroundColor = .axBackground
 
 		page1.addSubview(rocketView)
+        
+        patchView.contentMode = .scaleAspectFit
         page1.addSubview(patchView)
 
 		youTubeFrame.addSubview(youTubeView)

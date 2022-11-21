@@ -71,15 +71,18 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate {
 		UINavigationBar.appearance().standardAppearance = navApp
 		UINavigationBar.appearance().scrollEdgeAppearance = navApp
 
-		let image1 = UIImage(named: "Home")!
-		let image2 = UIImage(named: "Launches")!
-		let image3 = UIImage(named: "Boosters")!
-		let image4 = UIImage(named: "About")!
+        let image1 = UIImage(named: "Home")!.withRenderingMode(.alwaysOriginal)
+        let image2 = UIImage(named: "Launches")!.withRenderingMode(.alwaysOriginal)
+        let image3 = UIImage(named: "Boosters")!.withRenderingMode(.alwaysOriginal)
+		let image4 = UIImage(named: "About")!.withRenderingMode(.alwaysOriginal)
+        
+        let unselect: UIColor = .white.shade(0.5)
+        let select: UIColor = .white
 
-		homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: image1, selectedImage: image1.withTintColor(.white))
-		launchesNavigationController.tabBarItem = UITabBarItem(title: "Launches", image: image2, selectedImage: image2.withTintColor(.white))
-		rocketsNavigationController.tabBarItem = UITabBarItem(title: "Boosters", image: image3, selectedImage: image3.withTintColor(.white))
-		aboutNavigationController.tabBarItem = UITabBarItem(title: "About", image: image4, selectedImage: image4.withTintColor(.white))
+        homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: image1.withTintColor(unselect), selectedImage: image1.withTintColor(select))
+		launchesNavigationController.tabBarItem = UITabBarItem(title: "Launches", image: image2.withTintColor(unselect), selectedImage: image2.withTintColor(select))
+		rocketsNavigationController.tabBarItem = UITabBarItem(title: "Boosters", image: image3.withTintColor(unselect), selectedImage: image3.withTintColor(select))
+		aboutNavigationController.tabBarItem = UITabBarItem(title: "About", image: image4.withTintColor(unselect), selectedImage: image4.withTintColor(select))
 
 		self.viewControllers = [
 			homeNavigationController,

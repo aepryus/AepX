@@ -33,8 +33,10 @@ class LaunchFace: Face {
 		nameLabel.pen = Pen(font: .axHeavy(size: 20*s), color: .white)
 		addSubview(nameLabel)
 
+        patchView.contentMode = .scaleAspectFit
 		addSubview(patchView)
-		addSubview(countDownView)
+
+        addSubview(countDownView)
 		addSubview(patchesView)
 
 		timer.configure(interval: 1) { [weak self] in
@@ -53,11 +55,8 @@ class LaunchFace: Face {
 		self.launch = launch
 
 		nameLabel.text = launch.name
-		if let url = launch.patch {
-			patchView.loadImage(url: url)
-        } else {
-            patchView.cancelLoadImage()
-        }
+		if let url = launch.patch { patchView.loadImage(url: url) }
+        else { patchView.cancelLoadImage() }
 
 		if launch.hasVideo, let youtubeID = launch.youtubeID {
 			youTubeView.load(id: youtubeID)
