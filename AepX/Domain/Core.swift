@@ -22,6 +22,8 @@ class Core: Anchor {
 
 	var booster: Booster {
 		if block == 0 { return .falcon1 }
+        else if block == 6 { return .starship }
+        else if block == 7 { return .superHeavy }
 		else { return .falcon9 }
 	}
 	var version: String {

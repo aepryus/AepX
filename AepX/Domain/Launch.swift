@@ -63,8 +63,10 @@ class Launch: Anchor {
 				return core
 			}()
 		}
-		if launchCores.count == 3 {
-			return core.version == "Block 5" ? .falconHeavyb5 : .falconHeavy
+        if launchCores.count == 3 {
+            return core.version == "Block 5" ? .falconHeavyb5 : .falconHeavy
+        } else if launchCores.count == 2 {
+            return .starship
 		} else {
             if core.block == -1 { return noOfCrew == 0 ? .falcon9b5 : .falcon9b5Dragon }
 			if core.booster == .falcon1 { return .falcon1 }

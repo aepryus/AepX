@@ -15,6 +15,7 @@ enum Rocket {
 	case falcon9v12Dragon, falcon9v12, falcon9v12NoLegs
 	case falcon9b5Dragon, falcon9b5, falcon9b5NoLegs
 	case falconHeavy, falconHeavyb5
+    case starship
 
 	var height: Double {
 		let height: Double
@@ -31,10 +32,12 @@ enum Rocket {
 				height = 190.7
 			case .falcon9b5Dragon:
 				height = 192.8
+            case .starship:
+                height = 354.3 // 119 * 208.4 / 70
 			default:
 				height = 208.4
 		}
-		return height/208.4
+		return height/354.3
 	}
 
 	var isFalcon1: Bool { self == .falcon1 }
@@ -56,6 +59,7 @@ enum Rocket {
 			Rocket.falconHeavyb5
 		].contains(self)
 	}
+    var isStarship: Bool { self == .starship }
 
 	var image: UIImage {
 		switch self {
@@ -72,6 +76,7 @@ enum Rocket {
 			case .falcon9b5NoLegs:	return UIImage(named: "Falcon9b5NoLegs")!
 			case .falconHeavy:		return UIImage(named: "FalconHeavy")!
 			case .falconHeavyb5:	return UIImage(named: "FalconHeavyb5")!
+            case .starship:         return UIImage(named: "Starship")!
 		}
 	}
 }

@@ -10,7 +10,7 @@ import Acheron
 import UIKit
 
 class AboutViewController: UIViewController {
-	let backView: UIImageView = UIImageView(image: UIImage(named: "Starship"))
+	let backView: UIImageView = UIImageView(image: UIImage(named: "Background"))
 	let scrollView: UIScrollView = UIScrollView()
 	let label: UILabel = UILabel()
 	var imageView: UIImageView = {

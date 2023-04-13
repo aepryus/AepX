@@ -57,6 +57,7 @@ class RocketDetail: ExpandableCell {
 		self.core = core
 
 		if let rocket = core.launches.first?.rocket { self.rocket = rocket }
+        else if core.block == 6 || core.block == 7 { self.rocket = .starship }
 		else { rocket = .falcon9b5 }
         
 		super.init(style: .default, reuseIdentifier: nil)

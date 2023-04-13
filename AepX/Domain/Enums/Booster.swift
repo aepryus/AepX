@@ -9,13 +9,15 @@
 import Foundation
 
 enum Booster {
-	case falcon1, falcon9
+	case falcon1, falcon9, starship, superHeavy
 
 	var generation: Int { self == .falcon1 ? 1 : 2 }
 	var name: String {
 		switch self {
-			case .falcon1: return "Falcon 1"
-			case .falcon9: return "Falcon 9"
+            case .falcon1:      return "Falcon 1"
+            case .falcon9:      return "Falcon 9"
+            case .starship:     return "Starship"
+            case .superHeavy:   return "Super Heavy"
 		}
 	}
 }

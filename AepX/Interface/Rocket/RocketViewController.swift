@@ -34,7 +34,7 @@ class RocketViewController: UIViewController, ExpandableTableViewDelegate {
 
 		navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
-		backView.image = UIImage(named: "Starship")
+		backView.image = UIImage(named: "Background")
 		view.addSubview(backView)
 
 		tableView.register(LaunchCell.self, forCellReuseIdentifier: "cell")

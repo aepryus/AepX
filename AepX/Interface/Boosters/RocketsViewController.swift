@@ -59,7 +59,7 @@ class RocketsViewController: UIViewController, UITableViewDataSource, UITableVie
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: controller, action: #selector(RocketsController.onFilterTapped))
 		navigationItem.backButtonDisplayMode = .minimal
 
-		backView.image = UIImage(named: "Starship")
+		backView.image = UIImage(named: "Background")
 		view.addSubview(backView)
 
 		tableView.backgroundColor = UIColor.clear

@@ -92,7 +92,7 @@ class LaunchesViewController: UIViewController, ExpandableTableViewDelegate {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: controller, action: #selector(LaunchesController.onFilterTapped))
 		navigationItem.backButtonDisplayMode = .minimal
 
-		backView.image = UIImage(named: "Starship")
+		backView.image = UIImage(named: "Background")
 		view.addSubview(backView)
 
 		tableView.backgroundColor = UIColor.clear

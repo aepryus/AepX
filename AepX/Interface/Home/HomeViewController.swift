@@ -31,7 +31,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 		navigationController?.navigationBar.tintColor = .white
 		navigationItem.backButtonDisplayMode = .minimal
 
-		backView.image = UIImage(named: "Starship")
+		backView.image = UIImage(named: "Background")
 		view.addSubview(backView)
 
 		tableView.register(LaunchCell.self, forCellReuseIdentifier: "cell")
