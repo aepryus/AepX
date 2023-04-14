@@ -9,7 +9,7 @@
 		<key>UIColorName</key>
 		<string>launch-background</string>
 		<key>UIImageName</key>
-		<string>Starship</string>
+		<string>Background</string>
 	</dict>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
