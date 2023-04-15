@@ -37,7 +37,7 @@ enum Rocket {
 			default:
 				height = 208.4
 		}
-		return height/354.3
+        return min(height/208.4, 1)
 	}
 
 	var isFalcon1: Bool { self == .falcon1 }
