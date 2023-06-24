@@ -57,7 +57,11 @@ class AboutViewController: UIViewController {
 
 		colorView.backgroundColor = Result.failed.color
         text.append(image: colorView.asImage()).append("  - destroyed".localized, pen: imagePen)
-        text.append("\nThe primary mission failed and the booster was destroyed.\n".localized, pen: pen)
+        text.append("\nThe primary mission failed and the booster was destroyed.\n\n".localized, pen: pen)
+
+        colorView.backgroundColor = Result.tested.color
+        text.append(image: colorView.asImage()).append("  - tested".localized, pen: imagePen)
+        text.append("\nThe mission was a test.\n".localized, pen: pen)
 
         text.append("\n\nTips and Tricks\n".localized, pen: headerPen)
 		text.append("""

@@ -29,15 +29,17 @@ class RocketsController: RocketCellDelegate {
                 case 4: if core.state != "expended" { result = false }
                 case 5: if core.state != "lost" && core.state != "oops" { result = false }
                 case 6: if core.state != "destroyed" { result = false }
+                case 7: if core.state != "tested" { result = false }
                 default: break
             }
             switch vc.filter.shipsView.selectedRow(inComponent: 0) {
-                case 1: if !(core.booster == .falcon9 && core.version == "block 5") { result = false }
-                case 2: if !(core.booster == .falcon9 && core.version == "block 4") { result = false }
-                case 3: if !(core.booster == .falcon9 && core.version == "FT") { result = false }
-                case 4: if !(core.booster == .falcon9 && core.version == "v1.1") { result = false }
-                case 5: if !(core.booster == .falcon9 && core.version == "v1.0") { result = false }
-                case 6: if !(core.booster == .falcon1) { result = false }
+                case 1: if !(core.booster == .starship || core.booster == .superHeavy) { result = false }
+                case 2: if !(core.booster == .falcon9 && core.version == "block 5") { result = false }
+                case 3: if !(core.booster == .falcon9 && core.version == "block 4") { result = false }
+                case 4: if !(core.booster == .falcon9 && core.version == "FT") { result = false }
+                case 5: if !(core.booster == .falcon9 && core.version == "v1.1") { result = false }
+                case 6: if !(core.booster == .falcon9 && core.version == "v1.0") { result = false }
+                case 7: if !(core.booster == .falcon1) { result = false }
                 default: break
             }
             return result

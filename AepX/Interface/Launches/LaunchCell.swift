@@ -10,6 +10,8 @@ import Acheron
 import UIKit
 
 class LaunchCell: ExpandableCell {
+    var launch: Launch!
+    
 	let nameLabel: UILabel = UILabel()
 	let dateLabel: UILabel = UILabel()
 	let flightNoLabel: UILabel = UILabel()
@@ -43,10 +45,19 @@ class LaunchCell: ExpandableCell {
 	required init?(coder: NSCoder) { fatalError() }
 
 	func load(launch: Launch) {
+        self.launch = launch
+        
 		backgroundColor = launch.completed ? UIColor.axDarkBack : UIColor.axBackground.shade(0.2)
 
 		nameLabel.text = launch.name
-		dateLabel.text = "\(launch.date.format("MMM d, yyyy"))"
+        
+        if launch.completed {
+            dateLabel.text = "\(launch.date.format("MMM d, yyyy"))"
+            addSubview(dateLabel)
+        } else {
+            dateLabel.removeFromSuperview()
+        }
+        
 		flightNoLabel.text = "\(launch.flightNo)"
 
 		if let urlString = launch.patch { patchView.loadImage(url: urlString) }
@@ -59,8 +70,14 @@ class LaunchCell: ExpandableCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		patchView.left(dx: 9*s, width: 48*s, height: 48*s)
-		nameLabel.left(dx: patchView.right+12*s, dy: -12*s, width: width-(patchView.right+12*s)-12*s, height: 40*s)
-		dateLabel.left(dx: nameLabel.left, dy: 12*s, width: 300*s, height: 48*s)
+        
+        if launch.completed {
+            nameLabel.left(dx: patchView.right+12*s, dy: -12*s, width: width-(patchView.right+12*s)-12*s, height: 40*s)
+            dateLabel.left(dx: nameLabel.left, dy: 12*s, width: 300*s, height: 48*s)
+        } else {
+            nameLabel.left(dx: patchView.right+12*s, width: width-(patchView.right+12*s)-12*s, height: 40*s)
+        }
+        
 		flightNoLabel.right(dx: -12*s, width: 1000*s, height: 60*s)
 		resultView.right(dx: -1*s, width: 4*s, height: baseHeight*0.6)
 		lineView.bottom(width: width, height: 1)

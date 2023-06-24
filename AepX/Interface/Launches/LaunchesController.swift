@@ -25,6 +25,7 @@ class LaunchesController: BoosterViewDelegate {
                 if $0.rocket.isFalcon1 && vc.filter.rocketsView.selectedRow(inComponent: 0) != 1 { return false }
                 if $0.rocket.isFalcon9 && vc.filter.rocketsView.selectedRow(inComponent: 0) != 2 { return false }
                 if $0.rocket.isFalconHeavy && vc.filter.rocketsView.selectedRow(inComponent: 0) != 3 { return false }
+                if $0.rocket.isStarship && vc.filter.rocketsView.selectedRow(inComponent: 0) != 4 { return false }
             }
 
             if vc.filter.missionsView.selectedRow(inComponent: 0) != 0 {

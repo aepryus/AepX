@@ -92,10 +92,10 @@ class StatsFace: Face {
 	required init?(coder: NSCoder) { fatalError() }
 
     func loadData(launches: [Launch], cores: [Core]) {
-		let missionsSuccess = launches.summate { $0.successful ? 1 : 0 }
-		let missionsTotal = launches.summate { $0.completed ? 1 : 0 }
-		let landingsSuccess = launches.summate { $0.launchCores.summate{ $0.result == .landed ? 1 : 0 } }
-		let landingsTotal = launches.summate { $0.successful ? $0.launchCores.summate{ $0.result == .landed || $0.result == .lost ? 1 : 0 } : 0 }
+        let missionsSuccess = launches.summate { $0.successful && $0.result != .tested ? 1 : 0 }
+        let missionsTotal = launches.summate { $0.completed && $0.result != .tested ? 1 : 0 }
+		let landingsSuccess = launches.summate { $0.launchCores.summate{ $0.result == .landed && $0.result != .tested ? 1 : 0 } }
+		let landingsTotal = launches.summate { $0.successful ? $0.launchCores.summate{ ($0.result == .landed || $0.result == .lost) && $0.result != .tested ? 1 : 0 } : 0 }
 
 		missionsYes.text = "\(missionsSuccess)"
 		missionsNo.text = "\(missionsTotal - missionsSuccess)"

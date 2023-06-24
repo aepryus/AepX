@@ -72,6 +72,7 @@ class Core: Anchor {
 			case .expended:	return "expended"
 			case .lost:		return "lost"
 			case .failed:	return "destroyed"
+            case .tested:   return "tested"
 			default:		break
 		}
 

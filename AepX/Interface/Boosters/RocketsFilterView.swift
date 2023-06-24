@@ -46,8 +46,8 @@ class RocketsFilterView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	private let statesSpecifier: Specifier = Specifier(text: "status")
 
 	let sorts: [String] = ["Default", "Serial No."]
-	let ships: [String] = ["All", "Falcon 9 block 5", "Falcon 9 block 4", "Falcon 9 FT", "Falcon 9 v1.1", "Falcon 9 v1.0", "Falcon 1"]
-	let states: [String] = ["All", "Active", "Pending", "Retired", "Expended", "Lost", "Destroyed"]
+	let ships: [String] = ["All", "Starship", "Falcon 9 block 5", "Falcon 9 block 4", "Falcon 9 FT", "Falcon 9 v1.1", "Falcon 9 v1.0", "Falcon 1"]
+	let states: [String] = ["All", "Active", "Pending", "Retired", "Expended", "Lost", "Destroyed", "Tested"]
 
 	init() {
 		super.init(frame: .zero)

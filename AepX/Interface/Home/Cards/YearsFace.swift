@@ -51,10 +51,9 @@ fileprivate struct YearData {
 	var lost: Int = 0
 	var landed: Int = 0
 	var partial: Int = 0
+    var tested: Int = 0
 
-	var total: Int {
-		return failed + expended + lost + landed + partial
-	}
+	var total: Int { failed + expended + lost + landed + partial + tested }
 }
 
 fileprivate class YearView: UIView {
@@ -71,6 +70,7 @@ fileprivate class YearView: UIView {
 			Layer(color: .orange.tone(tonePercent), percent: CGFloat(data.lost)/CGFloat(max)),
 			Layer(color: .cyan.tone(tonePercent), percent: CGFloat(data.expended)/CGFloat(max)),
 			Layer(color: .red.tone(tonePercent), percent: CGFloat(data.failed)/CGFloat(max)),
+            Layer(color: .yellow.tone(tonePercent), percent: CGFloat(data.tested)/CGFloat(max)),
 		])
 		totalPercent = max > 0 ? CGFloat(data.total)/CGFloat(max) : 0
 		super.init(frame: .zero)
@@ -122,6 +122,7 @@ class YearsView: UIView {
                     case .lost:     yearData.lost += 1
                     case .expended: yearData.expended += 1
                     case .failed:   yearData.failed += 1
+                    case .tested:   yearData.tested += 1
                     case .planned, .partial:  break
                 }
             } else {
@@ -131,14 +132,14 @@ class YearsView: UIView {
                     case .lost:     yearData.lost += 1
                     case .expended: yearData.expended += 1
                     case .failed:   yearData.failed += 1
-                    case .planned:  break
+                    case .planned, .tested:  break
                 }
             }
 
             datas[year] = yearData
 		}
 
-		let max: Int = datas.values.maximum { $0.landed + $0.partial + $0.lost + $0.expended + $0.failed } ?? 0
+        let max: Int = datas.values.maximum { $0.landed + $0.partial + $0.lost + $0.expended + $0.failed + $0.tested } ?? 0
 
 		years = datas.values.sorted(by: { $0.year > $1.year })
 			.map { YearView(data: $0, max: max) }
@@ -228,6 +229,6 @@ class YearsFace: Face {
 // UIView ==========================================================================================
 	override func layoutSubviews() {
 		yearsView.frame = bounds
-		legendView.bottomRight(dx: -20*s, dy: -24*s, width: 200*s, height: 5*24*s)
+        legendView.bottomRight(dx: -20*s, dy: -24*s, width: 200*s, height: CGFloat(legendView.rows.count)*24*s)
 	}
 }

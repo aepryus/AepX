@@ -9,7 +9,7 @@
 import UIKit
 
 enum Result: CaseIterable {
-	case planned, landed, partial, lost, expended, failed
+	case planned, landed, partial, lost, expended, failed, tested
 
 	var color: UIColor {
 		let tonePercent: CGFloat = 0.6
@@ -20,6 +20,7 @@ enum Result: CaseIterable {
 			case .lost:		return .orange.tone(tonePercent)
 			case .expended:	return .cyan.tone(tonePercent)
 			case .failed:	return .red.tone(tonePercent)
+            case .tested:   return .yellow.tone(tonePercent)
 		}
 	}
 }
